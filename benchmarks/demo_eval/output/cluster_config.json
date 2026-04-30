@@ -1,0 +1,82 @@
+[
+  {
+    "type": "action",
+    "category": "bash",
+    "min_cluster_size": 20,
+    "min_samples": 10,
+    "umap_dims": 50,
+    "umap_n_neighbors": 25,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "action",
+    "category": "str_replace_editor",
+    "min_cluster_size": 20,
+    "min_samples": 10,
+    "umap_dims": 40,
+    "umap_n_neighbors": 20,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "action",
+    "category": "submit",
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "umap_dims": 50,
+    "umap_n_neighbors": 25,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "action",
+    "category": "text",
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "umap_dims": 50,
+    "umap_n_neighbors": 10,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "observation",
+    "category": "bash",
+    "min_cluster_size": 20,
+    "min_samples": 10,
+    "umap_dims": 40,
+    "umap_n_neighbors": 25,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "observation",
+    "category": "str_replace_editor",
+    "min_cluster_size": 20,
+    "min_samples": 10,
+    "umap_dims": 60,
+    "umap_n_neighbors": 20,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "observation",
+    "category": "submit",
+    "min_cluster_size": 5,
+    "min_samples": 3,
+    "umap_dims": 40,
+    "umap_n_neighbors": 20,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  },
+  {
+    "type": "observation",
+    "category": "text",
+    "min_cluster_size": 10,
+    "min_samples": 5,
+    "umap_dims": 40,
+    "umap_n_neighbors": 15,
+    "selection_method": "eom",
+    "selection_epsilon": 0.0
+  }
+]

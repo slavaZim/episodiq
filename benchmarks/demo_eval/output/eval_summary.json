@@ -1,0 +1,84 @@
+{
+  "n_trajectories": 250,
+  "n_success": 103,
+  "n_failure": 147,
+  "n_scored": 242,
+  "dead_end": {
+    "auc": 0.7744,
+    "best_threshold": 0.5,
+    "best_f1": 0.7611,
+    "best_precision": 0.6719,
+    "best_recall": 0.8776,
+    "best_avg_turns_remaining": 40.4,
+    "sweep": [
+      {
+        "threshold": 0.5,
+        "precision": 0.6719,
+        "recall": 0.8776,
+        "f1": 0.7611,
+        "tp": 129,
+        "fp": 63,
+        "fn": 18,
+        "avg_turns_remaining": 40.4
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.7308,
+        "recall": 0.7755,
+        "f1": 0.7525,
+        "tp": 114,
+        "fp": 42,
+        "fn": 33,
+        "avg_turns_remaining": 39.2
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.792,
+        "recall": 0.6735,
+        "f1": 0.7279,
+        "tp": 99,
+        "fp": 26,
+        "fn": 48,
+        "avg_turns_remaining": 38.6
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.828,
+        "recall": 0.5238,
+        "f1": 0.6417,
+        "tp": 77,
+        "fp": 16,
+        "fn": 70,
+        "avg_turns_remaining": 38.6
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.6364,
+        "recall": 0.0476,
+        "f1": 0.0886,
+        "tp": 7,
+        "fp": 4,
+        "fn": 140,
+        "avg_turns_remaining": 43.4
+      }
+    ]
+  },
+  "signals": {
+    "fail_risk_action": {
+      "auc": 0.653,
+      "rate": 0.0893
+    },
+    "fail_risk_transition": {
+      "auc": 0.6672,
+      "rate": 0.113
+    },
+    "success_signal_action": {
+      "auc": 0.6519,
+      "rate": 0.0767
+    },
+    "success_signal_transition": {
+      "auc": 0.6516,
+      "rate": 0.0884
+    }
+  }
+}
