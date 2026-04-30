@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.ruff_cache
+
+# Environment
+.env
+.env.*
+!.env*.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+CLAUDE.md
+.claude
+
+.joblib
+*.joblib
+
+# DB dumps
+*.dump
+
+# Large benchmark artifacts
+benchmarks/tau2_bench/results/
+benchmarks/graphs*/
+benchmarks/swe_gym/spmf_data/
+benchmarks/*.log
+profile_results/
+graphs_split/
+demo/
+demo_1/

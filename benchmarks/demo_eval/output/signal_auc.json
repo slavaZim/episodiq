@@ -1,0 +1,21 @@
+{
+  "n_trajectories": 500,
+  "n_failure": 247,
+  "n_success": 253,
+  "fail_risk_action": {
+    "auc": 0.6763,
+    "mean_rate": 0.1222
+  },
+  "fail_risk_transition": {
+    "auc": 0.7149,
+    "mean_rate": 0.1339
+  },
+  "success_signal_action": {
+    "auc": 0.6439,
+    "mean_rate": 0.1002
+  },
+  "success_signal_transition": {
+    "auc": 0.6856,
+    "mean_rate": 0.1133
+  }
+}

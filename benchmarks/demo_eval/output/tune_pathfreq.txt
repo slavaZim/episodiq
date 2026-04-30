@@ -1,0 +1,27 @@
+2026-04-29 17:29:30,385 INFO path_freq_start n_sampled=2000
+2026-04-29 17:30:20,041 INFO progress 500/2000 valid=404
+2026-04-29 17:31:10,431 INFO progress 1000/2000 valid=858
+2026-04-29 17:32:00,595 INFO progress 1500/2000 valid=1219
+
+Paths: 2000 sampled, 1618 valid
+
+        Entropy Distribution        
+┏━━━━━━┳━━━━━━┳━━━━━━┳━━━━━━┳━━━━━━┓
+┃  min ┃  p25 ┃  p50 ┃  p75 ┃  max ┃
+┡━━━━━━╇━━━━━━╇━━━━━━╇━━━━━━╇━━━━━━┩
+│ 0.00 │ 2.29 │ 2.67 │ 3.05 │ 4.10 │
+└──────┴──────┴──────┴──────┴──────┘
+
+                   Action Variance (low ≤ 1.92, high ≥ 3.36)                    
+┏━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Flag   ┃ Count ┃     % ┃ Description                                         ┃
+┡━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ low    │   162 │ 10.0% │ entropy ≤ low threshold — few likely actions, very  │
+│        │       │       │ predictable                                         │
+│ normal │  1294 │ 80.0% │ between thresholds — typical variance               │
+│ high   │   162 │ 10.0% │ entropy ≥ high threshold — many options,            │
+│        │       │       │ unpredictable                                       │
+└────────┴───────┴───────┴─────────────────────────────────────────────────────┘
+
+Suggested thresholds (p10 / p90):
+  LOW_ENTROPY=1.92  HIGH_ENTROPY=3.36

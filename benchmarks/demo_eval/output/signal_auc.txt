@@ -1,0 +1,8 @@
+
+=== Signal AUC (n=500) ===
+  fail_risk_action               AUC=0.6763  rate=0.1222
+  fail_risk_transition           AUC=0.7149  rate=0.1339
+  success_signal_action          AUC=0.6439  rate=0.1002
+  success_signal_transition      AUC=0.6856  rate=0.1133
+
+Saved to output/signal_auc.json

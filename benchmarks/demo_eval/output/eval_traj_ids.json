@@ -1,0 +1,1502 @@
+{
+  "6ceae2ba-a8dc-46f8-8be8-b27a5c8d0264": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7365",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7365.6wi78a3e",
+    "status": "success",
+    "turns": 16
+  },
+  "1e20e4ab-3a16-41a6-b65a-6cdd0f976a36": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5794",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5794.6wi78a3e",
+    "status": "success",
+    "turns": 35
+  },
+  "06250a3a-01e8-4b81-99f0-94bde98e7fb1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4860",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4860.6wi78a3e",
+    "status": "success",
+    "turns": 9
+  },
+  "18ffc471-294e-41f5-a8a3-84cb02a122ff": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7081",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7081.6wi78a3e",
+    "status": "success",
+    "turns": 83
+  },
+  "f0e64e75-abee-43a8-89d3-d93bd7d26eea": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4986",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4986.6wi78a3e",
+    "status": "success",
+    "turns": 17
+  },
+  "7e0bd057-00a0-4e90-b61a-f14eff741973": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5072",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5072.6wi78a3e",
+    "status": "success",
+    "turns": 29
+  },
+  "f098121d-740d-4c1b-90dc-4b1662622e48": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7331",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7331.6wi78a3e",
+    "status": "failure",
+    "turns": 39
+  },
+  "708cf614-67c1-4e24-940f-667655585aee": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6212",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6212.6wi78a3e",
+    "status": "failure",
+    "turns": 38
+  },
+  "0cedfc27-0be9-42e4-a981-ee37f2d13623": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5587.1zmen2ge",
+    "status": "failure",
+    "turns": 16
+  },
+  "404ac74f-9e6d-43cb-88d3-fc6e2f875b20": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6802",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6802.1zmen2ge",
+    "status": "failure",
+    "turns": 17
+  },
+  "c27c239e-8ddb-4faa-a021-ead882f9d528": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5321",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5321.1zmen2ge",
+    "status": "failure",
+    "turns": 14
+  },
+  "1ed14ae6-a82a-4fdc-a3f6-6a93fff5f0a7": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5134",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5134.1zmen2ge",
+    "status": "failure",
+    "turns": 72
+  },
+  "f2d4a2fe-7579-4965-acf7-2b30e5c22863": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7331",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7331.1zmen2ge",
+    "status": "failure",
+    "turns": 22
+  },
+  "ed044b4a-e384-474f-b261-2bf40df8d21e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6212",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6212.1zmen2ge",
+    "status": "failure",
+    "turns": 65
+  },
+  "f2b6aae6-78c9-4d57-907a-02b111d08323": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8342",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8342.bd1ayfz5",
+    "status": "success",
+    "turns": 10
+  },
+  "3fe68bbd-8c56-4bf4-b101-6df98d3a3f13": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6509",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6509.g8k3ctjp",
+    "status": "success",
+    "turns": 40
+  },
+  "60276c46-932a-4214-bee6-0c7219ba2e1d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7608",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7608.9igyuo81",
+    "status": "failure",
+    "turns": 36
+  },
+  "a635c050-81d7-472c-af81-f344e31bc752": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8587.b7yjujdt",
+    "status": "failure",
+    "turns": 56
+  },
+  "190cdbcd-131c-4509-ac0a-7c1a1c086e02": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6510",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6510.pbeebzya",
+    "status": "failure",
+    "turns": 12
+  },
+  "b75cf079-5f22-4f37-9ebd-2626cead9b86": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8344",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8344.5gzti394",
+    "status": "failure",
+    "turns": 11
+  },
+  "4fd05c94-dedb-4fa1-bb97-f5e3657b7b48": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6508",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6508.1m5hxs8a",
+    "status": "success",
+    "turns": 44
+  },
+  "3e077401-08ef-4e01-9a66-e33b8f7e4b38": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7490",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7490.syb712b3",
+    "status": "success",
+    "turns": 18
+  },
+  "58c9585f-f59d-4166-81db-73a946a79a46": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7647",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7647.73imwqtg",
+    "status": "failure",
+    "turns": 26
+  },
+  "0a2c267b-7ee9-4496-ba17-0f71bc9db1ed": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7946",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7946.kc9jffai",
+    "status": "failure",
+    "turns": 21
+  },
+  "8bb0dd69-3c0b-4b0d-b6a0-f272c9df921a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6557",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6557.mv27vj2c",
+    "status": "failure",
+    "turns": 29
+  },
+  "d4942fdf-881d-4da4-a868-9d028477a470": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7704",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7704.3iwtr3a2",
+    "status": "failure",
+    "turns": 63
+  },
+  "369f779b-35e9-4bd2-96f8-ef2a387e0c6d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7177",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7177.qubybibr",
+    "status": "success",
+    "turns": 15
+  },
+  "c9d29b55-3fc0-4223-ae15-621dd0f2a313": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7144",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7144.bm2xhtmp",
+    "status": "failure",
+    "turns": 22
+  },
+  "44854dcf-45e5-4bd0-8148-5d7c3ee23f74": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6204",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6204.iuimwbq2",
+    "status": "success",
+    "turns": 26
+  },
+  "2aebf1b0-ea01-497b-bdd9-cdd9af144e53": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7874",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7874.vaz6boqy",
+    "status": "failure",
+    "turns": 25
+  },
+  "286560b3-91ae-45cd-b524-7af1ab8c2ca6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6913",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6913.8diz8k96",
+    "status": "success",
+    "turns": 20
+  },
+  "f4d4813c-3d51-431b-919a-84aaa82ec3a8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5154",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5154.nxyodbge",
+    "status": "failure",
+    "turns": 23
+  },
+  "abb6af9a-fd50-4028-a1fa-76b86b9a0fa9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7934",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7934.zm8dmmuc",
+    "status": "failure",
+    "turns": 10
+  },
+  "30604483-b580-41ca-b954-bbdb4a698c47": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7023",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7023.yu26aowp",
+    "status": "success",
+    "turns": 18
+  },
+  "c6b7b52b-a91f-471c-87a0-a394985c1277": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8539",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8539.14nh2ir8",
+    "status": "success",
+    "turns": 29
+  },
+  "e5043472-e6a4-458d-a8ae-35a7d3fdf7a4": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7211",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7211.iltecsct",
+    "status": "failure",
+    "turns": 31
+  },
+  "15c14700-3de6-4902-bfe8-d76556981d52": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6401",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6401.j24l8xk6",
+    "status": "success",
+    "turns": 23
+  },
+  "48071177-385a-459b-81b7-ece1d69a5d0c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6687",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6687.jmchfgt5",
+    "status": "success",
+    "turns": 40
+  },
+  "c44b0d0b-1c5a-4a6a-a613-5226da15c313": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5706",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5706.h99n6xty",
+    "status": "failure",
+    "turns": 26
+  },
+  "97b4ba20-e3d1-41ee-b346-15e783983c61": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7271",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7271.26pvrio0",
+    "status": "failure",
+    "turns": 9
+  },
+  "81f58b16-2928-4344-9c2c-ddfdf2106cda": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7168",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7168.4u5laiil",
+    "status": "success",
+    "turns": 23
+  },
+  "c2a82e69-8940-4ba8-a8e7-ade5cdfbbdf5": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6028",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6028.1s3yw67a",
+    "status": "failure",
+    "turns": 24
+  },
+  "8e760a9f-b0cc-4637-a935-e16d5a8c0b29": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6786",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6786.0v8cw0b7",
+    "status": "failure",
+    "turns": 55
+  },
+  "93aa2513-b601-439f-9425-fcb14dbce567": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8492",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8492.3f63fmx9",
+    "status": "failure",
+    "turns": 11
+  },
+  "e466f7d8-eb6c-47d2-a49b-dd607d377f26": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8120",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8120.b2ul9km8",
+    "status": "success",
+    "turns": 9
+  },
+  "2f614c61-b263-4062-8bdf-cd9f66564e46": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5737",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5737.99jij07q",
+    "status": "failure",
+    "turns": 17
+  },
+  "33d58343-a4ec-47e2-bb0f-2905fe2288e2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4847",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4847.4pdiut77",
+    "status": "failure",
+    "turns": 19
+  },
+  "d8215bf8-c319-47ba-bccf-2920f640ac94": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8466",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8466.r8ijybg3",
+    "status": "failure",
+    "turns": 78
+  },
+  "dde54dda-bb67-49e6-b8a2-1244f781d2b0": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7859",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7859.t509a9ml",
+    "status": "failure",
+    "turns": 9
+  },
+  "83c06ecd-dbe6-4d45-9c14-2b43636c0678": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7963",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7963.ea18o3wg",
+    "status": "failure",
+    "turns": 106
+  },
+  "11fb3113-2964-4e3d-987b-e4ca0983fef5": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7567",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7567.oz33661v",
+    "status": "success",
+    "turns": 14
+  },
+  "f0657eff-c10e-4d62-bb46-18473658fc7a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8538",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8538.tsmb7aqz",
+    "status": "failure",
+    "turns": 13
+  },
+  "d63112d4-3102-4c07-886f-e03c84986522": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6641",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6641.p10qss26",
+    "status": "failure",
+    "turns": 26
+  },
+  "c3cb335d-e113-4484-bf8d-27e46f8755dd": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7926",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7926.pvc6qkml",
+    "status": "success",
+    "turns": 42
+  },
+  "4d794652-aa8a-425c-8ce1-92a39737f21d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8343",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8343.1kktxlrm",
+    "status": "failure",
+    "turns": 24
+  },
+  "c73dc1c8-b50f-4ac3-a52d-3f4a8a8b5244": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8390",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8390.t1ttyb58",
+    "status": "failure",
+    "turns": 26
+  },
+  "63b649a7-18b9-4c02-a6de-e510596e6efd": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7814",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7814.y02wge9b",
+    "status": "failure",
+    "turns": 11
+  },
+  "9242d7a1-9d6e-4a00-8a47-e5fb3f1d8ed1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8013",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8013.kdcvptbk",
+    "status": "failure",
+    "turns": 88
+  },
+  "1821735c-e5a5-49fc-9c84-b946596901d6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4792",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4792.671thpt4",
+    "status": "failure",
+    "turns": 93
+  },
+  "f30ab45e-0585-4ab3-9229-43e55756a214": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7511",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7511.j2lokqk2",
+    "status": "failure",
+    "turns": 55
+  },
+  "ed62c89c-b15f-4d52-8260-c40dd1e0b109": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8164",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8164.j2lokqk2",
+    "status": "failure",
+    "turns": 57
+  },
+  "b14f098f-2c14-46d4-8fdf-9c73be694fd9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7693",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7693.j2lokqk2",
+    "status": "success",
+    "turns": 39
+  },
+  "79caa8f1-2a98-4fd7-ab65-837a3e5177f3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8587.j2lokqk2",
+    "status": "failure",
+    "turns": 76
+  },
+  "fd6d284a-9ff8-4a07-9bef-b85462ccac17": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5273",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5273.j2lokqk2",
+    "status": "failure",
+    "turns": 50
+  },
+  "60fe8bef-804c-4ffb-8b6b-9226cefb9d31": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5612",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5612.j2lokqk2",
+    "status": "failure",
+    "turns": 48
+  },
+  "f471b4eb-1151-406f-8e8e-5fccd6ea77e5": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7704",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7704.j2lokqk2",
+    "status": "failure",
+    "turns": 76
+  },
+  "d2d0f1f3-7b18-495d-a01a-18bda1f11ea1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8491",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8491.j2lokqk2",
+    "status": "failure",
+    "turns": 47
+  },
+  "a371e1b9-9733-4308-95d8-921382379daf": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5175",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5175.j2lokqk2",
+    "status": "failure",
+    "turns": 47
+  },
+  "7a962822-d246-4273-b7fe-926e8a397249": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5154",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5154.j2lokqk2",
+    "status": "failure",
+    "turns": 36
+  },
+  "8d6d3c09-0290-48c9-9b62-7c20f96af3f9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5275",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5275.j2lokqk2",
+    "status": "failure",
+    "turns": 34
+  },
+  "25bafb33-c9e4-48e2-8e90-6026905f7472": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6055",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6055.j2lokqk2",
+    "status": "success",
+    "turns": 38
+  },
+  "8b317af8-0cc2-4cc1-85dd-4857d9a7cc72": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5106",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5106.j2lokqk2",
+    "status": "failure",
+    "turns": 58
+  },
+  "4c43a515-d09d-48ff-9c24-70dfa4e935f6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5011",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5011.j2lokqk2",
+    "status": "failure",
+    "turns": 65
+  },
+  "5ee403c6-74d2-49f7-8e73-422cc97a08eb": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6405",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6405.j2lokqk2",
+    "status": "failure",
+    "turns": 72
+  },
+  "bd06eda1-067e-4dd2-825e-49f308119d9f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7972",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7972.j2lokqk2",
+    "status": "failure",
+    "turns": 76
+  },
+  "b9b8cb27-2c02-4f4e-95f0-7df6f04ec32a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5663",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5663.j2lokqk2",
+    "status": "failure",
+    "turns": 48
+  },
+  "0c96d7db-3103-4cd5-a581-8fb0f23bdc5e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7456",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7456.j2lokqk2",
+    "status": "failure",
+    "turns": 76
+  },
+  "57456f3e-23e8-49e8-b3e7-818ce04322c7": {
+    "instance_id": "getmoto__moto.694ce1f4.lm_rewrite__wuujtjnu",
+    "traj_id": "getmoto__moto.694ce1f4.lm_rewrite__wuujtjnu.j2lokqk2",
+    "status": "failure",
+    "turns": 59
+  },
+  "7c942336-4797-4125-9778-73490d9c3073": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7963",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7963.j2lokqk2",
+    "status": "failure",
+    "turns": 66
+  },
+  "8534dca6-2d46-4a13-996d-a65bcfc4eb0b": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5177",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5177.j2lokqk2",
+    "status": "success",
+    "turns": 50
+  },
+  "d378d105-4169-45ae-a309-d44c14e79fdf": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8494",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8494.j2lokqk2",
+    "status": "failure",
+    "turns": 36
+  },
+  "962f6c60-7bda-4efe-91d0-8ce0000435bc": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7859",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7859.j2lokqk2",
+    "status": "failure",
+    "turns": 48
+  },
+  "e8068852-24b9-446f-b6b3-3ed8c2743fa9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8343",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8343.j2lokqk2",
+    "status": "failure",
+    "turns": 30
+  },
+  "accb3b54-195c-4cd8-9749-e82e428b5699": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5660",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5660.j2lokqk2",
+    "status": "failure",
+    "turns": 74
+  },
+  "760bc7c3-80ce-4aa6-b861-efd2916508f2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7511",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7511.dkw875m9",
+    "status": "failure",
+    "turns": 50
+  },
+  "b88a4c53-8799-4ff7-b0d0-53100710339f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8164",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8164.zt42t706",
+    "status": "failure",
+    "turns": 51
+  },
+  "c4c7848a-ba19-445d-99a9-87b381816507": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7693",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7693.at8lllxk",
+    "status": "failure",
+    "turns": 45
+  },
+  "a689d444-564b-4cc4-9a6c-9b56e0db18e0": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8587.wads30f0",
+    "status": "success",
+    "turns": 59
+  },
+  "a2d40d33-425d-4bf1-811d-dc2f63704ca9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5273",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5273.7we4gvs6",
+    "status": "failure",
+    "turns": 43
+  },
+  "6617ec0c-e43f-4896-88f2-138cb11eb3ed": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5612",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5612.ezjm5ux6",
+    "status": "failure",
+    "turns": 62
+  },
+  "84ec49e3-efff-4460-935e-a01d36f356af": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7704",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7704.8hx2i7wn",
+    "status": "failure",
+    "turns": 76
+  },
+  "8e04ac66-e1f7-4134-ae57-380d6e13d38f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8491",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8491.0iwwz5d9",
+    "status": "failure",
+    "turns": 22
+  },
+  "4eee7a25-1cd6-452b-8cc4-9bf9ad8c9bc3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5154",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5154.a9twhtes",
+    "status": "failure",
+    "turns": 30
+  },
+  "07276e6b-c646-4de6-a2d1-7944c63a8167": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5275",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5275.trnyvq8s",
+    "status": "failure",
+    "turns": 33
+  },
+  "06e2dc37-7518-492a-9770-caeac50a117a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5175",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5175.wnctqizl",
+    "status": "failure",
+    "turns": 76
+  },
+  "f514e4a2-34b0-4e63-bc1c-e1fef9b11a0e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6055",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6055.g2hp4x0j",
+    "status": "failure",
+    "turns": 57
+  },
+  "e174aa82-1b2c-4175-832c-0b75cd5a9c29": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5106",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5106.lyz42qdc",
+    "status": "failure",
+    "turns": 67
+  },
+  "2d6376c8-dfaf-4865-938b-c27ebb5e8c6a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6405",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6405.qd2gjr7f",
+    "status": "failure",
+    "turns": 50
+  },
+  "003d3db2-7735-49e1-8774-1fb8762a863c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5011",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5011.8v2d9cic",
+    "status": "failure",
+    "turns": 45
+  },
+  "8990bdae-ed14-4593-b8c4-b5024358d8eb": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5663",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5663.ainx9eg9",
+    "status": "success",
+    "turns": 24
+  },
+  "0b59c4a2-8e09-4f11-b912-8886c68d0e07": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7972",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7972.n7flisij",
+    "status": "failure",
+    "turns": 76
+  },
+  "a4b754cc-846c-4da9-9fb2-a592885379da": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7456",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7456.m01crzrb",
+    "status": "failure",
+    "turns": 76
+  },
+  "d097b669-aed5-4ab5-b4fa-03238331f3b7": {
+    "instance_id": "getmoto__moto.694ce1f4.lm_rewrite__wuujtjnu",
+    "traj_id": "getmoto__moto.694ce1f4.lm_rewrite__wuujtjnu.trjqxr0k",
+    "status": "failure",
+    "turns": 63
+  },
+  "6a471a67-8538-4057-aff1-d38f74d77cdf": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7963",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7963.32p8ricr",
+    "status": "failure",
+    "turns": 36
+  },
+  "bd731e6e-1dbf-499d-9d83-d5db4211bd5a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5177",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5177.ipfdghan",
+    "status": "failure",
+    "turns": 43
+  },
+  "7177ec89-00ba-460d-a17d-6af30869c30b": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7859",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7859.jvjorobg",
+    "status": "failure",
+    "turns": 30
+  },
+  "36ef0599-e49e-4b18-958c-e65bbc4df119": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8494",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8494.84pmhc5i",
+    "status": "failure",
+    "turns": 40
+  },
+  "a090ea9f-3a1d-4190-a6ab-34e2ee51adf3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8343",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8343.ajue63kd",
+    "status": "failure",
+    "turns": 76
+  },
+  "861c6fc5-53b0-4197-a1c2-3e8234d02056": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5660",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5660.rkaah0nz",
+    "status": "success",
+    "turns": 62
+  },
+  "4df5b102-856b-4ea2-95b8-e320034c6c85": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6509",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6509.gb64eyg9",
+    "status": "failure",
+    "turns": 25
+  },
+  "cb1e6644-59f2-4ed8-8f83-9eba5f549231": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7212",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7212.gb64eyg9",
+    "status": "success",
+    "turns": 27
+  },
+  "6cea3a3f-7f0c-4a5d-921e-24c7a7fe837e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5043",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5043.gb64eyg9",
+    "status": "success",
+    "turns": 26
+  },
+  "eef7aabc-643f-43ef-8ce9-33034ee74dab": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5862",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5862.gb64eyg9",
+    "status": "success",
+    "turns": 14
+  },
+  "b01913a7-0513-4b54-9d18-bc9d81faa4e4": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6387",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6387.gb64eyg9",
+    "status": "failure",
+    "turns": 74
+  },
+  "5f294b36-05c4-4ba1-880b-b6e7885e2a9d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5516",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5516.gb64eyg9",
+    "status": "failure",
+    "turns": 52
+  },
+  "289b1c67-cb17-4ccc-9a96-472335e2a6b8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4990",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4990.gb64eyg9",
+    "status": "failure",
+    "turns": 59
+  },
+  "f3d42b3b-8c65-4920-9f2e-02d367c0e598": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6536",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6536.gb64eyg9",
+    "status": "failure",
+    "turns": 24
+  },
+  "2ffa03f0-de25-4b72-b1ef-426e4b16d65f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6355",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6355.gb64eyg9",
+    "status": "failure",
+    "turns": 12
+  },
+  "4739ed64-d401-4153-aa13-12c7c6972503": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6469",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6469.gb64eyg9",
+    "status": "failure",
+    "turns": 10
+  },
+  "66c1299d-1b21-43a3-a3c0-653b18ea954c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5587.gb64eyg9",
+    "status": "failure",
+    "turns": 14
+  },
+  "29fbd020-4923-4833-9471-d40ebc4dc418": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5502",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5502.gb64eyg9",
+    "status": "success",
+    "turns": 14
+  },
+  "b81f58db-5d6f-4ba4-8dd7-de1486f6afcb": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6299",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6299.gb64eyg9",
+    "status": "success",
+    "turns": 22
+  },
+  "39b51ab7-884a-4feb-b68c-a4d7155d1385": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4969",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4969.gb64eyg9",
+    "status": "failure",
+    "turns": 90
+  },
+  "60f6d8eb-7ed1-4583-a46f-5ea09b758da2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5582",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5582.gb64eyg9",
+    "status": "failure",
+    "turns": 81
+  },
+  "d872f69e-1108-4f7a-a9f0-6813c58099c2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7490",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7490.gb64eyg9",
+    "status": "failure",
+    "turns": 34
+  },
+  "3dba013d-dea8-4d88-b5dc-5eead6c1c216": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7317",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7317.gb64eyg9",
+    "status": "success",
+    "turns": 42
+  },
+  "68890028-c906-4be2-bc64-4d58a2c41ab6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6854",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6854.gb64eyg9",
+    "status": "success",
+    "turns": 15
+  },
+  "7aa44ecf-e074-4cce-bff1-53a6180d5646": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6204",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6204.gb64eyg9",
+    "status": "success",
+    "turns": 16
+  },
+  "83cd7999-5bd8-477b-9162-4e73126efcf2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5620",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5620.gb64eyg9",
+    "status": "failure",
+    "turns": 45
+  },
+  "d475fc79-b3ae-43f3-b07e-7f4ef04f9e5c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6410",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6410.gb64eyg9",
+    "status": "success",
+    "turns": 15
+  },
+  "d0d35803-b669-4e69-9e39-d2c09cfce899": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5960",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5960.gb64eyg9",
+    "status": "success",
+    "turns": 19
+  },
+  "d388305b-3f44-48b7-bb2d-190fb33cbe9f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6913",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6913.gb64eyg9",
+    "status": "success",
+    "turns": 24
+  },
+  "5675f8ab-7f93-48eb-a8fe-351a12ef3339": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5865",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5865.gb64eyg9",
+    "status": "success",
+    "turns": 16
+  },
+  "e477cd78-f614-4cec-87ec-70b0042de159": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5258",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5258.gb64eyg9",
+    "status": "success",
+    "turns": 15
+  },
+  "126526e5-6e8c-42f6-8383-7cd8e37607d8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6374",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6374.gb64eyg9",
+    "status": "success",
+    "turns": 11
+  },
+  "4b7ffc6c-b055-4b7c-84a9-fd1be7496ec1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6352",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6352.gb64eyg9",
+    "status": "failure",
+    "turns": 81
+  },
+  "e068f335-6a6b-41cc-8f7d-aa2b23ca20d2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5980",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5980.gb64eyg9",
+    "status": "failure",
+    "turns": 76
+  },
+  "c6654b67-a7dc-4c98-8755-b1d8f46e69e9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6724",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6724.gb64eyg9",
+    "status": "failure",
+    "turns": 16
+  },
+  "4fc9f98e-744d-4b48-bcef-bb3b709a313d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7023",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7023.gb64eyg9",
+    "status": "success",
+    "turns": 30
+  },
+  "01cd931e-97eb-4089-b96f-42f9bc92e741": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5020",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5020.gb64eyg9",
+    "status": "success",
+    "turns": 17
+  },
+  "48c57525-55e7-48fb-ba63-aadcfd3db832": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5110",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5110.gb64eyg9",
+    "status": "failure",
+    "turns": 68
+  },
+  "c24de370-7a10-47f3-8b62-ac18bb337cd2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5155",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5155.gb64eyg9",
+    "status": "success",
+    "turns": 14
+  },
+  "e9a5673f-d187-4c83-bd9b-64c685db06b8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5699",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5699.gb64eyg9",
+    "status": "failure",
+    "turns": 61
+  },
+  "ba450694-f3ff-4755-a6fa-21f6ea404a07": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6159",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6159.gb64eyg9",
+    "status": "failure",
+    "turns": 86
+  },
+  "c51b24c2-fdaa-4209-8f5e-769e2193aa9d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5286",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5286.gb64eyg9",
+    "status": "failure",
+    "turns": 87
+  },
+  "6062f1b0-56c5-4840-92a6-7fdd3f011582": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5515",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5515.gb64eyg9",
+    "status": "failure",
+    "turns": 58
+  },
+  "db7259e7-c8b1-4be2-ac13-149fb4bb61c7": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6802",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6802.gb64eyg9",
+    "status": "failure",
+    "turns": 61
+  },
+  "71e98501-83f8-43df-b5fa-0df0cdc6f0a0": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5899",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5899.gb64eyg9",
+    "status": "success",
+    "turns": 20
+  },
+  "0e52fbbc-faa5-4b10-a69c-37861462ea79": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7061",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7061.gb64eyg9",
+    "status": "success",
+    "turns": 25
+  },
+  "1ab0d7d7-62ab-4865-92ce-79aeb35a7f57": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4950",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4950.gb64eyg9",
+    "status": "success",
+    "turns": 34
+  },
+  "b548d212-5e34-45d9-aaaa-e09e7e2089ca": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5348",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5348.gb64eyg9",
+    "status": "success",
+    "turns": 22
+  },
+  "1d02fd97-5346-4532-a0b1-3394f649ab46": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7524",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7524.gb64eyg9",
+    "status": "success",
+    "turns": 12
+  },
+  "3a1db9ee-f928-475c-b904-17ec1ce6f9a6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5134",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5134.gb64eyg9",
+    "status": "failure",
+    "turns": 51
+  },
+  "fbe3a8cf-444c-4342-ab54-331e03c07f02": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7111",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7111.gb64eyg9",
+    "status": "success",
+    "turns": 35
+  },
+  "caf7c74f-c32e-4fb3-9b53-fa81daf077a4": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5321",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5321.gb64eyg9",
+    "status": "failure",
+    "turns": 14
+  },
+  "d13082b5-a153-48ef-934c-a05baa93c7da": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7081",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7081.gb64eyg9",
+    "status": "failure",
+    "turns": 24
+  },
+  "fdfc72d3-8658-485c-8741-de59740beb9e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6226",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6226.gb64eyg9",
+    "status": "success",
+    "turns": 23
+  },
+  "0ec3ca26-caaf-4047-a2b6-05bce4ec8fc8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5601",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5601.gb64eyg9",
+    "status": "success",
+    "turns": 13
+  },
+  "2d170bb5-d470-45c1-8f07-046acff88c61": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5794",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5794.gb64eyg9",
+    "status": "success",
+    "turns": 20
+  },
+  "8516bdf2-30bf-4d9d-843a-9722209aab0a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5109",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5109.gb64eyg9",
+    "status": "failure",
+    "turns": 52
+  },
+  "60c765fe-52f2-45a4-89f8-2148e69ea29e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7365",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7365.gb64eyg9",
+    "status": "failure",
+    "turns": 90
+  },
+  "cb8d039a-c30f-451c-bbc2-22479825342b": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4860",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4860.gb64eyg9",
+    "status": "success",
+    "turns": 8
+  },
+  "0b1ec583-ba50-4ab9-85b6-28a691ac5738": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4986",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4986.gb64eyg9",
+    "status": "success",
+    "turns": 13
+  },
+  "ff554b05-4090-4891-b8c1-d9438be83e08": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5072",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5072.gb64eyg9",
+    "status": "failure",
+    "turns": 15
+  },
+  "06ade044-2a1a-456c-b493-d28846e596d8": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7331",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7331.gb64eyg9",
+    "status": "failure",
+    "turns": 22
+  },
+  "08bc7f0f-7958-4e65-a1d8-b61cb3be8d54": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6212",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6212.gb64eyg9",
+    "status": "failure",
+    "turns": 34
+  },
+  "35b2efe0-7376-4aa9-8044-6781e267d624": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6509",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6509.ivdjvlm9",
+    "status": "success",
+    "turns": 38
+  },
+  "89a8e172-f0fc-4f8e-b0e9-5d8d257c201d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8342",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8342.3886bxle",
+    "status": "success",
+    "turns": 10
+  },
+  "8c2c065f-655d-4f08-b28e-aac227a958ef": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7608",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7608.gavntngp",
+    "status": "failure",
+    "turns": 57
+  },
+  "ae28b5c2-eed1-412b-9bd1-59fc9a066119": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7212",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7212.unumwbee",
+    "status": "success",
+    "turns": 34
+  },
+  "b27e6584-bd26-46cd-805a-198f04970c25": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5043",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5043.epmlfwmu",
+    "status": "success",
+    "turns": 10
+  },
+  "4e00ebfb-f3ff-40cb-843b-aeb65b4f228a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5516",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5516.7s57nt45",
+    "status": "failure",
+    "turns": 94
+  },
+  "55f3cead-fd7f-4465-80cd-591ada81c287": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6387",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6387.3pe7xa22",
+    "status": "success",
+    "turns": 65
+  },
+  "83190559-11cf-45cc-97d6-a9ea0391937e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8587.uymv43iw",
+    "status": "failure",
+    "turns": 79
+  },
+  "32c58fc7-df3a-4e8e-9efe-dd68608b9dcd": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5862",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5862.muru3v1x",
+    "status": "success",
+    "turns": 21
+  },
+  "3c4f9988-efa5-410b-94be-2575e93cf7ce": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4990",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4990.ijnxm0dh",
+    "status": "success",
+    "turns": 36
+  },
+  "44ff1a5c-053c-4b61-a518-c8619c55dee2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6355",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6355.hhcal8o7",
+    "status": "success",
+    "turns": 28
+  },
+  "c5b1a076-7e66-486c-9e60-45a115a78298": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6536",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6536.nqs9eiim",
+    "status": "success",
+    "turns": 30
+  },
+  "eaf6f5c2-69c4-42f8-8403-91b3986941ac": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6469",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6469.8m2xea8x",
+    "status": "success",
+    "turns": 16
+  },
+  "6ffceefc-6b3b-4494-bc4f-fbfd1d0a99c2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6510",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6510.gdvboehn",
+    "status": "failure",
+    "turns": 18
+  },
+  "2160bf0d-c24f-430f-8956-3e73af7fcbc5": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6508",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6508.56cdtgqr",
+    "status": "success",
+    "turns": 48
+  },
+  "3463d530-4a71-43ff-b3ac-b7d5e46a1e15": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4969",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4969.l1y58xzy",
+    "status": "success",
+    "turns": 31
+  },
+  "0a398b29-a874-49ec-b7c2-3a281354e260": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5587",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5587.zd860syf",
+    "status": "failure",
+    "turns": 22
+  },
+  "4b68cf11-c868-4f82-af17-28ea132ab8f5": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8344",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8344.v3mxhx4q",
+    "status": "failure",
+    "turns": 13
+  },
+  "3b5e041f-bdd2-43fd-be14-25b28e53244e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5582",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5582.f6y2xs33",
+    "status": "success",
+    "turns": 25
+  },
+  "3b580ec9-0e71-475a-ae55-67bc78283ba3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7490",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7490.45ztydik",
+    "status": "success",
+    "turns": 10
+  },
+  "4345ece5-57c5-4357-b3c5-cebe4d5b8182": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7647",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7647.szdqhdrk",
+    "status": "failure",
+    "turns": 20
+  },
+  "5f920973-8dd4-44d2-bfc9-2dfee44350c3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7946",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7946.5vwt68fd",
+    "status": "failure",
+    "turns": 18
+  },
+  "fb4f7112-71a2-4eda-9bd7-5dc54dbaeb48": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5273",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5273.wcazlk37",
+    "status": "failure",
+    "turns": 83
+  },
+  "825e8e64-c08b-435d-babb-722258dfe350": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6299",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6299.3e9ayymu",
+    "status": "success",
+    "turns": 21
+  },
+  "607cbaa9-cfad-4958-aec6-d052a358f345": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7317",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7317.jek85cid",
+    "status": "success",
+    "turns": 18
+  },
+  "490b0ed1-c9a7-4b58-b7fe-c93995983292": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7704",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7704.0jvp9wzq",
+    "status": "failure",
+    "turns": 80
+  },
+  "ff6fab56-4ba0-44dd-a677-f67409518d99": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5502",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5502.xpqvircs",
+    "status": "success",
+    "turns": 15
+  },
+  "e5c3017f-6612-478a-a980-929b0be73e39": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6557",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6557.xzsbc5k1",
+    "status": "failure",
+    "turns": 35
+  },
+  "8f6bd8f1-8354-4c43-9b92-fe515bab2e75": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6854",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6854.6ygkr9cy",
+    "status": "success",
+    "turns": 12
+  },
+  "e1c7b5b6-9eed-4002-8886-fd8ddaa45c01": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6204",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6204.gvg5n8qa",
+    "status": "success",
+    "turns": 27
+  },
+  "1219d715-58a8-4351-a868-6e1640332f9c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7144",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7144.llf975gh",
+    "status": "failure",
+    "turns": 16
+  },
+  "70aa827f-b94a-44f5-b030-94610cdd398b": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8491",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8491.70eb3mqx",
+    "status": "failure",
+    "turns": 19
+  },
+  "9588e35c-e77b-4ede-acf1-2c7e7729b1ab": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7874",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7874.ovaliti9",
+    "status": "success",
+    "turns": 25
+  },
+  "b2b3adc9-669d-4bf0-a24a-c795bcba4cc0": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7177",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7177.acrhtxgk",
+    "status": "success",
+    "turns": 18
+  },
+  "f9d5255c-6901-4bf1-85da-ff927533f2ba": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6410",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6410.f4xo5s5v",
+    "status": "success",
+    "turns": 15
+  },
+  "c8e84807-6803-4f6a-bcff-f75be7630796": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5960",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5960.q2duzq2t",
+    "status": "failure",
+    "turns": 26
+  },
+  "50988f91-a662-4e7f-9251-07bd5168075e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8518",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8518.06799imh",
+    "status": "failure",
+    "turns": 67
+  },
+  "40ba1123-2bdf-4398-b4f9-6e4fd253b253": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5620",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5620.wjkod5ty",
+    "status": "success",
+    "turns": 58
+  },
+  "6ae753e5-98df-4071-8a70-350d326b28dc": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6780",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6780.q9evw2m5",
+    "status": "success",
+    "turns": 73
+  },
+  "e6823f6e-145f-4f8f-94f1-5c13b4a177ec": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6913",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6913.olbw5ecr",
+    "status": "success",
+    "turns": 14
+  },
+  "c64ec9ef-b69c-48f3-973c-5759d605e3b1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4743",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4743.a7cw3ie7",
+    "status": "failure",
+    "turns": 91
+  },
+  "539164ad-c2dc-4d62-983f-382db4a3d7fe": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6352",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6352.sis53w29",
+    "status": "failure",
+    "turns": 31
+  },
+  "cbe8cfec-a4e8-4875-a15b-e7a52f75bc34": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5154",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5154.kchk7q5g",
+    "status": "failure",
+    "turns": 18
+  },
+  "e3ef2812-4136-4006-944c-8d5958eb0c1a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5865",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5865.1l5znqza",
+    "status": "success",
+    "turns": 19
+  },
+  "74854750-062b-4bf0-bc27-649a6aefa1f9": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5258",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5258.nv273ng3",
+    "status": "success",
+    "turns": 16
+  },
+  "0240c276-38b9-4461-8e51-8e8da2156df3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5175",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5175.4dexx18r",
+    "status": "failure",
+    "turns": 37
+  },
+  "2c337774-f497-4d74-bf3c-230db5c222c7": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6374",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6374.q8pq44eb",
+    "status": "success",
+    "turns": 18
+  },
+  "a646e872-75fa-4d70-a2ea-a521e9c8de36": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7934",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7934.w16ac2x1",
+    "status": "failure",
+    "turns": 19
+  },
+  "172b9525-eafc-4291-9a8f-f24166ca7879": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6724",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6724.gcioo0hg",
+    "status": "success",
+    "turns": 22
+  },
+  "27b4af34-8943-4eac-bb85-ead8cdae579e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5980",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5980.5fbg51w8",
+    "status": "success",
+    "turns": 49
+  },
+  "a90f1c97-eff3-49a0-ba0d-35a5531aa108": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7023",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7023.mkr5odjg",
+    "status": "success",
+    "turns": 19
+  },
+  "fe3a23b5-3654-4a1e-aade-0fcdf59b79ea": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5275",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5275.yzxwpo8w",
+    "status": "failure",
+    "turns": 70
+  },
+  "a6bfe93c-0c82-4f29-b984-56e404dbf665": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5110",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5110.3nvyqyl2",
+    "status": "failure",
+    "turns": 23
+  },
+  "9c6e7e36-594e-41e7-9137-e21103733260": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7211",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7211.fhxksj39",
+    "status": "failure",
+    "turns": 46
+  },
+  "50dcda99-abf9-4c2a-ac21-1be654564b1a": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8539",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8539.6urttcmy",
+    "status": "success",
+    "turns": 20
+  },
+  "4dd9feaa-cbb2-4968-9619-5d14014eed5e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5106",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5106.k3fmolug",
+    "status": "failure",
+    "turns": 72
+  },
+  "c5ccfebe-81a4-469a-8b2d-d3c243a00214": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5699",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5699.etvfili1",
+    "status": "success",
+    "turns": 24
+  },
+  "3ac22ed7-2eb9-4c93-b545-da2853d88ccd": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5011",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5011.uawp13ui",
+    "status": "failure",
+    "turns": 72
+  },
+  "0c95088c-0cc8-479d-96fc-e88e0064590e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5020",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5020.6nngpzpw",
+    "status": "failure",
+    "turns": 77
+  },
+  "532b0fdd-fc80-4030-a8ce-8bae92931e7f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6159",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6159.zr0d9zo4",
+    "status": "failure",
+    "turns": 28
+  },
+  "b3294b66-da07-4659-9c0f-c4ae5c3f8b8f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5155",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5155.z73wl4ud",
+    "status": "success",
+    "turns": 18
+  },
+  "22bd34b0-d527-462f-8332-57a403599e9e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5286",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5286.fejemtyo",
+    "status": "success",
+    "turns": 36
+  },
+  "859e2b17-1fac-4d16-92fc-0f740bbcf475": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5706",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5706.9h07rccg",
+    "status": "failure",
+    "turns": 12
+  },
+  "d8a47ca1-d03e-47ba-8a53-b1a12063821c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6401",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6401.820iq6mv",
+    "status": "success",
+    "turns": 61
+  },
+  "b97b59fe-192b-4e2a-b586-c5f8fe5315c3": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6687",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6687.f15x615p",
+    "status": "success",
+    "turns": 24
+  },
+  "5aa23f25-e683-4991-bbab-0441828c8c9c": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7271",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7271.i5i6ds2p",
+    "status": "failure",
+    "turns": 7
+  },
+  "398910ab-8f3b-4c0d-82ca-c3d918cbb01d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5515",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5515.6m544rqn",
+    "status": "success",
+    "turns": 30
+  },
+  "46e45272-f8e0-4705-8ac3-3dab33f12975": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7456",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7456.bs7bcfmi",
+    "status": "failure",
+    "turns": 76
+  },
+  "1580c878-cf6e-4831-a137-f1378adeec7e": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6802",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6802.7vc2di2s",
+    "status": "failure",
+    "turns": 41
+  },
+  "bf7f076f-6fcb-4601-9317-06fc7757cd94": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7061",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7061.y9yq1xja",
+    "status": "success",
+    "turns": 28
+  },
+  "45374c58-9901-4550-b6c4-f3a872d5af6d": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5899",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5899.7slcent4",
+    "status": "success",
+    "turns": 26
+  },
+  "24ce3af3-09b9-448d-abea-8c342b9307f1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7168",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7168.1kzewl4p",
+    "status": "failure",
+    "turns": 27
+  },
+  "ab5387a8-ad4e-4187-9ef7-9a1179958193": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6028",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6028.5utynl57",
+    "status": "failure",
+    "turns": 24
+  },
+  "5c396e37-b71f-4904-b536-fed3d8bf5884": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5134",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5134.2yxakrfb",
+    "status": "failure",
+    "turns": 56
+  },
+  "55d37686-9d69-4c35-b9c6-feeed020eb11": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_4950",
+    "traj_id": "getmoto__moto.694ce1f4.pr_4950.6awh35yj",
+    "status": "success",
+    "turns": 80
+  },
+  "c06848c8-dcb8-4ca6-9a6b-075744668086": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7111",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7111.u2zqri3z",
+    "status": "success",
+    "turns": 23
+  },
+  "97ce242d-2843-4fb9-be3a-878c1facffde": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_5348",
+    "traj_id": "getmoto__moto.694ce1f4.pr_5348.2d1frr1g",
+    "status": "success",
+    "turns": 28
+  },
+  "b8847828-625f-4b06-b8fc-091db335c488": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7963",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7963.kmayaeza",
+    "status": "failure",
+    "turns": 80
+  },
+  "5387b389-c846-4807-a9fd-8690b67466a2": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8466",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8466.b602ymj0",
+    "status": "failure",
+    "turns": 61
+  },
+  "b6525baf-31c0-46a2-903b-b3922723aff6": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_6786",
+    "traj_id": "getmoto__moto.694ce1f4.pr_6786.4yy4j5df",
+    "status": "success",
+    "turns": 97
+  },
+  "a27a77b3-4a41-4b2a-8808-505951db8c95": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8492",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8492.12cz9dxo",
+    "status": "success",
+    "turns": 10
+  },
+  "d53b57c2-9421-4497-bba0-54b9e740ba84": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7524",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7524.bmap2xqd",
+    "status": "success",
+    "turns": 38
+  },
+  "5c15e489-78a6-4f26-8845-0716a39b06c1": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_8120",
+    "traj_id": "getmoto__moto.694ce1f4.pr_8120.scy2fz6d",
+    "status": "success",
+    "turns": 14
+  },
+  "e123ecb6-6e5e-4510-b7ce-64b4f04e6a0f": {
+    "instance_id": "getmoto__moto.694ce1f4.pr_7081",
+    "traj_id": "getmoto__moto.694ce1f4.pr_7081.1extz6q5",
+    "status": "success",
+    "turns": 22
+  }
+}
