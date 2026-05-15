@@ -4,7 +4,7 @@
 
 Pattern mining tool for agentic trajectories. Human readable logs and actionable stats at runtime — no LLM tagging, judging, or reflection.
 
-Episodiq is an LLM proxy that captures agent trajectories and builds a behavioral graph of clustered observations (nodes) and actions (edges).
+Episodiq is an LLM proxy that captures agent trajectories and builds a behavioral graph of clustered observations (nodes) and actions (edges), so that any observation node and action edge has a class.
 
 - **Drop-in proxy.** OpenAI or Anthropic API, any LLM client / agent framework. Base URL change and additional header.
 - **Measured, not speculated.** Success and failure signals at the turn / action level, dead-end prediction, and loop detection — all computed from trajectory graph statistics, not LLM judgment.
@@ -510,7 +510,7 @@ LLM-based self-improving agent frameworks (Reflexion, ACE, GEPA) and others are 
 - **Cost / economic viability.** Every trajectory analyzed means another LLM call, often multiple. At any meaningful scale, this can easily double or triple your inference bill.
 - **Context pressure.** As trajectory count grows, LLMs either see fewer runs per analysis or compress them aggressively — losing signal either way.
 - **Black-box reasoning.** Outputs are hard to audit and reproduce; the same trace analyzed twice may yield different verdicts.
-- **Population-level patterns.** Many useful insights are statistical regularities across thousands of trajectories. LLMs interpret single traces well, but struggle to extract aggregate statistics from arrays of text, especially when signals are mixed.
+- **Cross-trajectory patterns.** Useful insights often span many trajectories rather than living inside one. LLMs interpret single traces well, but struggle to extract aggregate signal when patterns are spread across a span of trajectories.
 
 Episodiq doesn't replace those tools. It's built primarily for autonomous agents — to deliver fast, cheap, deterministic analytics on agent behavior, and to surface the trajectories worth a closer look.
 

@@ -10,12 +10,13 @@ End-to-end walkthrough of the Episodiq pipeline on **SWE-smith** trajectories (g
 01 Seed 500 train trajectories (mock server + proxy)
 02 Grid search clustering parameters
 03 Cluster with chosen params (manually per type/category)
-04 Build trajectory paths
-05 Tune thresholds (prefetch, anomaly, stuck, path-freq)
-06 Rebuild paths with signals (using tuned thresholds)
-07 Train dead-end prediction model
-08 Seed 250 eval trajectories
-09 Generate reports + compute metrics
+04 Annotate clusters with LLM-generated labels
+05 Build trajectory paths
+06 Tune thresholds (prefetch, signal, path-freq)
+07 Rebuild paths with signals (using tuned thresholds)
+08 Train dead-end prediction model
+09 Seed 250 eval trajectories
+10 Generate reports + compute metrics
 ```
 
 ## Prerequisites
@@ -90,18 +91,28 @@ Save chosen params to `output/cluster_config.json`:
 
 Runs clustering for each entry in `cluster_config.json`. Creates cluster assignments in DB.
 
-### Step 4: Build Paths
+### Step 4: Annotate Clusters
 
 ```bash
-./04_build_paths.sh
+./04_annotate.sh
+```
+
+Generates human-readable labels for each cluster using contrastive annotation (`claude-sonnet-4-5` annotator, `claude-haiku-4-5` summarizer for long messages via OpenRouter). Also prints a token-efficiency comparison vs naive per-message annotation.
+
+Output: `output/annotate_tokens.txt`
+
+### Step 5: Build Paths
+
+```bash
+./05_build_paths.sh
 ```
 
 Reconstructs trajectory paths from cluster labels. Computes transition profiles and traces. No signal filling yet — thresholds not tuned.
 
-### Step 5: Tune Thresholds
+### Step 6: Tune Thresholds
 
 ```bash
-./05_tune.sh
+./06_tune.sh
 ```
 
 Runs three tuning commands:
@@ -113,48 +124,47 @@ Each outputs suggested values. Update `.env` with the suggested thresholds befor
 
 Output: `output/tune_*.txt`
 
-### Step 6: Rebuild Paths with Signals
+### Step 7: Rebuild Paths with Signals
 
 ```bash
-./06_rebuild_paths.sh
+./07_rebuild_paths.sh
 ```
 
-Rebuilds paths with `--fill-signals` using the tuned thresholds. Populates `anomaly_count` and `stuck_count` on each path.
+Rebuilds paths with `--fill-signals` using the tuned thresholds. Populates per-path signal counts (fail-risk action/transition, success-signal action/transition).
 
-### Step 7: Train Dead-End Model
+### Step 8: Train Dead-End Model
 
 ```bash
-./07_train_dead_end.sh
+./08_train_dead_end.sh
 ```
 
 Trains logistic regression on full train set (no test split). Features: 15 neighbor-based + 4 DPM-SVD = 19 total.
 
 Output: `output/dead_end_model.joblib`
 
-### Step 8: Seed Eval Data
+### Step 9: Seed Eval Data
 
 ```bash
-./08_seed_eval.sh
+./09_seed_eval.sh
 ```
 
 Seeds 250 eval trajectories through proxy. Status marked immediately after each (data moat — each subsequent trajectory benefits from growing pool).
 
 Output: `output/eval_traj_ids.json`
 
-### Step 9: Evaluate
+### Step 10: Evaluate
 
 ```bash
-./09_eval.sh
+./10_eval.sh
 ```
 
 For each eval trajectory, generates a JSONL report via `episodiq report --format json`. Then computes aggregate metrics:
 
 - **Dead-end AUC**: threshold-independent, raw probability vs actual outcome
-- **Threshold sweep**: precision/recall/F1 at thresholds 0.1-0.9
-- **Anomaly AUC**: anomaly rate as failure predictor
-- **Stuck rates**: success vs failure comparison
+- **Threshold sweep**: precision/recall/F1 + avg turns remaining at thresholds 0.1-0.9
+- **Per-signal AUC**: fail-risk and success-signal action/transition rates as failure predictors
 
-Output: `output/reports/*.jsonl`, `output/eval_summary.json`
+Output: `output/reports.jsonl`, `output/eval_summary.json`
 
 ## Architecture
 
