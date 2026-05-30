@@ -1,0 +1,17 @@
+{
+  "config": {
+    "top_k": 10,
+    "similarity_threshold": 0.2
+  },
+  "tune": {
+    "coverage_step60": 0.4871,
+    "auc_step60_current": 0.7935
+  },
+  "eval": {
+    "n_snapshots_total": 16251,
+    "n_snapshots_with_shortlist": 9366,
+    "n_trajectories": 219,
+    "coverage_step60": 0.22199488491048594,
+    "auc_step60_current": 0.7048009855108238
+  }
+}

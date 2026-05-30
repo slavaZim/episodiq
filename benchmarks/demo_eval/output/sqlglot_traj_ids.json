@@ -1,0 +1,1652 @@
+{
+  "8094201a-0eff-487f-9863-b7c754b0acdf": {
+    "instance_id": "tobymao__sqlglot-2295",
+    "traj_id": "chatcmpl-99a8374ab685cd1ebc8e4771518dac63",
+    "status": "failure",
+    "turns": 88
+  },
+  "d6d40db1-b575-49cd-b20e-dd761f1d9fa4": {
+    "instance_id": "tobymao__sqlglot-4516",
+    "traj_id": "chatcmpl-a3be5714168dde5a3ba32b407a948de1",
+    "status": "failure",
+    "turns": 60
+  },
+  "d65960d1-1e1a-4c01-a81e-a3f77410fde6": {
+    "instance_id": "tobymao__sqlglot-444",
+    "traj_id": "chatcmpl-b7b244f0656c64d18db78b18a0ac6145",
+    "status": "failure",
+    "turns": 91
+  },
+  "0330fddf-f096-4589-bef0-873c42a06103": {
+    "instance_id": "tobymao__sqlglot-3682",
+    "traj_id": "chatcmpl-1695866d2ee6ddfc877d1a9a27052c86",
+    "status": "failure",
+    "turns": 100
+  },
+  "449fa605-c699-4811-91c5-fb5ccd995611": {
+    "instance_id": "tobymao__sqlglot-4106",
+    "traj_id": "chatcmpl-f8e84cc7758f40aff2399e5bfd8b3847",
+    "status": "failure",
+    "turns": 100
+  },
+  "81428d7d-60d2-4066-9dc1-744dba7f80f4": {
+    "instance_id": "tobymao__sqlglot-767",
+    "traj_id": "chatcmpl-87a45113be9e25c24e287247204b98c0",
+    "status": "failure",
+    "turns": 53
+  },
+  "4617e52d-4940-4510-8e16-22165f89d854": {
+    "instance_id": "tobymao__sqlglot-3290",
+    "traj_id": "chatcmpl-0f4fdb32385a3b6a737aeeadb37e674a",
+    "status": "failure",
+    "turns": 65
+  },
+  "daea5d3b-a736-4714-9fe6-a745da186394": {
+    "instance_id": "tobymao__sqlglot-3179",
+    "traj_id": "chatcmpl-92c8b2fd646dcb0d173fa4f832e30500",
+    "status": "failure",
+    "turns": 74
+  },
+  "e122a805-7237-4d1d-b2d9-b4d1f1fc335b": {
+    "instance_id": "tobymao__sqlglot-8",
+    "traj_id": "chatcmpl-f9e725c641406999c2a847bff27e132b",
+    "status": "failure",
+    "turns": 100
+  },
+  "4f8412e1-714d-41b3-9f17-53fec00d492a": {
+    "instance_id": "tobymao__sqlglot-2739",
+    "traj_id": "chatcmpl-578bfa917aaa444af43704c47c46ca6e",
+    "status": "failure",
+    "turns": 59
+  },
+  "ad0bb975-135a-422d-9403-a61e64ea71ca": {
+    "instance_id": "tobymao__sqlglot-3477",
+    "traj_id": "chatcmpl-8ab8f28732fd7c676d86e5241cbfa09d",
+    "status": "failure",
+    "turns": 91
+  },
+  "245ca9b1-d675-4703-95a5-186811b28494": {
+    "instance_id": "tobymao__sqlglot-2127",
+    "traj_id": "chatcmpl-4f112591ed6d8288643ac743ff0456ea",
+    "status": "failure",
+    "turns": 74
+  },
+  "9270c433-d7d7-4cf0-ad52-2dc2fa94ad20": {
+    "instance_id": "tobymao__sqlglot-1973",
+    "traj_id": "chatcmpl-b5d4a131296eeb245d8c0e7b7105740a",
+    "status": "failure",
+    "turns": 100
+  },
+  "521f635b-2471-4278-bd52-bf07a897c6fa": {
+    "instance_id": "tobymao__sqlglot-1375",
+    "traj_id": "chatcmpl-8adc11afcd6398bdf0b9d5a8687f79ac",
+    "status": "failure",
+    "turns": 100
+  },
+  "e2742c89-f46f-41ce-91f0-c0ce4d5ec4ae": {
+    "instance_id": "tobymao__sqlglot-4628",
+    "traj_id": "chatcmpl-086d27914082c4f96c421f477802d73c",
+    "status": "failure",
+    "turns": 45
+  },
+  "4853e408-22de-437b-b062-9276dd37b7d4": {
+    "instance_id": "tobymao__sqlglot-1325",
+    "traj_id": "chatcmpl-dc51c8a45d7e28a1c87dd59bbc824682",
+    "status": "failure",
+    "turns": 72
+  },
+  "9b62cc38-064f-4ccb-a417-eed041130ec1": {
+    "instance_id": "tobymao__sqlglot-700",
+    "traj_id": "chatcmpl-b6d93dafc9fd478a02bf17a9774d0d8a",
+    "status": "failure",
+    "turns": 69
+  },
+  "1b628901-5bb0-4de5-874a-1a6ab9e74b31": {
+    "instance_id": "tobymao__sqlglot-2049",
+    "traj_id": "chatcmpl-f4652f251d3a47b31ebb2c0f3012b14b",
+    "status": "failure",
+    "turns": 100
+  },
+  "517be53d-1012-4516-903f-d9dfb14d0606": {
+    "instance_id": "tobymao__sqlglot-4194",
+    "traj_id": "chatcmpl-3d1ba74bc0680a7f87d519c8e4569190",
+    "status": "failure",
+    "turns": 81
+  },
+  "edac7851-17b3-4d58-a9e5-997712733c30": {
+    "instance_id": "tobymao__sqlglot-2082",
+    "traj_id": "chatcmpl-9c943d4a55f64196c224535b8796e2f8",
+    "status": "failure",
+    "turns": 87
+  },
+  "c5d1f347-8ca0-4e2b-96fc-096271781455": {
+    "instance_id": "tobymao__sqlglot-2358",
+    "traj_id": "chatcmpl-32c6e8235ac532648ad83e3ea93051e2",
+    "status": "failure",
+    "turns": 71
+  },
+  "ffe5eee9-178c-4578-947f-6f0b2333d959": {
+    "instance_id": "tobymao__sqlglot-1394",
+    "traj_id": "chatcmpl-b98d033e474042b7cc639bd0025c9e68",
+    "status": "failure",
+    "turns": 57
+  },
+  "5114a8c1-ea8a-4732-bbf9-2be43f10e6e2": {
+    "instance_id": "tobymao__sqlglot-3971",
+    "traj_id": "chatcmpl-23d071a40ea9e174098029479fa42859",
+    "status": "failure",
+    "turns": 79
+  },
+  "9ee11be4-38ba-4b74-8c45-a4f064a186b7": {
+    "instance_id": "tobymao__sqlglot-1062",
+    "traj_id": "chatcmpl-e5508b1dfc3a36b4feec6b48953def7f",
+    "status": "failure",
+    "turns": 47
+  },
+  "e75b35fb-48a1-40e8-b116-ebdaa9066f76": {
+    "instance_id": "tobymao__sqlglot-3548",
+    "traj_id": "chatcmpl-d969c1b3ce0d2fc889f5309665fbc415",
+    "status": "failure",
+    "turns": 67
+  },
+  "c66dd8f1-1663-4023-9235-78c19596be55": {
+    "instance_id": "tobymao__sqlglot-3650",
+    "traj_id": "chatcmpl-d18254962453ab1aedb4b661090748c6",
+    "status": "failure",
+    "turns": 62
+  },
+  "b437417b-2574-44cd-8fe1-9b8be93582b4": {
+    "instance_id": "tobymao__sqlglot-2306",
+    "traj_id": "chatcmpl-baa27e5a9efa8ea48aefa78252a49e34",
+    "status": "failure",
+    "turns": 78
+  },
+  "60f22b76-7953-4cf1-b8bd-b8ca8e2bb63b": {
+    "instance_id": "tobymao__sqlglot-2251",
+    "traj_id": "chatcmpl-f42d0b6a073e3b7ee202595eb6b664fc",
+    "status": "failure",
+    "turns": 100
+  },
+  "5fb309b0-b10c-4b8f-8183-c05cb25dbf0d": {
+    "instance_id": "tobymao__sqlglot-749",
+    "traj_id": "chatcmpl-acfe5873dd8687da81ffcfc7a7ae1447",
+    "status": "failure",
+    "turns": 63
+  },
+  "74d10c51-a76e-48bb-a603-00b92d9eb6e0": {
+    "instance_id": "tobymao__sqlglot-3417",
+    "traj_id": "chatcmpl-6cf8f23eb640acb432f6ab704dcc04ae",
+    "status": "failure",
+    "turns": 71
+  },
+  "295b9dc6-5394-457a-916b-2b08b9901c8b": {
+    "instance_id": "tobymao__sqlglot-445",
+    "traj_id": "chatcmpl-6306994bb16cecdd8e515b6862807830",
+    "status": "failure",
+    "turns": 59
+  },
+  "d2db5094-7372-4730-bb75-fa70bff0d354": {
+    "instance_id": "tobymao__sqlglot-4472",
+    "traj_id": "chatcmpl-34318dbd3dd0d30947bdccfa0a0b53ad",
+    "status": "failure",
+    "turns": 67
+  },
+  "d65afdbd-4fc6-405d-b1c6-71d7e2b99c07": {
+    "instance_id": "tobymao__sqlglot-4545",
+    "traj_id": "chatcmpl-487c7d2dbcd9491d9c02a0787d04a5a5",
+    "status": "failure",
+    "turns": 95
+  },
+  "5b239b6b-15a5-47f7-9e65-2b61b39f3b1b": {
+    "instance_id": "tobymao__sqlglot-3160",
+    "traj_id": "chatcmpl-67678f383995118357c6e4c3c38950b1",
+    "status": "failure",
+    "turns": 100
+  },
+  "16a9e82d-510d-4807-b595-6fdc94b324a0": {
+    "instance_id": "tobymao__sqlglot-3806",
+    "traj_id": "chatcmpl-5a7eca2fddd9c3152c85751e52b65f2d",
+    "status": "failure",
+    "turns": 68
+  },
+  "61b0bd93-5b0d-407a-80bf-f1c30dde08c1": {
+    "instance_id": "tobymao__sqlglot-1819",
+    "traj_id": "chatcmpl-9074feee126b75396badfdae99c9dcd0",
+    "status": "failure",
+    "turns": 54
+  },
+  "7e156843-18ff-4999-b174-23988bb142b8": {
+    "instance_id": "tobymao__sqlglot-4151",
+    "traj_id": "chatcmpl-3ab942e4d7b6f426f6ab82695fe41301",
+    "status": "failure",
+    "turns": 90
+  },
+  "fa8c40df-3feb-4439-af42-9567b3dc012c": {
+    "instance_id": "tobymao__sqlglot-4040",
+    "traj_id": "chatcmpl-cc5a19c226940f324a4d07df6f7d5484",
+    "status": "failure",
+    "turns": 77
+  },
+  "2b74314e-1be5-425e-bc09-b9b099c19f88": {
+    "instance_id": "tobymao__sqlglot-3329",
+    "traj_id": "chatcmpl-7545b00e00b772d5f9b980e7604a4224",
+    "status": "failure",
+    "turns": 74
+  },
+  "c0a13c84-fe91-489a-ac57-39dc70b97d4d": {
+    "instance_id": "tobymao__sqlglot-2191",
+    "traj_id": "chatcmpl-69fa97e343a2e0c7b149a78188d30e38",
+    "status": "failure",
+    "turns": 91
+  },
+  "2b937597-3dd0-414f-a91e-5acf57821ce6": {
+    "instance_id": "tobymao__sqlglot-1436",
+    "traj_id": "chatcmpl-0c688cfde045148eac3cf5f39910c46e",
+    "status": "failure",
+    "turns": 100
+  },
+  "04a0ff39-3c25-4ed9-ac92-b8203d6c1587": {
+    "instance_id": "tobymao__sqlglot-3440",
+    "traj_id": "chatcmpl-20cee3fa4a1dba12a3f6501e7718362f",
+    "status": "failure",
+    "turns": 59
+  },
+  "d1062777-bf08-421f-9cce-aee8881aea65": {
+    "instance_id": "tobymao__sqlglot-784",
+    "traj_id": "chatcmpl-bf7f7725f1e7cb3f27b659b04a6f8508",
+    "status": "failure",
+    "turns": 91
+  },
+  "73ca4b26-cc4e-4a5a-91b5-43c1987f477f": {
+    "instance_id": "tobymao__sqlglot-3792",
+    "traj_id": "chatcmpl-196f026154273fe569c41decd172db16",
+    "status": "failure",
+    "turns": 56
+  },
+  "e87c7333-b552-42c4-a35c-1659b81d13a4": {
+    "instance_id": "tobymao__sqlglot-2167",
+    "traj_id": "chatcmpl-9a0ea44073afe7db9cc9385f37ec6e5e",
+    "status": "failure",
+    "turns": 53
+  },
+  "b3337595-434a-408a-8703-a55272ada4f4": {
+    "instance_id": "tobymao__sqlglot-3842",
+    "traj_id": "chatcmpl-b70964a270870dcb9f159684d164dfb5",
+    "status": "failure",
+    "turns": 93
+  },
+  "eda061ea-013c-40f6-b756-7eff3b40bd84": {
+    "instance_id": "tobymao__sqlglot-4104",
+    "traj_id": "chatcmpl-08a14763c931d59249cbd70581656d08",
+    "status": "failure",
+    "turns": 100
+  },
+  "461ee0d5-0fd1-4383-b3f8-473bd1cb617a": {
+    "instance_id": "tobymao__sqlglot-3699",
+    "traj_id": "chatcmpl-738fdeb332e98eebfa1d421e27717286",
+    "status": "failure",
+    "turns": 100
+  },
+  "16ef6a4c-5753-4d58-8364-930751987171": {
+    "instance_id": "tobymao__sqlglot-550",
+    "traj_id": "chatcmpl-c650392ff66b536e83d5b6b929fc13e4",
+    "status": "failure",
+    "turns": 55
+  },
+  "bdd9c910-9865-4df4-ad4d-825af3efdb1c": {
+    "instance_id": "tobymao__sqlglot-3885",
+    "traj_id": "chatcmpl-0dfd3d454d23f58bd156e039cfbef3d5",
+    "status": "failure",
+    "turns": 74
+  },
+  "345ed9df-5c62-4b2b-9df7-74fe30a43f9c": {
+    "instance_id": "tobymao__sqlglot-3641",
+    "traj_id": "chatcmpl-1d066b216ec660f439e40cb3e6eb05f7",
+    "status": "failure",
+    "turns": 69
+  },
+  "c9484e3a-58c8-4700-b70e-b41a4ea92a32": {
+    "instance_id": "tobymao__sqlglot-3731",
+    "traj_id": "chatcmpl-d61867f0c4207323d0eebb7301896756",
+    "status": "failure",
+    "turns": 100
+  },
+  "9e82bf0c-de92-480b-b46a-3a00988871b9": {
+    "instance_id": "tobymao__sqlglot-3720",
+    "traj_id": "chatcmpl-b04fe96894cde8fa60cff59cab9e4be8",
+    "status": "failure",
+    "turns": 100
+  },
+  "b460a3ab-9f83-4bb9-ab5a-780f54bb7280": {
+    "instance_id": "tobymao__sqlglot-1001",
+    "traj_id": "chatcmpl-122d51b8819048f1db33a89174279610",
+    "status": "failure",
+    "turns": 100
+  },
+  "dad0ab3d-86d1-4bc9-8680-c3f390d0cd5c": {
+    "instance_id": "tobymao__sqlglot-2179",
+    "traj_id": "chatcmpl-c6e667fcf482a1dddfc444b29d954551",
+    "status": "failure",
+    "turns": 88
+  },
+  "49ff254b-d0a1-4bd9-8b14-11dd0e424443": {
+    "instance_id": "tobymao__sqlglot-3954",
+    "traj_id": "chatcmpl-146c686f01bffc8510b5547aa48e59f7",
+    "status": "failure",
+    "turns": 73
+  },
+  "17ef40f1-ead4-48e5-bf04-3ebcd0ee48c1": {
+    "instance_id": "tobymao__sqlglot-3515",
+    "traj_id": "chatcmpl-e2796d5faa08971b0620a53e64d449ef",
+    "status": "failure",
+    "turns": 69
+  },
+  "181c8bb5-0523-4d53-a351-fcbb80d83b99": {
+    "instance_id": "tobymao__sqlglot-3426",
+    "traj_id": "chatcmpl-1096dc977e87ca82eb3037683a2d2434",
+    "status": "failure",
+    "turns": 51
+  },
+  "ea1fa859-cb14-438b-94bf-2e3bdfb6d206": {
+    "instance_id": "tobymao__sqlglot-4488",
+    "traj_id": "chatcmpl-ed493a52d968fc50ce6585879ee2c993",
+    "status": "failure",
+    "turns": 83
+  },
+  "dee49f76-f62a-4073-b09d-5f937d0e9011": {
+    "instance_id": "tobymao__sqlglot-899",
+    "traj_id": "chatcmpl-f5ad1901063cffcb17678efa07a34147",
+    "status": "failure",
+    "turns": 60
+  },
+  "93ef1d8a-5e8d-4250-b447-079eeaaef610": {
+    "instance_id": "tobymao__sqlglot-4110",
+    "traj_id": "chatcmpl-d283e7036f31adcfd0b05a4721438e5c",
+    "status": "failure",
+    "turns": 100
+  },
+  "975e2c73-a3eb-4795-bb19-33ddab9dfc06": {
+    "instance_id": "tobymao__sqlglot-4014",
+    "traj_id": "chatcmpl-14c2bbcf85bf22575ca5200f900c0167",
+    "status": "failure",
+    "turns": 67
+  },
+  "f80232cd-4216-44e8-b956-809701fb0a93": {
+    "instance_id": "tobymao__sqlglot-4218",
+    "traj_id": "chatcmpl-5cb466dda855375d38e69f161b166bab",
+    "status": "failure",
+    "turns": 89
+  },
+  "3c4f9655-2f75-4e2d-9887-5602ed52232f": {
+    "instance_id": "tobymao__sqlglot-3129",
+    "traj_id": "chatcmpl-5112bfe1847f96452cebbfc3c809e8fd",
+    "status": "failure",
+    "turns": 81
+  },
+  "d3ac77c6-1ca8-46e0-a285-0f666fadbaa2": {
+    "instance_id": "tobymao__sqlglot-2297",
+    "traj_id": "chatcmpl-39a85ad087657ce1d2044e5f1c554339",
+    "status": "failure",
+    "turns": 100
+  },
+  "58aedaf0-c564-4f80-a1c3-3ae5b7fd5625": {
+    "instance_id": "tobymao__sqlglot-4533",
+    "traj_id": "chatcmpl-58846bb31b8142cf971963280f51a017",
+    "status": "failure",
+    "turns": 100
+  },
+  "84ba0dfc-af5e-4899-9551-01c4065d0bed": {
+    "instance_id": "tobymao__sqlglot-1871",
+    "traj_id": "chatcmpl-9ea37abe9d05f9d03034171e897b785b",
+    "status": "failure",
+    "turns": 100
+  },
+  "61ccba6b-d20d-43e0-9813-77dc367cc362": {
+    "instance_id": "tobymao__sqlglot-4079",
+    "traj_id": "chatcmpl-09eed96cc8994642e1bb0351bdf5efe5",
+    "status": "failure",
+    "turns": 100
+  },
+  "ffa03f68-891e-4506-8eda-a76fc9a3da55": {
+    "instance_id": "tobymao__sqlglot-910",
+    "traj_id": "chatcmpl-90a6a631b748d4ccf6a76669cba8d1fb",
+    "status": "failure",
+    "turns": 61
+  },
+  "881c7a83-abc0-401c-8818-73fd1641b672": {
+    "instance_id": "tobymao__sqlglot-4393",
+    "traj_id": "chatcmpl-2d7aa3bac682b69229e48402cebb6ef9",
+    "status": "failure",
+    "turns": 72
+  },
+  "269741d0-7f54-4b46-ad1e-b8f53f485381": {
+    "instance_id": "tobymao__sqlglot-3549",
+    "traj_id": "chatcmpl-b2b4df88ac7170b9fde6077d3080cf72",
+    "status": "failure",
+    "turns": 100
+  },
+  "44aef7d7-5810-44e7-b9a9-a71b1e093300": {
+    "instance_id": "tobymao__sqlglot-3605",
+    "traj_id": "chatcmpl-c4988b288f61f2d8042a17f753df4378",
+    "status": "failure",
+    "turns": 100
+  },
+  "ed98b765-d58b-4c6f-84da-b963c93364f7": {
+    "instance_id": "tobymao__sqlglot-1470",
+    "traj_id": "chatcmpl-d5b1d32491ef80663aa18e76515a7275",
+    "status": "failure",
+    "turns": 86
+  },
+  "60d44da5-fca7-4096-85cf-d98ebe000145": {
+    "instance_id": "tobymao__sqlglot-829",
+    "traj_id": "chatcmpl-af19bf7f3627d11daea4c3fd44156a40",
+    "status": "failure",
+    "turns": 100
+  },
+  "4e34ec58-2b9f-4f82-97de-f332e23bac20": {
+    "instance_id": "tobymao__sqlglot-3425",
+    "traj_id": "chatcmpl-b5c39443e01deb4434414c95792487d5",
+    "status": "failure",
+    "turns": 100
+  },
+  "6b1bcd08-4f74-449b-9e87-68854e3d7ce3": {
+    "instance_id": "tobymao__sqlglot-3637",
+    "traj_id": "chatcmpl-8265bff7f2e91c59d15d61f6eb0c87fd",
+    "status": "failure",
+    "turns": 100
+  },
+  "4524ce05-926c-4c69-96f0-2dcbe5d10f70": {
+    "instance_id": "tobymao__sqlglot-3612",
+    "traj_id": "chatcmpl-5559f792656a81ab467a010a79cd8f75",
+    "status": "failure",
+    "turns": 62
+  },
+  "38cef751-c12a-445f-b85f-507847437f52": {
+    "instance_id": "tobymao__sqlglot-3367",
+    "traj_id": "chatcmpl-c5932e1f39ee6143c17eef27461807a8",
+    "status": "failure",
+    "turns": 71
+  },
+  "0c51e6f4-1023-4531-937b-289eb39c0826": {
+    "instance_id": "tobymao__sqlglot-4301",
+    "traj_id": "chatcmpl-12c43816f33387865c272340cfd81561",
+    "status": "failure",
+    "turns": 85
+  },
+  "5aefe78c-828a-44b9-a556-096f13602ee6": {
+    "instance_id": "tobymao__sqlglot-4652",
+    "traj_id": "chatcmpl-74f3cbe6139007913be1b416c1a1af24",
+    "status": "failure",
+    "turns": 54
+  },
+  "22b24393-1aff-4f3d-b920-b307627ce7e9": {
+    "instance_id": "tobymao__sqlglot-3734",
+    "traj_id": "chatcmpl-a3f472dc2392b32392bc6a71f01314a4",
+    "status": "failure",
+    "turns": 100
+  },
+  "d037990d-79b9-4507-a34b-95cb6c8e786b": {
+    "instance_id": "tobymao__sqlglot-2754",
+    "traj_id": "chatcmpl-c83a30924b65a0dd5edd49a464fa2112",
+    "status": "failure",
+    "turns": 81
+  },
+  "51f10f71-3ea0-48fc-b5d7-dbee8e12d501": {
+    "instance_id": "tobymao__sqlglot-2521",
+    "traj_id": "chatcmpl-0f4e41d3a990a7c9a6382c3f68cf3842",
+    "status": "failure",
+    "turns": 98
+  },
+  "1396d2af-7afe-4657-b35e-bddef7ba5fcf": {
+    "instance_id": "tobymao__sqlglot-3756",
+    "traj_id": "chatcmpl-688648ec6fb49e65e1f6eebe948bd4c9",
+    "status": "failure",
+    "turns": 82
+  },
+  "e3e5d5c5-ba8c-4785-a5a6-a0b4635c0f10": {
+    "instance_id": "tobymao__sqlglot-4528",
+    "traj_id": "chatcmpl-22fe94e556e3685f7b037f0707fff2bc",
+    "status": "failure",
+    "turns": 71
+  },
+  "1b31d90a-ace7-4fb4-8a6f-150f49399a06": {
+    "instance_id": "tobymao__sqlglot-3252",
+    "traj_id": "chatcmpl-4c3fddf2a0064d0736e00a3fe35e69db",
+    "status": "failure",
+    "turns": 100
+  },
+  "31632efd-3e42-46a4-9108-d348f1d4d36e": {
+    "instance_id": "tobymao__sqlglot-4493",
+    "traj_id": "chatcmpl-cdd6f9af743eb7942493e0f91f125d29",
+    "status": "failure",
+    "turns": 89
+  },
+  "5d039ec0-4629-42da-b930-b7b76255d209": {
+    "instance_id": "tobymao__sqlglot-2208",
+    "traj_id": "chatcmpl-480a9e5a00cf93c22265d83879a035fc",
+    "status": "failure",
+    "turns": 62
+  },
+  "5ff3944e-858a-4295-bb05-d2079545e06a": {
+    "instance_id": "tobymao__sqlglot-3204",
+    "traj_id": "chatcmpl-c0ba035bf1d3532542cf9eb10d049af2",
+    "status": "failure",
+    "turns": 100
+  },
+  "42f8be72-d6f7-4a65-940c-7c1d12d06729": {
+    "instance_id": "tobymao__sqlglot-4051",
+    "traj_id": "chatcmpl-8df40924aa81bfafa6f3f0625675057f",
+    "status": "failure",
+    "turns": 72
+  },
+  "57ad4176-08a9-40c5-ae6a-55558c6bd02f": {
+    "instance_id": "tobymao__sqlglot-3242",
+    "traj_id": "chatcmpl-bc73eeb92baf315426c94d057f8b241f",
+    "status": "failure",
+    "turns": 76
+  },
+  "efd18f47-cda7-4199-8ea7-b595631369a9": {
+    "instance_id": "tobymao__sqlglot-3255",
+    "traj_id": "chatcmpl-8d2c9bc2c53252a69a2cae107cfbd091",
+    "status": "failure",
+    "turns": 97
+  },
+  "9bc9297d-da0e-4198-a160-f3b0cefc9d8d": {
+    "instance_id": "tobymao__sqlglot-2432",
+    "traj_id": "chatcmpl-4549476905e2f54d2e0170f1cbf0bede",
+    "status": "failure",
+    "turns": 86
+  },
+  "9fe8e08e-060d-44f3-bd6e-813d717d9c36": {
+    "instance_id": "tobymao__sqlglot-3330",
+    "traj_id": "chatcmpl-8369d766b1c067b3c71ab1ee724ca103",
+    "status": "failure",
+    "turns": 100
+  },
+  "878ff754-f92e-4218-aaae-6b99a490b546": {
+    "instance_id": "tobymao__sqlglot-2439",
+    "traj_id": "chatcmpl-e0fde7d2d6f3b27ce573ab8d6318478c",
+    "status": "failure",
+    "turns": 52
+  },
+  "cf1dd839-fa38-45d0-a470-6d0a9056a0be": {
+    "instance_id": "tobymao__sqlglot-4041",
+    "traj_id": "chatcmpl-2f10b8a6dbfa28e143273e7b90d354f2",
+    "status": "failure",
+    "turns": 100
+  },
+  "fd51e2d8-e96e-4fff-8d59-0d2e69763d6a": {
+    "instance_id": "tobymao__sqlglot-3198",
+    "traj_id": "chatcmpl-e454a153adc80f50a9c8757dcfbaed4e",
+    "status": "failure",
+    "turns": 64
+  },
+  "55605995-e4c6-49a5-bc2e-253b0e3dfca4": {
+    "instance_id": "tobymao__sqlglot-1143",
+    "traj_id": "chatcmpl-311d3698ec2a0a983d368fe6cf7daf82",
+    "status": "failure",
+    "turns": 53
+  },
+  "3cab123b-0dcb-4fa1-8db1-b2cf59b4cd68": {
+    "instance_id": "tobymao__sqlglot-1548",
+    "traj_id": "chatcmpl-57af9062bcd8c692e923a9ac6727978a",
+    "status": "failure",
+    "turns": 100
+  },
+  "2fb4f7e2-9759-408a-b3df-1d5e0dec44da": {
+    "instance_id": "tobymao__sqlglot-3798",
+    "traj_id": "chatcmpl-92724d9c625666002a4f59b9ec0e34a2",
+    "status": "failure",
+    "turns": 58
+  },
+  "729c680d-ef92-4b0f-8dd9-8fef03e6e7b2": {
+    "instance_id": "tobymao__sqlglot-2822",
+    "traj_id": "chatcmpl-78f79b745cfd3f6f29df0c8d525c552f",
+    "status": "failure",
+    "turns": 74
+  },
+  "5501fa1c-b706-43b8-aa8f-4167cbae7d6d": {
+    "instance_id": "tobymao__sqlglot-4550",
+    "traj_id": "chatcmpl-d95b8d11151630dd9b4fda7f6f16b8fe",
+    "status": "failure",
+    "turns": 100
+  },
+  "5677a76d-5faa-44b5-ba5f-dd31c967e2a8": {
+    "instance_id": "tobymao__sqlglot-4546",
+    "traj_id": "chatcmpl-219fde1d9adb9b8acb7864b198af3bc1",
+    "status": "failure",
+    "turns": 100
+  },
+  "e8bb6965-0c38-4f4f-bc62-dc2969c3567c": {
+    "instance_id": "tobymao__sqlglot-3937",
+    "traj_id": "chatcmpl-f9bc2d18a9a416d76e81038bab1e8e1e",
+    "status": "failure",
+    "turns": 100
+  },
+  "8cd10a17-af15-4a24-83e5-b5f960fc014b": {
+    "instance_id": "tobymao__sqlglot-1640",
+    "traj_id": "chatcmpl-09148c046854ad8c1729b9215bbc3623",
+    "status": "failure",
+    "turns": 60
+  },
+  "e978c918-4070-43c2-a4c2-474aa0429e80": {
+    "instance_id": "tobymao__sqlglot-4373",
+    "traj_id": "chatcmpl-b03931fc76e65c3024b555c73db4d62f",
+    "status": "failure",
+    "turns": 64
+  },
+  "80b895d2-c42b-4016-aadb-8b9ccfe631c7": {
+    "instance_id": "tobymao__sqlglot-3701",
+    "traj_id": "chatcmpl-0e707450a6ab77bfb8eb4e971cfb530f",
+    "status": "failure",
+    "turns": 67
+  },
+  "3ed7a779-dee9-4061-b151-ef1b5e772af7": {
+    "instance_id": "tobymao__sqlglot-4430",
+    "traj_id": "chatcmpl-db9e1f2fff9e804628b3fbca94a6fef7",
+    "status": "failure",
+    "turns": 100
+  },
+  "d011597e-4dc9-491a-85d7-38aec1f12987": {
+    "instance_id": "tobymao__sqlglot-2293",
+    "traj_id": "chatcmpl-6f87b94be40eddaf73a60813fa779cd0",
+    "status": "failure",
+    "turns": 98
+  },
+  "576e87e2-7999-4795-8696-1d2c2e13026e": {
+    "instance_id": "tobymao__sqlglot-2083",
+    "traj_id": "chatcmpl-841dc169a01c599101f2617f0932377a",
+    "status": "failure",
+    "turns": 80
+  },
+  "fb41b082-743d-46b7-993a-93d2d4c75786": {
+    "instance_id": "tobymao__sqlglot-4390",
+    "traj_id": "chatcmpl-9f999d0f9e2f07bc0ddac55653642c0f",
+    "status": "failure",
+    "turns": 77
+  },
+  "a1ab6fd9-6b50-4747-a9f5-5d4ff591b0e6": {
+    "instance_id": "tobymao__sqlglot-1050",
+    "traj_id": "chatcmpl-fd8cd995e41dcc2c8f3806a54490195d",
+    "status": "failure",
+    "turns": 100
+  },
+  "018b403c-c3a4-49cb-aeba-a9bde4b921e6": {
+    "instance_id": "tobymao__sqlglot-4141",
+    "traj_id": "chatcmpl-8a1e669d0d877ff0c4353bee469c7d99",
+    "status": "failure",
+    "turns": 78
+  },
+  "242754c3-f2f1-4b16-9ebc-f8f6432eb325": {
+    "instance_id": "tobymao__sqlglot-3352",
+    "traj_id": "chatcmpl-70ed1820d28f92571ead9da062d24415",
+    "status": "failure",
+    "turns": 68
+  },
+  "c6fa7e16-0f54-41f8-9a5b-f9c972071880": {
+    "instance_id": "tobymao__sqlglot-632",
+    "traj_id": "chatcmpl-770f6a2f0a586288673cc11351739bb2",
+    "status": "failure",
+    "turns": 79
+  },
+  "5387a8fb-2019-4fe8-a41a-e31bc95c2d7e": {
+    "instance_id": "tobymao__sqlglot-799",
+    "traj_id": "chatcmpl-472990bf1a531cf8260410dfb0bc81d8",
+    "status": "failure",
+    "turns": 86
+  },
+  "629cee7c-c616-417c-bec8-c4520304453d": {
+    "instance_id": "tobymao__sqlglot-552",
+    "traj_id": "chatcmpl-0a58358d30c397d239cb1fcdd740a4a4",
+    "status": "failure",
+    "turns": 85
+  },
+  "a07e723e-60d6-4465-9546-e18dfbd67905": {
+    "instance_id": "tobymao__sqlglot-1872",
+    "traj_id": "chatcmpl-3637e2ab8bca9f3a5206f2d424e78de8",
+    "status": "failure",
+    "turns": 100
+  },
+  "34febd07-8674-4660-a5c2-84f11d661016": {
+    "instance_id": "tobymao__sqlglot-4172",
+    "traj_id": "chatcmpl-38a561bfe62c31446fba90f306315711",
+    "status": "failure",
+    "turns": 88
+  },
+  "4f202065-f43c-4c4b-afb9-ee3828c27018": {
+    "instance_id": "tobymao__sqlglot-1270",
+    "traj_id": "chatcmpl-0612c1de30fea7e195c4fd8276379eeb",
+    "status": "failure",
+    "turns": 75
+  },
+  "840b0c12-df78-49df-9dcd-973e4a84cf92": {
+    "instance_id": "tobymao__sqlglot-3621",
+    "traj_id": "chatcmpl-ba446a4d4dcee1373995ac7a0d691483",
+    "status": "failure",
+    "turns": 89
+  },
+  "7f6cddc8-f914-4029-8097-b53bc81a9a11": {
+    "instance_id": "tobymao__sqlglot-2047",
+    "traj_id": "chatcmpl-b1d45d84d072c5ed38504b3255575785",
+    "status": "failure",
+    "turns": 52
+  },
+  "abe58fca-2a6b-467c-a1a1-dd7372858db3": {
+    "instance_id": "tobymao__sqlglot-3994",
+    "traj_id": "chatcmpl-6ad2a2ac3a930e4d852cc856d6fdda2b",
+    "status": "failure",
+    "turns": 100
+  },
+  "61d47505-11f6-4fff-91ba-075739cc1525": {
+    "instance_id": "tobymao__sqlglot-4417",
+    "traj_id": "chatcmpl-b0ba5a7070ba6e9cd6c2b9c7c7c83653",
+    "status": "failure",
+    "turns": 76
+  },
+  "89a023cd-b62c-4b9a-b832-769d298db2dc": {
+    "instance_id": "tobymao__sqlglot-3339",
+    "traj_id": "chatcmpl-4506d3e338744adb18b0a9ab3f4f2da4",
+    "status": "failure",
+    "turns": 55
+  },
+  "5ee85d37-b25e-4f39-a78b-1fbd1e4f547f": {
+    "instance_id": "tobymao__sqlglot-4087",
+    "traj_id": "chatcmpl-105e9f74577b489e599d87aaa8461f94",
+    "status": "failure",
+    "turns": 86
+  },
+  "3bedf2f6-3beb-4777-9bde-642d9054dda1": {
+    "instance_id": "tobymao__sqlglot-4447",
+    "traj_id": "chatcmpl-1a24bef48b636e3960902708ec38e02d",
+    "status": "failure",
+    "turns": 100
+  },
+  "36c52892-03ac-4304-9f2b-b9df589ba143": {
+    "instance_id": "tobymao__sqlglot-3820",
+    "traj_id": "chatcmpl-ec6571b902768da5c5e433b257f04671",
+    "status": "failure",
+    "turns": 100
+  },
+  "ca725348-77c1-447d-9f3f-af79e38d9ca4": {
+    "instance_id": "tobymao__sqlglot-1060",
+    "traj_id": "chatcmpl-6b8f96e712f137666d126bed358ee4e5",
+    "status": "failure",
+    "turns": 59
+  },
+  "6b797d9f-03f5-4a01-b7e1-406cb4d46d36": {
+    "instance_id": "tobymao__sqlglot-4415",
+    "traj_id": "chatcmpl-fd962870d4d0a1af125de3b7da76189e",
+    "status": "failure",
+    "turns": 100
+  },
+  "49afeb4b-edcd-4259-bcea-0eff16f1a11b": {
+    "instance_id": "tobymao__sqlglot-3848",
+    "traj_id": "chatcmpl-bfac72f2d4ae4f4b0c28ac8f5124b1d0",
+    "status": "failure",
+    "turns": 82
+  },
+  "91131476-7d81-4bee-b452-47b1eec90477": {
+    "instance_id": "tobymao__sqlglot-2825",
+    "traj_id": "chatcmpl-9c6cc3ed64ab41d75ba5f9f0b2e500e3",
+    "status": "failure",
+    "turns": 100
+  },
+  "18c0511f-c8f4-4965-8627-14084d0a0086": {
+    "instance_id": "tobymao__sqlglot-975",
+    "traj_id": "chatcmpl-41002681890af2d220cb3a81ec73f350",
+    "status": "failure",
+    "turns": 90
+  },
+  "f3441dd4-c8b0-4434-89b8-e8901f8ffcb5": {
+    "instance_id": "tobymao__sqlglot-2591",
+    "traj_id": "chatcmpl-879204c7c38e8f2948bf5f0256ed4085",
+    "status": "failure",
+    "turns": 98
+  },
+  "f2806fd0-a273-45f5-b378-d25829334f78": {
+    "instance_id": "tobymao__sqlglot-3182",
+    "traj_id": "chatcmpl-b0ae00c49b10ec4d41d75c7d63a648c5",
+    "status": "failure",
+    "turns": 76
+  },
+  "3b31bddc-f5ba-42dd-8d29-020813e61e80": {
+    "instance_id": "tobymao__sqlglot-4127",
+    "traj_id": "chatcmpl-06fb0318f511593c7ae749e265d25107",
+    "status": "failure",
+    "turns": 66
+  },
+  "318678ee-73a1-4bb2-9cd7-61cbd6f8dbae": {
+    "instance_id": "tobymao__sqlglot-3891",
+    "traj_id": "chatcmpl-8464f2f71834a5086c671cf11b46f809",
+    "status": "failure",
+    "turns": 68
+  },
+  "10745149-2cc2-4785-ad49-9d5b766a0f2f": {
+    "instance_id": "tobymao__sqlglot-4197",
+    "traj_id": "chatcmpl-9778a6844a49b80a67a528b4f23a1f00",
+    "status": "failure",
+    "turns": 52
+  },
+  "f7899bd2-ea78-4b42-b876-60037883a907": {
+    "instance_id": "tobymao__sqlglot-3394",
+    "traj_id": "chatcmpl-9af8c5ede3a97652bd1a884af34570d5",
+    "status": "failure",
+    "turns": 62
+  },
+  "2de52045-94e0-4fff-95a9-153606cf351b": {
+    "instance_id": "tobymao__sqlglot-3401",
+    "traj_id": "chatcmpl-4c91dca84d4d610c03143be54fa89234",
+    "status": "failure",
+    "turns": 96
+  },
+  "8056bbab-e491-4008-a4e1-bfadc60a78e3": {
+    "instance_id": "tobymao__sqlglot-3418",
+    "traj_id": "chatcmpl-9055790c506f5e6d2e998807ba13a0d2",
+    "status": "failure",
+    "turns": 56
+  },
+  "7b7c9e65-7f2b-4e6f-afb7-547b0426cc37": {
+    "instance_id": "tobymao__sqlglot-3652",
+    "traj_id": "chatcmpl-ab7455e1d3847596e85196d4a719dd6a",
+    "status": "failure",
+    "turns": 65
+  },
+  "6d47ccfa-b57c-458e-8ee5-61c55fa95f6f": {
+    "instance_id": "tobymao__sqlglot-3630",
+    "traj_id": "chatcmpl-9ae807d516a3c6fdc0e3a3956a98003d",
+    "status": "failure",
+    "turns": 100
+  },
+  "d9950f75-a59c-48fc-98e4-93a5dd4b07e8": {
+    "instance_id": "tobymao__sqlglot-2255",
+    "traj_id": "chatcmpl-cfde52daca41116aea48ce6a0c389cef",
+    "status": "failure",
+    "turns": 78
+  },
+  "11923ed5-996c-468c-a146-ed48df563564": {
+    "instance_id": "tobymao__sqlglot-3201",
+    "traj_id": "chatcmpl-b92ca0a79334332beaf070b6730a8fea",
+    "status": "failure",
+    "turns": 100
+  },
+  "6a7c7fd5-46f6-461d-ab50-a8a77c65777a": {
+    "instance_id": "tobymao__sqlglot-4459",
+    "traj_id": "chatcmpl-bff7254c69a9e72c1f42d5af48adb881",
+    "status": "failure",
+    "turns": 59
+  },
+  "a1889b53-9e49-43b9-a231-e0845a1f5172": {
+    "instance_id": "tobymao__sqlglot-1238",
+    "traj_id": "chatcmpl-a3839941c9d7d5f9fe56b38ee3dd9e0d",
+    "status": "failure",
+    "turns": 87
+  },
+  "bf383f86-3e38-46d2-a7b9-f540affabeed": {
+    "instance_id": "tobymao__sqlglot-3436",
+    "traj_id": "chatcmpl-763ad53f8ac4b0c0916bd2e80e8ef1f7",
+    "status": "failure",
+    "turns": 100
+  },
+  "fc3eee15-0d3c-4ad4-868f-a0deced52f3e": {
+    "instance_id": "tobymao__sqlglot-3745",
+    "traj_id": "chatcmpl-406741ccb120a18f9b9531d1c9aaa903",
+    "status": "failure",
+    "turns": 62
+  },
+  "30ff23a4-cb6a-4c22-be8b-ed74b3c7c36c": {
+    "instance_id": "tobymao__sqlglot-4347",
+    "traj_id": "chatcmpl-c43be62d234b0d200874b3ff41286649",
+    "status": "failure",
+    "turns": 93
+  },
+  "fbb7c8e9-3154-44e0-8be2-182342dc16fd": {
+    "instance_id": "tobymao__sqlglot-1540",
+    "traj_id": "chatcmpl-b1eb2a5b0b0d518259d67d17117fefcc",
+    "status": "failure",
+    "turns": 73
+  },
+  "8622c52b-36af-4c86-9e33-fd9e01546b06": {
+    "instance_id": "tobymao__sqlglot-4438",
+    "traj_id": "chatcmpl-82351dc8d1c20e5a5c996f0f09b8ead9",
+    "status": "failure",
+    "turns": 71
+  },
+  "925438eb-63f9-4b2a-a375-def61fc0b180": {
+    "instance_id": "tobymao__sqlglot-3696",
+    "traj_id": "chatcmpl-b8bf3f654523505c110b37612d32c0b5",
+    "status": "failure",
+    "turns": 83
+  },
+  "f883bae9-2a3b-4e30-bcf5-a131359fa545": {
+    "instance_id": "tobymao__sqlglot-3333",
+    "traj_id": "chatcmpl-1fca89bcbd9b9fc1249baf9918faba98",
+    "status": "failure",
+    "turns": 100
+  },
+  "5d58a541-61a9-4fc8-b3ea-28b978d396b8": {
+    "instance_id": "tobymao__sqlglot-1825",
+    "traj_id": "chatcmpl-0bd4db39da8a0da2174656966d33b2f0",
+    "status": "failure",
+    "turns": 70
+  },
+  "e0890ce5-7009-4f5f-ba19-1fd869b47205": {
+    "instance_id": "tobymao__sqlglot-2156",
+    "traj_id": "chatcmpl-f17cca9e78d9eba60447435c662878e2",
+    "status": "failure",
+    "turns": 100
+  },
+  "772cb406-c981-4af2-a1e8-32faa850c997": {
+    "instance_id": "tobymao__sqlglot-4015",
+    "traj_id": "chatcmpl-e781abaa6c6f1e012eb8b356b3ee6f38",
+    "status": "failure",
+    "turns": 74
+  },
+  "3b77bb37-f021-4d1f-aa31-08d70d5b07fb": {
+    "instance_id": "tobymao__sqlglot-3839",
+    "traj_id": "chatcmpl-5a1026d0632b1d84d6ea5bdd138460ec",
+    "status": "failure",
+    "turns": 60
+  },
+  "f1aa37e3-1582-4fee-a28a-4ed040acc994": {
+    "instance_id": "tobymao__sqlglot-3150",
+    "traj_id": "chatcmpl-f89cfe82088714e4cae73c3aeee920d8",
+    "status": "failure",
+    "turns": 100
+  },
+  "22d9c05b-30c8-45b9-aaa6-e85649c9fbd6": {
+    "instance_id": "tobymao__sqlglot-555",
+    "traj_id": "chatcmpl-1444b2dc4000cd8ddaba18081dcb0ef9",
+    "status": "failure",
+    "turns": 59
+  },
+  "dd5d4752-ac8d-48ca-adfe-f87fc78230d6": {
+    "instance_id": "tobymao__sqlglot-3627",
+    "traj_id": "chatcmpl-048c8d6c257e1df675fff6289c5c982b",
+    "status": "failure",
+    "turns": 100
+  },
+  "f2ad63c9-382d-4c22-8d75-a9a610227ca3": {
+    "instance_id": "tobymao__sqlglot-4328",
+    "traj_id": "chatcmpl-4ff6a114c163901f0d46fecea37f7ae2",
+    "status": "failure",
+    "turns": 63
+  },
+  "7ed2813f-eda9-47e4-afcd-09da7f7d10d7": {
+    "instance_id": "tobymao__sqlglot-2296",
+    "traj_id": "chatcmpl-47ee2f20b956c965dc439b6b48d5aae6",
+    "status": "failure",
+    "turns": 100
+  },
+  "af0d1dce-1902-4dd1-9d8c-ffb866711f5e": {
+    "instance_id": "tobymao__sqlglot-4331",
+    "traj_id": "chatcmpl-f87534088d8db9b0c9b63272b215da26",
+    "status": "failure",
+    "turns": 89
+  },
+  "fae2d7d5-dba0-4a86-86b2-111ee451ff14": {
+    "instance_id": "tobymao__sqlglot-2305",
+    "traj_id": "chatcmpl-3180e0acd286c78d619172a71d17b587",
+    "status": "failure",
+    "turns": 84
+  },
+  "9ae3ede6-44bd-4e95-94dc-4969706eca24": {
+    "instance_id": "tobymao__sqlglot-3870",
+    "traj_id": "chatcmpl-5726befc4acf050ec5791349025f8693",
+    "status": "failure",
+    "turns": 85
+  },
+  "573c14a8-3db2-4e8c-a1d8-462c1e0077c5": {
+    "instance_id": "tobymao__sqlglot-2935",
+    "traj_id": "chatcmpl-927c7c0c4c64f6db7c3dd0ae70e1fc76",
+    "status": "failure",
+    "turns": 100
+  },
+  "9f5caece-aa05-4e7e-bce8-ffbe4063fb72": {
+    "instance_id": "tobymao__sqlglot-1642",
+    "traj_id": "chatcmpl-c03dbf186c454b7c3ee8a3cb1c1a2369",
+    "status": "failure",
+    "turns": 89
+  },
+  "b981bb4d-06fb-4276-8c79-0ca07dc08fa5": {
+    "instance_id": "tobymao__sqlglot-4506",
+    "traj_id": "chatcmpl-d47dff8a83ed27d2384039ac977187e0",
+    "status": "failure",
+    "turns": 60
+  },
+  "339bdfc3-8b34-4775-abfb-12f0a90bc7ad": {
+    "instance_id": "tobymao__sqlglot-4302",
+    "traj_id": "chatcmpl-865ea092629b711d9a906df82483eee1",
+    "status": "failure",
+    "turns": 59
+  },
+  "c75ac822-6881-4d36-9141-29570f01c9f3": {
+    "instance_id": "tobymao__sqlglot-3191",
+    "traj_id": "chatcmpl-b6b39849524bdd7c3b61c34d9b623b88",
+    "status": "failure",
+    "turns": 100
+  },
+  "3ff50ac2-74a5-4df0-9b0f-ff124310186e": {
+    "instance_id": "tobymao__sqlglot-2507",
+    "traj_id": "chatcmpl-ff3e441dee5ac716a20aa5068d75a830",
+    "status": "failure",
+    "turns": 100
+  },
+  "66d017f7-d334-4ba8-bcef-c9049ff24456": {
+    "instance_id": "tobymao__sqlglot-2007",
+    "traj_id": "chatcmpl-a639effd7b76e14c3ef0f243a32f7c32",
+    "status": "failure",
+    "turns": 100
+  },
+  "e1fa75ab-5737-4e02-9059-4333d6799bd4": {
+    "instance_id": "tobymao__sqlglot-2172",
+    "traj_id": "chatcmpl-4d21cf64076773f084a0d5e2e8f1a903",
+    "status": "failure",
+    "turns": 99
+  },
+  "ed33b671-2527-462e-9771-7c8633352db2": {
+    "instance_id": "tobymao__sqlglot-4252",
+    "traj_id": "chatcmpl-389c50799208272d859bd13ea5794126",
+    "status": "failure",
+    "turns": 53
+  },
+  "d6cd3603-b62f-43a8-9546-eeec35f0a9fa": {
+    "instance_id": "tobymao__sqlglot-3987",
+    "traj_id": "chatcmpl-8fd7aa6bcb255023702fc5a1c57ca4db",
+    "status": "failure",
+    "turns": 90
+  },
+  "1e26d24a-63e4-4758-a86a-bf9a3caf397b": {
+    "instance_id": "tobymao__sqlglot-4206",
+    "traj_id": "chatcmpl-4fef5c0fc8e46cce91b31ec94b662cad",
+    "status": "failure",
+    "turns": 67
+  },
+  "bb680ccd-c665-4237-a7cd-c6c19a3cb33a": {
+    "instance_id": "tobymao__sqlglot-4130",
+    "traj_id": "chatcmpl-26045ae942f97895f0c30476870c9222",
+    "status": "failure",
+    "turns": 71
+  },
+  "49c7902d-45ec-4f2e-9be4-bbc391d14197": {
+    "instance_id": "tobymao__sqlglot-2529",
+    "traj_id": "chatcmpl-71913e037b5368b663bc4e2852928153",
+    "status": "success",
+    "turns": 49
+  },
+  "c1869574-2700-439f-9908-1a8653c4a555": {
+    "instance_id": "tobymao__sqlglot-702",
+    "traj_id": "chatcmpl-51b61ffa2aa2bf6f0da1713f664ad8b3",
+    "status": "success",
+    "turns": 52
+  },
+  "42eeaae9-4bd6-4ea2-adf7-1d9c5f48b330": {
+    "instance_id": "tobymao__sqlglot-3272",
+    "traj_id": "chatcmpl-540b0a737d41d645c0f16a5978aa6c59",
+    "status": "success",
+    "turns": 100
+  },
+  "50b13e15-e966-438e-89f9-c48814fcb6b3": {
+    "instance_id": "tobymao__sqlglot-2619",
+    "traj_id": "chatcmpl-ac9f0c8d54ce6e07b5f4942952b72129",
+    "status": "success",
+    "turns": 50
+  },
+  "fe886dd3-dc6c-4d1d-918c-1ba35450009a": {
+    "instance_id": "tobymao__sqlglot-3111",
+    "traj_id": "chatcmpl-163563d739581a876b55195a398b2f4e",
+    "status": "success",
+    "turns": 61
+  },
+  "bf29e2f9-8389-415a-ab0d-d6f35c9eee4b": {
+    "instance_id": "tobymao__sqlglot-1083",
+    "traj_id": "chatcmpl-a926d182c6217f1fa83a5643df8512d3",
+    "status": "success",
+    "turns": 51
+  },
+  "bfcd6d00-2e05-496c-8350-4b859c7af60c": {
+    "instance_id": "tobymao__sqlglot-3871",
+    "traj_id": "chatcmpl-be97afd124667f32fc786bdb9cca2482",
+    "status": "success",
+    "turns": 73
+  },
+  "38088c34-f50d-474b-a82a-75184abc746e": {
+    "instance_id": "tobymao__sqlglot-1367",
+    "traj_id": "chatcmpl-a59dfad402ed57c19417ab4b8bb54631",
+    "status": "success",
+    "turns": 76
+  },
+  "2a2577e8-a85e-4273-a63e-2c8bc0a18781": {
+    "instance_id": "tobymao__sqlglot-4093",
+    "traj_id": "chatcmpl-739781b496b5b0ee17385c6b662868d9",
+    "status": "success",
+    "turns": 50
+  },
+  "528154bc-d023-45c1-8d50-c17a8ea05cd1": {
+    "instance_id": "tobymao__sqlglot-3045",
+    "traj_id": "chatcmpl-5df09dd0b104dca2d9eba282acb1f3d7",
+    "status": "success",
+    "turns": 100
+  },
+  "aad44f9c-9fff-408a-9217-78aa1fbc575a": {
+    "instance_id": "tobymao__sqlglot-292",
+    "traj_id": "chatcmpl-10bae04a1351ed2a0a1126e85d0ab506",
+    "status": "success",
+    "turns": 88
+  },
+  "d2273407-414b-455a-b3f7-23e41f6cfc94": {
+    "instance_id": "tobymao__sqlglot-930",
+    "traj_id": "chatcmpl-d3891c5bf0fb8191366bf06b7d8e2c01",
+    "status": "success",
+    "turns": 62
+  },
+  "b1ebcf7d-3584-4529-a7aa-53e52aa7a13c": {
+    "instance_id": "tobymao__sqlglot-428",
+    "traj_id": "chatcmpl-b0aa4b6e7e643fd34d9f54274f0bf81f",
+    "status": "success",
+    "turns": 61
+  },
+  "0000149a-703d-47ef-a04e-3988b8ee0913": {
+    "instance_id": "tobymao__sqlglot-446",
+    "traj_id": "chatcmpl-83ef60395aa6951fb894187a8fcf7cd7",
+    "status": "success",
+    "turns": 56
+  },
+  "7e2e35e6-d5e4-4059-b35a-866f438663e6": {
+    "instance_id": "tobymao__sqlglot-2093",
+    "traj_id": "chatcmpl-4a72e96b03c2f28d1539e2f352c11582",
+    "status": "success",
+    "turns": 58
+  },
+  "8dc23a99-ac4f-43f4-83c7-6708e1ae9fc6": {
+    "instance_id": "tobymao__sqlglot-2800",
+    "traj_id": "chatcmpl-4c8374caa499256807cba03bfa2dae08",
+    "status": "success",
+    "turns": 77
+  },
+  "8142123d-7bd5-41da-97f1-a104a6842d2a": {
+    "instance_id": "tobymao__sqlglot-1309",
+    "traj_id": "chatcmpl-cc8821acdbf4240ddd137729242b4e57",
+    "status": "success",
+    "turns": 53
+  },
+  "09914a5d-3b5a-411f-8398-c1b21facbea8": {
+    "instance_id": "tobymao__sqlglot-1177",
+    "traj_id": "chatcmpl-660bef0d66732323afe7b82a7d763448",
+    "status": "success",
+    "turns": 100
+  },
+  "cd319904-4a43-4b12-aa5a-bb380a530df4": {
+    "instance_id": "tobymao__sqlglot-2499",
+    "traj_id": "chatcmpl-0cf02ef9ecb592d48c49326ad398dde2",
+    "status": "success",
+    "turns": 100
+  },
+  "5f0bf789-2d7f-463e-bc49-6398cf1b6a52": {
+    "instance_id": "tobymao__sqlglot-4148",
+    "traj_id": "chatcmpl-d5c3225eb2f04f9185c920f82f2592ab",
+    "status": "success",
+    "turns": 99
+  },
+  "b1a261d5-14aa-4a04-8b3d-83ae2d0224c3": {
+    "instance_id": "tobymao__sqlglot-1316",
+    "traj_id": "chatcmpl-1e8a0500eedafb4b029d9c746c940279",
+    "status": "success",
+    "turns": 64
+  },
+  "8bf17b66-af68-4db2-b961-17561aa61ee0": {
+    "instance_id": "tobymao__sqlglot-1551",
+    "traj_id": "chatcmpl-f683a9dc6cc76c5c054574ae8ec9f91b",
+    "status": "success",
+    "turns": 100
+  },
+  "72e642c6-74c8-47ce-bc86-3a3159757f70": {
+    "instance_id": "tobymao__sqlglot-4448",
+    "traj_id": "chatcmpl-393a9459193d3163a5c809cdff864a1b",
+    "status": "success",
+    "turns": 71
+  },
+  "d11b6a1e-0480-4e49-b252-a4a21e163f7d": {
+    "instance_id": "tobymao__sqlglot-4505",
+    "traj_id": "chatcmpl-880b501b0ed7b3b2435c5357d0aff9dc",
+    "status": "success",
+    "turns": 66
+  },
+  "401ac656-82eb-43e1-b2e1-af1bba0aa697": {
+    "instance_id": "tobymao__sqlglot-4096",
+    "traj_id": "chatcmpl-35a900f68aa679e62f1e9f0952232684",
+    "status": "success",
+    "turns": 87
+  },
+  "532038b1-3bdc-480b-95e1-1924d1eefdb8": {
+    "instance_id": "tobymao__sqlglot-3975",
+    "traj_id": "chatcmpl-9d2232f95ef779b3c4126be5323feaa3",
+    "status": "success",
+    "turns": 57
+  },
+  "5e7937a9-57ba-423c-9445-b2fdc147f853": {
+    "instance_id": "tobymao__sqlglot-923",
+    "traj_id": "chatcmpl-c22b2c809456fc41fba825b4b2e38345",
+    "status": "success",
+    "turns": 67
+  },
+  "e4404b15-3697-48eb-bc26-23982ced76f9": {
+    "instance_id": "tobymao__sqlglot-4523",
+    "traj_id": "chatcmpl-d693a512fd4aca23a09132539dadebbd",
+    "status": "success",
+    "turns": 39
+  },
+  "1769d5fd-9bb3-496f-840a-9dda0a6f37c2": {
+    "instance_id": "tobymao__sqlglot-3785",
+    "traj_id": "chatcmpl-f08be6174dd47304121bd4edacbee2fe",
+    "status": "success",
+    "turns": 55
+  },
+  "3c0d761a-305e-4e0b-b3b9-ede436957ddd": {
+    "instance_id": "tobymao__sqlglot-2226",
+    "traj_id": "chatcmpl-4e0af2e2d34e07def364277231e1aef6",
+    "status": "success",
+    "turns": 100
+  },
+  "88a03439-e517-4edd-ac61-fa9a2f696119": {
+    "instance_id": "tobymao__sqlglot-1340",
+    "traj_id": "chatcmpl-364644fd9ebb8d77c965d8befbcc3c75",
+    "status": "success",
+    "turns": 80
+  },
+  "62e12b38-7582-47d6-93e3-fcf25e756018": {
+    "instance_id": "tobymao__sqlglot-1379",
+    "traj_id": "chatcmpl-2ef67ed095ee57b225721bcac7dfa48f",
+    "status": "success",
+    "turns": 68
+  },
+  "bfe5e8d3-8461-4b36-b3d9-6fd54bffc288": {
+    "instance_id": "tobymao__sqlglot-3238",
+    "traj_id": "chatcmpl-31c0857add52faea96e104c4d228e5d6",
+    "status": "success",
+    "turns": 55
+  },
+  "601ae36d-a7a4-41e4-ad09-3edfc87d48dd": {
+    "instance_id": "tobymao__sqlglot-3855",
+    "traj_id": "chatcmpl-6f95731c0a0278da41cbd23cccdd0ac5",
+    "status": "success",
+    "turns": 81
+  },
+  "88ad5732-f319-44b4-9fbd-c39ce16ec5cb": {
+    "instance_id": "tobymao__sqlglot-3533",
+    "traj_id": "chatcmpl-781907f25334c27bde5fd60eae6f54b9",
+    "status": "success",
+    "turns": 45
+  },
+  "03f2f5ba-4589-45bb-a35d-fe6c2ca5e7c6": {
+    "instance_id": "tobymao__sqlglot-2199",
+    "traj_id": "chatcmpl-5c8110cadebf01824713ab215c2847df",
+    "status": "success",
+    "turns": 80
+  },
+  "27eb472d-a33c-40ce-a406-ba26fba6409d": {
+    "instance_id": "tobymao__sqlglot-1089",
+    "traj_id": "chatcmpl-e0466f3115e11cdc742d2c30c0068e0f",
+    "status": "success",
+    "turns": 63
+  },
+  "b31e35d9-a23f-468a-b118-dd50337e7c53": {
+    "instance_id": "tobymao__sqlglot-3765",
+    "traj_id": "chatcmpl-8226cdd46a60961af2378469015442cc",
+    "status": "success",
+    "turns": 67
+  },
+  "70f58c57-8b4a-438c-b172-f5ee3f1f7c81": {
+    "instance_id": "tobymao__sqlglot-3547",
+    "traj_id": "chatcmpl-9f53570564f3d60b9a123938e60cc85f",
+    "status": "success",
+    "turns": 89
+  },
+  "8b3364d3-e4f6-43f9-8d87-4c8cecfa70ce": {
+    "instance_id": "tobymao__sqlglot-1924",
+    "traj_id": "chatcmpl-782218ff8083e62ea8cb31f9ca95981e",
+    "status": "success",
+    "turns": 94
+  },
+  "03530fe7-9d9f-4a1a-a906-a5652499f4df": {
+    "instance_id": "tobymao__sqlglot-3689",
+    "traj_id": "chatcmpl-3e6dbc784bb11459356fdfcb438933a5",
+    "status": "success",
+    "turns": 67
+  },
+  "8923a6ae-5e45-4d10-895c-de744036910f": {
+    "instance_id": "tobymao__sqlglot-4004",
+    "traj_id": "chatcmpl-6f32b07fdf5303d5768be43242ed0dc4",
+    "status": "success",
+    "turns": 69
+  },
+  "4725b8b1-67ec-493c-a6ec-32b2f46e56b0": {
+    "instance_id": "tobymao__sqlglot-2857",
+    "traj_id": "chatcmpl-7cf1083341508503e02c902469dea1f4",
+    "status": "success",
+    "turns": 57
+  },
+  "147fd676-662d-4fa2-a083-0150eaf1ff4a": {
+    "instance_id": "tobymao__sqlglot-3695",
+    "traj_id": "chatcmpl-df448cb045729a68d5873b787f73f573",
+    "status": "success",
+    "turns": 71
+  },
+  "474bbee6-e826-4457-95d0-e4ce6e2611c7": {
+    "instance_id": "tobymao__sqlglot-4109",
+    "traj_id": "chatcmpl-1c28c90716e8d914778c1f2c0d0e6b7d",
+    "status": "success",
+    "turns": 73
+  },
+  "a7edd10b-2ea2-4b08-b37f-d4acd385cbf6": {
+    "instance_id": "tobymao__sqlglot-3620",
+    "traj_id": "chatcmpl-bd56108fe2dd2cee67e583199eaefdb0",
+    "status": "success",
+    "turns": 80
+  },
+  "e2830a88-95cd-472a-a080-a73641f8bf4d": {
+    "instance_id": "tobymao__sqlglot-3478",
+    "traj_id": "chatcmpl-d18bf257fa18c9da5d65fe60213b071b",
+    "status": "success",
+    "turns": 90
+  },
+  "a4b5273e-af91-4bd8-8f55-e20df3839d5b": {
+    "instance_id": "tobymao__sqlglot-2443",
+    "traj_id": "chatcmpl-e7b009bc781a15fc092505382311f451",
+    "status": "success",
+    "turns": 44
+  },
+  "a107c21b-4e2b-42f5-a93b-aff54a3f9991": {
+    "instance_id": "tobymao__sqlglot-1782",
+    "traj_id": "chatcmpl-e3d25cb18aa1527df6568ee89e83b37d",
+    "status": "success",
+    "turns": 52
+  },
+  "67c97d3a-ef6c-47d2-b29f-2ea9b35c156f": {
+    "instance_id": "tobymao__sqlglot-790",
+    "traj_id": "chatcmpl-617abc2de07af42eafa67932a9cc7fb5",
+    "status": "success",
+    "turns": 53
+  },
+  "a85702a6-92c1-4018-b9af-90a2f3f653f5": {
+    "instance_id": "tobymao__sqlglot-772",
+    "traj_id": "chatcmpl-b7ff1b351adf78d49221c3ec47126e6e",
+    "status": "success",
+    "turns": 46
+  },
+  "5a7df65e-874b-4132-85ec-f2b377d561ef": {
+    "instance_id": "tobymao__sqlglot-3166",
+    "traj_id": "chatcmpl-a784cdc8af2f0f830f2f09ae0f7289e7",
+    "status": "success",
+    "turns": 40
+  },
+  "6170f67b-990f-4c38-bbc0-094a09efac3a": {
+    "instance_id": "tobymao__sqlglot-3552",
+    "traj_id": "chatcmpl-7ed5110a11286d061615e41ccaef2ad8",
+    "status": "success",
+    "turns": 84
+  },
+  "e3f0f0ac-15a8-4e2a-9fda-a1a5c7388c6d": {
+    "instance_id": "tobymao__sqlglot-4276",
+    "traj_id": "chatcmpl-9547696452f465e44a42c803c1ce41a3",
+    "status": "success",
+    "turns": 60
+  },
+  "1e679544-d115-434b-b6e1-66ea17d66743": {
+    "instance_id": "tobymao__sqlglot-2260",
+    "traj_id": "chatcmpl-22a7dc78ada1828c51b09c58e9a9ce66",
+    "status": "success",
+    "turns": 55
+  },
+  "7d5eee5c-3d4b-4585-bb3b-b23bbeaa45b1": {
+    "instance_id": "tobymao__sqlglot-2461",
+    "traj_id": "chatcmpl-c00b8384976efe884daa906a606336de",
+    "status": "success",
+    "turns": 61
+  },
+  "107240b6-26a0-4e42-a61c-6ddfd51eddfc": {
+    "instance_id": "tobymao__sqlglot-4519",
+    "traj_id": "chatcmpl-0703169ea76d9cf2b85988c01326954d",
+    "status": "success",
+    "turns": 61
+  },
+  "ea18ec30-2a1e-44b4-a10c-02b36cec7012": {
+    "instance_id": "tobymao__sqlglot-3566",
+    "traj_id": "chatcmpl-eeb65647813badeef49b622cb530f262",
+    "status": "success",
+    "turns": 100
+  },
+  "87bd078f-efc9-4298-9b52-99a2e9d42b6d": {
+    "instance_id": "tobymao__sqlglot-2794",
+    "traj_id": "chatcmpl-e09b7ab876bc7b11f00cca728c80c156",
+    "status": "success",
+    "turns": 69
+  },
+  "87541a3f-81de-4aee-b245-7d71d3fce998": {
+    "instance_id": "tobymao__sqlglot-2165",
+    "traj_id": "chatcmpl-e009f8c45826bea61429a03d80211819",
+    "status": "success",
+    "turns": 73
+  },
+  "6d8cdfe7-78bc-4f02-9c7b-3c15787099d6": {
+    "instance_id": "tobymao__sqlglot-1468",
+    "traj_id": "chatcmpl-a5cdff6c16ce16ab8dc7339afec235c6",
+    "status": "success",
+    "turns": 100
+  },
+  "eb41a947-fd89-45a3-86ff-31ac53bdcafc": {
+    "instance_id": "tobymao__sqlglot-2337",
+    "traj_id": "chatcmpl-b0ba42db41dc12e9a77d3ac1e25fc9e9",
+    "status": "success",
+    "turns": 93
+  },
+  "64c95414-3abf-402f-8749-a0ede1a90aa3": {
+    "instance_id": "tobymao__sqlglot-570",
+    "traj_id": "chatcmpl-4cb01358641237e9861ae17927597931",
+    "status": "success",
+    "turns": 78
+  },
+  "cdd249ae-d2bf-418e-95b1-ce6f0e6dc251": {
+    "instance_id": "tobymao__sqlglot-884",
+    "traj_id": "chatcmpl-ecda1b8c1f4e8c146c3262a169597ac7",
+    "status": "success",
+    "turns": 100
+  },
+  "262302d2-5e81-49a4-a4f7-b48e75e5cae3": {
+    "instance_id": "tobymao__sqlglot-4355",
+    "traj_id": "chatcmpl-08419101f767e0e6988a1a84983a21ae",
+    "status": "success",
+    "turns": 67
+  },
+  "0af18c4d-749a-4519-a46f-a70095aedad5": {
+    "instance_id": "tobymao__sqlglot-4311",
+    "traj_id": "chatcmpl-188ef4489dc79489ec2de87c2c5161d2",
+    "status": "success",
+    "turns": 84
+  },
+  "9f2a88d2-ae8a-446f-acf4-1cb9029ff80b": {
+    "instance_id": "tobymao__sqlglot-3376",
+    "traj_id": "chatcmpl-abd69410c8742b6b3bdce92d81483b09",
+    "status": "success",
+    "turns": 79
+  },
+  "b0b9055b-acee-4371-a6a5-108c043e6947": {
+    "instance_id": "tobymao__sqlglot-2658",
+    "traj_id": "chatcmpl-1bd42a4630d0aaa816b1fa99de160cc2",
+    "status": "success",
+    "turns": 100
+  },
+  "fba142ac-231b-4f6f-bdd1-8659428bb322": {
+    "instance_id": "tobymao__sqlglot-3847",
+    "traj_id": "chatcmpl-dd568a3fa73647aa47e228cd222ffc18",
+    "status": "success",
+    "turns": 81
+  },
+  "b907e1cc-be6e-4524-b52d-2489e4042ff4": {
+    "instance_id": "tobymao__sqlglot-4067",
+    "traj_id": "chatcmpl-e6e1a616a1bd92b310fd7dd4f5f841a1",
+    "status": "success",
+    "turns": 69
+  },
+  "095e7d0e-c895-4f6e-8c47-8dc04f46ed0b": {
+    "instance_id": "tobymao__sqlglot-2040",
+    "traj_id": "chatcmpl-77ea5997c8c9c23b89627152e92067a8",
+    "status": "success",
+    "turns": 47
+  },
+  "6cf03f00-1220-44a7-9905-3b22a6545379": {
+    "instance_id": "tobymao__sqlglot-2412",
+    "traj_id": "chatcmpl-6ff31e0087ef75805b2f194f1b362c6a",
+    "status": "success",
+    "turns": 68
+  },
+  "25f5a21d-a4df-400a-b4f2-51616ffc8d0f": {
+    "instance_id": "tobymao__sqlglot-1703",
+    "traj_id": "chatcmpl-e7280371330f6cfc11a0d1a740032a34",
+    "status": "success",
+    "turns": 71
+  },
+  "116b3c94-485d-41f9-9881-464fea471c78": {
+    "instance_id": "tobymao__sqlglot-960",
+    "traj_id": "chatcmpl-872babeec52ee97e066aa92b2716221c",
+    "status": "success",
+    "turns": 54
+  },
+  "b2db1395-5774-48e2-9ae4-292f99b39fe0": {
+    "instance_id": "tobymao__sqlglot-2095",
+    "traj_id": "chatcmpl-c31254bb853305a90424cd5e561f60e1",
+    "status": "success",
+    "turns": 49
+  },
+  "66c61e6b-226b-4517-9f48-0e7b51ad5c78": {
+    "instance_id": "tobymao__sqlglot-4287",
+    "traj_id": "chatcmpl-7fbffaa100fc378ce47a61034f721d9f",
+    "status": "success",
+    "turns": 93
+  },
+  "ebd17ade-3dc8-4c2e-8c57-cd0b7bb04c87": {
+    "instance_id": "tobymao__sqlglot-4457",
+    "traj_id": "chatcmpl-1468db73c26644a5f1cf23cadaddcf33",
+    "status": "success",
+    "turns": 47
+  },
+  "d0b6207d-3c32-4801-a0cd-5e9c94312296": {
+    "instance_id": "tobymao__sqlglot-2659",
+    "traj_id": "chatcmpl-6106a8eaa3c3d49d579b96ba477098ed",
+    "status": "success",
+    "turns": 72
+  },
+  "6797ae49-daa4-420d-bf68-a5f0df7f5924": {
+    "instance_id": "tobymao__sqlglot-3392",
+    "traj_id": "chatcmpl-8662c9cb933b916d76e18c1f4ff3a5f8",
+    "status": "success",
+    "turns": 61
+  },
+  "8168988a-5116-4f3c-9351-07b63b2371da": {
+    "instance_id": "tobymao__sqlglot-559",
+    "traj_id": "chatcmpl-018f6b7501cff211d146f1ee39a45217",
+    "status": "success",
+    "turns": 64
+  },
+  "873b1b46-8e76-4a97-94c5-c6ed85c29f49": {
+    "instance_id": "tobymao__sqlglot-4007",
+    "traj_id": "chatcmpl-4d76a0c892895823c227dbd2851fb299",
+    "status": "success",
+    "turns": 66
+  },
+  "68e85836-2e6d-4b54-b800-f0580e1426cd": {
+    "instance_id": "tobymao__sqlglot-4325",
+    "traj_id": "chatcmpl-e98969495c4f649e8d55dae18522ecb3",
+    "status": "success",
+    "turns": 81
+  },
+  "3922b61c-3235-419b-99c6-62aff2de6d87": {
+    "instance_id": "tobymao__sqlglot-2450",
+    "traj_id": "chatcmpl-872652bfacd1a3be82098ba92fdf4508",
+    "status": "success",
+    "turns": 53
+  },
+  "b2a40e3d-690f-4844-b99c-4aa0f2dc38f5": {
+    "instance_id": "tobymao__sqlglot-3799",
+    "traj_id": "chatcmpl-a191b3e53504f6cc414e03367572199a",
+    "status": "success",
+    "turns": 55
+  },
+  "87034ade-47e1-4ae5-be8f-3894ab8fcb5f": {
+    "instance_id": "tobymao__sqlglot-4293",
+    "traj_id": "chatcmpl-a367b6cad35e6250c44b9c8c3f8adf4d",
+    "status": "success",
+    "turns": 100
+  },
+  "5b6fbbc3-48eb-44f0-aded-76b8e96cb022": {
+    "instance_id": "tobymao__sqlglot-2576",
+    "traj_id": "chatcmpl-a1ab55e09127575c092679c30966b58a",
+    "status": "success",
+    "turns": 66
+  },
+  "665cfd62-6b7d-44bf-aba2-94b687d159ad": {
+    "instance_id": "tobymao__sqlglot-2821",
+    "traj_id": "chatcmpl-4e1ac0b18758d6ef1f7207a026d72b8c",
+    "status": "success",
+    "turns": 74
+  },
+  "7cfe988c-be63-4457-bf57-e9a4f2aa56cf": {
+    "instance_id": "tobymao__sqlglot-3230",
+    "traj_id": "chatcmpl-80036606350ff92afde56d032a980f43",
+    "status": "success",
+    "turns": 55
+  },
+  "8baaa025-a170-4b95-a5a3-8c49128f46f6": {
+    "instance_id": "tobymao__sqlglot-4239",
+    "traj_id": "chatcmpl-75574b5746ab891a51447387755c5035",
+    "status": "success",
+    "turns": 54
+  },
+  "7cb39512-f890-470b-bffe-55b286aac1ee": {
+    "instance_id": "tobymao__sqlglot-2605",
+    "traj_id": "chatcmpl-664c2330d8108800ca77a65d76aa192b",
+    "status": "success",
+    "turns": 94
+  },
+  "bb1db113-db22-4b84-94ed-9f8e7cf0ec43": {
+    "instance_id": "tobymao__sqlglot-1670",
+    "traj_id": "chatcmpl-c787832f91dc3f8ece7ca3bb74d1ae2b",
+    "status": "success",
+    "turns": 63
+  },
+  "782ba633-c459-4025-b63e-685b851c32d2": {
+    "instance_id": "tobymao__sqlglot-3935",
+    "traj_id": "chatcmpl-209f893d7f777dd1de1a456f116d2eef",
+    "status": "success",
+    "turns": 76
+  },
+  "8e547720-3056-4386-aa12-7ad093c20343": {
+    "instance_id": "tobymao__sqlglot-1944",
+    "traj_id": "chatcmpl-04f38fbf38a1135e908f120ecb9b73c7",
+    "status": "success",
+    "turns": 41
+  },
+  "a028d86a-da6a-47c1-81a5-5a5ad9e713f9": {
+    "instance_id": "tobymao__sqlglot-3284",
+    "traj_id": "chatcmpl-f5535c46273127d160566dee974d87c2",
+    "status": "success",
+    "turns": 100
+  },
+  "005586dd-5ff4-4f66-9d87-52426669968a": {
+    "instance_id": "tobymao__sqlglot-437",
+    "traj_id": "chatcmpl-3c44d1af6c40144a747c0638d1b44cac",
+    "status": "success",
+    "turns": 74
+  },
+  "3ace7ca9-703e-48ea-901b-bde01755a8f8": {
+    "instance_id": "tobymao__sqlglot-4165",
+    "traj_id": "chatcmpl-53a2051194f676ed719c3850597134b4",
+    "status": "success",
+    "turns": 85
+  },
+  "d0afa646-85ef-4792-b86e-6a7cc21f9bb9": {
+    "instance_id": "tobymao__sqlglot-2063",
+    "traj_id": "chatcmpl-d4b47778aab225aa0e36f3a742ed9f91",
+    "status": "success",
+    "turns": 62
+  }
+}
