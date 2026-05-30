@@ -1,0 +1,20 @@
+  Messages in DB        :   42,464  (275 trajectories)
+  Sampled for estimate  :       30  (×1415 extrapolation)
+  Clusters annotated    :      297  (143.0x reduction vs messages)
+
+                                   input tk   output tk      total tk
+  --------------------------------------------------------------------
+  Episodiq annotator                909,063       9,266       918,329
+  Episodiq summarizer                     0           0             0
+  Episodiq total                    909,063       9,266       918,329
+  --------------------------------------------------------------------
+  Naive annotator (extrap.)       7,872,825     576,094     8,448,919
+  Naive summarizer (extrap.)     28,361,705   4,705,011    33,066,716
+  Naive total                    36,234,530   5,281,105    41,515,635
+
+  Tokens saved          :   40,597,306  (98% reduction)
+
+  --- At 1,000 trajectories ---
+  Episodiq                                        918,329 tokens
+  Naive                                       150,965,945 tokens
+  Savings                                             99%
