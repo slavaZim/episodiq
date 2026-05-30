@@ -1,0 +1,188 @@
+interactions:
+- request:
+    body: '{"model":"gpt-4o-mini","messages":[{"role":"system","content":"You are
+      helpful"},{"role":"user","content":"Call the hello_world tool"}],"tools":[{"type":"function","function":{"name":"hello_world","description":"Says
+      hello","parameters":{"type":"object","properties":{}}}}],"tool_choice":{"type":"function","function":{"name":"hello_world"}}}'
+    headers:
+      Connection:
+      - keep-alive
+      Host:
+      - api.openai.com
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      authorization:
+      - FILTERED
+      content-length:
+      - '342'
+      content-type:
+      - application/json
+      user-agent:
+      - python-httpx/0.28.1
+      x-trajectory-id:
+      - 11111111-1111-1111-1111-111111111111
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-DHT9Rq8LyTJ55er3fndlLi0wI361b\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1773056005,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": null,\n        \"tool_calls\": [\n          {\n
+        \           \"id\": \"call_TDZHvGjLiED3L4RlitvzO3F2\",\n            \"type\":
+        \"function\",\n            \"function\": {\n              \"name\": \"hello_world\",\n
+        \             \"arguments\": \"{}\"\n            }\n          }\n        ],\n
+        \       \"refusal\": null,\n        \"annotations\": []\n      },\n      \"logprobs\":
+        null,\n      \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        53,\n    \"completion_tokens\": 1,\n    \"total_tokens\": 54,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_1883e75a49\"\n}\n"
+    headers:
+      CF-RAY:
+      - 9d99c3be0e8e6662-AMS
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2026 11:33:25 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      openai-organization:
+      - user-cvg0mhrsraeedux3wyhmcdyg
+      openai-processing-ms:
+      - '306'
+      openai-project:
+      - proj_eb3HRgXGrBHDKml4QJz2zGyk
+      openai-version:
+      - '2020-10-01'
+      set-cookie:
+      - __cf_bm=thPVV8AUpc9BhFAobH8MYvLmVOZhlWy4UFhDiEPGJRs-1773056004.8107426-1.0.1.1-.oXYVVwzL8g2l_pRmxL._0GF1eExQCs4tSLIQTKLXUSCB_PiAjNZWJS1JVWSn7lXi6x2Ga_I106Kjh8bNVvGswsMD0wgEjsiWwi9MkBfyYcOVrDoD9ToSKBqOP7GX4Hu;
+        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Mon, 09 Mar 2026
+        12:03:25 GMT
+      x-openai-proxy-wasm:
+      - v0.1
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '10000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '9999987'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_a0659d0dad774f9e956a38e30d8a4a08
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"gpt-4o-mini","messages":[{"role":"system","content":"You are
+      helpful"},{"role":"user","content":"Call the hello_world tool"},{"role":"assistant","content":null,"tool_calls":[{"id":"call_TDZHvGjLiED3L4RlitvzO3F2","type":"function","function":{"name":"hello_world","arguments":"{}"}}]},{"role":"tool","tool_call_id":"call_TDZHvGjLiED3L4RlitvzO3F2","content":"Hello
+      from tool!"}],"tools":[{"type":"function","function":{"name":"hello_world","description":"Says
+      hello","parameters":{"type":"object","properties":{}}}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Cookie:
+      - __cf_bm=thPVV8AUpc9BhFAobH8MYvLmVOZhlWy4UFhDiEPGJRs-1773056004.8107426-1.0.1.1-.oXYVVwzL8g2l_pRmxL._0GF1eExQCs4tSLIQTKLXUSCB_PiAjNZWJS1JVWSn7lXi6x2Ga_I106Kjh8bNVvGswsMD0wgEjsiWwi9MkBfyYcOVrDoD9ToSKBqOP7GX4Hu
+      Host:
+      - api.openai.com
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      authorization:
+      - FILTERED
+      content-length:
+      - '525'
+      content-type:
+      - application/json
+      user-agent:
+      - python-httpx/0.28.1
+      x-trajectory-id:
+      - 11111111-1111-1111-1111-111111111111
+    method: POST
+    uri: https://api.openai.com/v1/chat/completions
+  response:
+    body:
+      string: "{\n  \"id\": \"chatcmpl-DHT9TO8bZelYLkLzmTqabG8qkKiZy\",\n  \"object\":
+        \"chat.completion\",\n  \"created\": 1773056007,\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n
+        \ \"choices\": [\n    {\n      \"index\": 0,\n      \"message\": {\n        \"role\":
+        \"assistant\",\n        \"content\": \"Hello from the tool!\",\n        \"refusal\":
+        null,\n        \"annotations\": []\n      },\n      \"logprobs\": null,\n
+        \     \"finish_reason\": \"stop\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\":
+        66,\n    \"completion_tokens\": 6,\n    \"total_tokens\": 72,\n    \"prompt_tokens_details\":
+        {\n      \"cached_tokens\": 0,\n      \"audio_tokens\": 0\n    },\n    \"completion_tokens_details\":
+        {\n      \"reasoning_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"accepted_prediction_tokens\":
+        0,\n      \"rejected_prediction_tokens\": 0\n    }\n  },\n  \"service_tier\":
+        \"default\",\n  \"system_fingerprint\": \"fp_a1ddba3226\"\n}\n"
+    headers:
+      CF-RAY:
+      - 9d99c3c5cc0bdf76-AMS
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2026 11:33:27 GMT
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      openai-organization:
+      - user-cvg0mhrsraeedux3wyhmcdyg
+      openai-processing-ms:
+      - '216'
+      openai-project:
+      - proj_eb3HRgXGrBHDKml4QJz2zGyk
+      openai-version:
+      - '2020-10-01'
+      x-openai-proxy-wasm:
+      - v0.1
+      x-ratelimit-limit-requests:
+      - '10000'
+      x-ratelimit-limit-tokens:
+      - '10000000'
+      x-ratelimit-remaining-requests:
+      - '9999'
+      x-ratelimit-remaining-tokens:
+      - '9999981'
+      x-ratelimit-reset-requests:
+      - 6ms
+      x-ratelimit-reset-tokens:
+      - 0s
+      x-request-id:
+      - req_23b22e642aa54502a7607882cbe054a4
+    status:
+      code: 200
+      message: OK
+version: 1

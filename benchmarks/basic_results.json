@@ -1,0 +1,4209 @@
+{
+  "dataset": "nebius/SWE-rebench-openhands-trajectories",
+  "repo": "tobymao/sqlglot",
+  "n_trajectories": 275,
+  "n_fail": 178,
+  "fail_rate": 0.647,
+  "results": [
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5091445665614396
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5091445665614396
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5097094896723009
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.992204248684467,
+      "auc_step60_current": 0.5080808313695145
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.849931787175989,
+      "auc_step60_current": 0.5230537346089443
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4763204053790684,
+      "auc_step60_current": 0.5162396448964337
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.33716624439680376,
+      "auc_step60_current": 0.4852279189439127
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5301916038376502
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5301916038376502
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5310543959818471
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.992204248684467,
+      "auc_step60_current": 0.5274091772278081
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.849931787175989,
+      "auc_step60_current": 0.52920614865089
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4763204053790684,
+      "auc_step60_current": 0.5263495655278303
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.33716624439680376,
+      "auc_step60_current": 0.4936322395490924
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5281403354277991
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5281403354277991
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5290381135251355
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.992204248684467,
+      "auc_step60_current": 0.5313522881645143
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.849931787175989,
+      "auc_step60_current": 0.5292427605873694
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4763204053790684,
+      "auc_step60_current": 0.5334485175184961
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.33716624439680376,
+      "auc_step60_current": 0.5035695027883375
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5215988387311109
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5215988387311109
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5215988387311109
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5219235849728393
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9619957123367765,
+      "auc_step60_current": 0.521890030765504
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3874488403819918,
+      "auc_step60_current": 0.45731829506671967
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11284350029234068,
+      "auc_step60_current": 0.4740786719109676
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5295930845286376
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5295930845286376
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5295930845286376
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5295220154155412
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9619957123367765,
+      "auc_step60_current": 0.5297353184871278
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3874488403819918,
+      "auc_step60_current": 0.46007846842372935
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11284350029234068,
+      "auc_step60_current": 0.4733560046937274
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5510312081754589
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5510312081754589
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5510312081754589
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5525250335416899
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9619957123367765,
+      "auc_step60_current": 0.5370647710091544
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3874488403819918,
+      "auc_step60_current": 0.4621729235906346
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11284350029234068,
+      "auc_step60_current": 0.47770026329397586
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5221516083122633
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5221516083122633
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5221516083122633
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5222966104306392
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9818748781913857,
+      "auc_step60_current": 0.5304176392970218
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4913272266614695,
+      "auc_step60_current": 0.5314265522747778
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.104657961411031,
+      "auc_step60_current": 0.5652240804863865
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.537804761322608
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.537804761322608
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.537804761322608
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5380011142034731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9818748781913857,
+      "auc_step60_current": 0.5399357779260208
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4913272266614695,
+      "auc_step60_current": 0.5395502153676213
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.104657961411031,
+      "auc_step60_current": 0.5551940185962135
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5635930621491536
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5635930621491536
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5635930621491536
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5635066478322854
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9818748781913857,
+      "auc_step60_current": 0.555753408002122
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4913272266614695,
+      "auc_step60_current": 0.5394209655546518
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.104657961411031,
+      "auc_step60_current": 0.5643342484643137
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5397255192288574
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5397255192288574
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5397255192288574
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5397255192288574
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9923991424673553,
+      "auc_step60_current": 0.5396073215751981
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6731631260962775,
+      "auc_step60_current": 0.5134141474773115
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.13740011693626974,
+      "auc_step60_current": 0.5448719794940061
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5750467064660267
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5750467064660267
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5750467064660267
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5750467064660267
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9923991424673553,
+      "auc_step60_current": 0.5722509724866687
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6731631260962775,
+      "auc_step60_current": 0.5273610655315373
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.13740011693626974,
+      "auc_step60_current": 0.5385094607660614
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5955857972009045
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5955857972009045
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5955857972009045
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5956313392045777
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9923991424673553,
+      "auc_step60_current": 0.5968333727567956
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6731631260962775,
+      "auc_step60_current": 0.526498114898734
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.13740011693626974,
+      "auc_step60_current": 0.5365706130325703
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5539877841849814
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5539877841849814
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5539877841849814
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5539877841849814
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5539877841849814
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918144611186903,
+      "auc_step60_current": 0.551208453656644
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6766712141882674,
+      "auc_step60_current": 0.5192719763622508
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5696756839781533
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5696756839781533
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5696756839781533
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5696756839781533
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5696756839781533
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918144611186903,
+      "auc_step60_current": 0.5632256593441729
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6766712141882674,
+      "auc_step60_current": 0.5192564107230878
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5529237893541731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5529237893541731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5529237893541731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5529237893541731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5529237893541731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918144611186903,
+      "auc_step60_current": 0.5610050786285422
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6766712141882674,
+      "auc_step60_current": 0.5190967455310739
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5122078632658392
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5122078632658392
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5127972834270214
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.5111621833880735
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8500813669650122,
+      "auc_step60_current": 0.5266908497996805
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4745728234336859,
+      "auc_step60_current": 0.5257325518269862
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3360455655004068,
+      "auc_step60_current": 0.4963042977958645
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5300574880869243
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5300574880869243
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5309552036641919
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.5274105131736992
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8500813669650122,
+      "auc_step60_current": 0.5296214275200932
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4745728234336859,
+      "auc_step60_current": 0.5319947048231233
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3360455655004068,
+      "auc_step60_current": 0.5013749377091886
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5273903824410974
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5273903824410974
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5280079331368999
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.5308369770670034
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8500813669650122,
+      "auc_step60_current": 0.5298533340465604
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4745728234336859,
+      "auc_step60_current": 0.5397479173540299
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3360455655004068,
+      "auc_step60_current": 0.508153154968288
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214842197389037
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214842197389037
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214842197389037
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5217759196316415
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9609438567941416,
+      "auc_step60_current": 0.5220414605838517
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3852725793327909,
+      "auc_step60_current": 0.45519567379982717
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11228641171684296,
+      "auc_step60_current": 0.4732304775694148
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.528733156068511
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.528733156068511
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.528733156068511
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5285994978186518
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9609438567941416,
+      "auc_step60_current": 0.5302184936149149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3852725793327909,
+      "auc_step60_current": 0.45786972644499413
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11228641171684296,
+      "auc_step60_current": 0.4724142835812892
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5511892552452539
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5511892552452539
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5511892552452539
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5523747782617376
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9609438567941416,
+      "auc_step60_current": 0.5383176911002964
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3852725793327909,
+      "auc_step60_current": 0.4599058181707781
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.11228641171684296,
+      "auc_step60_current": 0.4767495437598944
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5212366285024361
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5212366285024361
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5212366285024361
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5213853486238473
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9814890154597233,
+      "auc_step60_current": 0.5296189335308144
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4890154597233523,
+      "auc_step60_current": 0.530200002132248
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10353946297803092,
+      "auc_step60_current": 0.5663161403743461
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370196329449406
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370196329449406
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370196329449406
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5372210205150587
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9814890154597233,
+      "auc_step60_current": 0.5388523260945193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4890154597233523,
+      "auc_step60_current": 0.53863635724029
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10353946297803092,
+      "auc_step60_current": 0.555848636427336
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5638143796889777
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5638143796889777
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5638143796889777
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5637296283556172
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9814890154597233,
+      "auc_step60_current": 0.55534058333582
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4890154597233523,
+      "auc_step60_current": 0.5388949365778383
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10353946297803092,
+      "auc_step60_current": 0.5651594803284932
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5411397532786534
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5411397532786534
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5411397532786534
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5411397532786534
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.99206672091131,
+      "auc_step60_current": 0.5410495547977022
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6704637917005696,
+      "auc_step60_current": 0.5137030538165925
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.137306753458096,
+      "auc_step60_current": 0.5462903603598693
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5752720949635525
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5752720949635525
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5752720949635525
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5752720949635525
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.99206672091131,
+      "auc_step60_current": 0.5723671810570649
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6704637917005696,
+      "auc_step60_current": 0.527810991725199
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.137306753458096,
+      "auc_step60_current": 0.5396704681169542
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5976850430843879
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5976850430843879
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5976850430843879
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.597731752831745
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.99206672091131,
+      "auc_step60_current": 0.5988288520243259
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6704637917005696,
+      "auc_step60_current": 0.5268158218328187
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.137306753458096,
+      "auc_step60_current": 0.5377017446567253
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5553876012844589
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5553876012844589
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5553876012844589
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5553876012844589
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5553876012844589
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918633034987795,
+      "auc_step60_current": 0.5526230240804647
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6757526444263628,
+      "auc_step60_current": 0.520264862678475
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5706968362271149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5706968362271149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5706968362271149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5706968362271149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5706968362271149
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918633034987795,
+      "auc_step60_current": 0.5643261472731329
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6757526444263628,
+      "auc_step60_current": 0.5202299886094146
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5532348439958193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5532348439958193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5532348439958193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5532348439958193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5532348439958193
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9918633034987795,
+      "auc_step60_current": 0.5627346282103363
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 1024,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.6757526444263628,
+      "auc_step60_current": 0.5200945934045353
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5132292979188049
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5132292979188049
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5136868031046439
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890859481582538,
+      "auc_step60_current": 0.512816284070693
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187487819138569,
+      "auc_step60_current": 0.5177196917453946
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.46482167218865716,
+      "auc_step60_current": 0.514721890088827
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3315143246930423,
+      "auc_step60_current": 0.4934318563194159
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5344016579099942
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5344016579099942
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5349776723877087
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890859481582538,
+      "auc_step60_current": 0.5301749527338944
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187487819138569,
+      "auc_step60_current": 0.5221022514989612
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.46482167218865716,
+      "auc_step60_current": 0.5296208301901826
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3315143246930423,
+      "auc_step60_current": 0.5034991600528593
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5248670912493625
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5248670912493625
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5249586695965487
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890859481582538,
+      "auc_step60_current": 0.526126401484343
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187487819138569,
+      "auc_step60_current": 0.5194788833860098
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.46482167218865716,
+      "auc_step60_current": 0.5325697024070039
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3315143246930423,
+      "auc_step60_current": 0.50781857583176
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5225484344123167
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5225484344123167
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5225484344123167
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.522881714700025
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9503020853634769,
+      "auc_step60_current": 0.5168947988203929
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3615279672578445,
+      "auc_step60_current": 0.4828496242228583
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10446306762814266,
+      "auc_step60_current": 0.46319681381732297
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5226136716162231
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5226136716162231
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5226136716162231
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5230623977380778
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9503020853634769,
+      "auc_step60_current": 0.5170334476269128
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3615279672578445,
+      "auc_step60_current": 0.4807389681280938
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10446306762814266,
+      "auc_step60_current": 0.4597898609408343
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5535325825849794
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5535325825849794
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5535325825849794
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5538385500950787
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9503020853634769,
+      "auc_step60_current": 0.5314492318927272
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.3615279672578445,
+      "auc_step60_current": 0.4826983171060588
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10446306762814266,
+      "auc_step60_current": 0.4644258886485598
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5419167659761011
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5419167659761011
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5419167659761011
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5420780429254863
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9779770025336192,
+      "auc_step60_current": 0.5411502899314062
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4503995322549211,
+      "auc_step60_current": 0.5364433402699342
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09179497174040148,
+      "auc_step60_current": 0.5972803683815321
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353504927298127
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353504927298127
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353504927298127
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5356092974829669
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9779770025336192,
+      "auc_step60_current": 0.5342592006823084
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4503995322549211,
+      "auc_step60_current": 0.5448898069126731
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09179497174040148,
+      "auc_step60_current": 0.5853497874131717
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5647258620201125
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5647258620201125
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5647258620201125
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9998051062171117,
+      "auc_step60_current": 0.5647896719163762
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9779770025336192,
+      "auc_step60_current": 0.5522988244714904
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4503995322549211,
+      "auc_step60_current": 0.5475624926089141
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09179497174040148,
+      "auc_step60_current": 0.5921474605305974
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5482006811755509
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5482006811755509
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5482006811755509
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5482006811755509
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991034885987137,
+      "auc_step60_current": 0.5492513532417955
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6341843695186123,
+      "auc_step60_current": 0.5216338694636317
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.1183005262132138,
+      "auc_step60_current": 0.5401982781057197
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5715859349220549
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5715859349220549
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5715859349220549
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5716000846729804
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991034885987137,
+      "auc_step60_current": 0.5731920357902726
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6341843695186123,
+      "auc_step60_current": 0.5305958312327329
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.1183005262132138,
+      "auc_step60_current": 0.5356163965000315
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5923863233756652
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5923863233756652
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5923863233756652
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5920158361030016
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991034885987137,
+      "auc_step60_current": 0.5929041461378277
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6341843695186123,
+      "auc_step60_current": 0.5280579545775207
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.1183005262132138,
+      "auc_step60_current": 0.5356457149413927
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5632748505994527
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5632748505994527
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5632748505994527
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5632748505994527
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5632748505994527
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9912297797700254,
+      "auc_step60_current": 0.5602534652782386
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.6135256285324499,
+      "auc_step60_current": 0.5134489332786372
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5748094424335243
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5748094424335243
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5748094424335243
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5748094424335243
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5748094424335243
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9912297797700254,
+      "auc_step60_current": 0.5638032152208273
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.6135256285324499,
+      "auc_step60_current": 0.5127331713944253
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5366514032839735
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5366514032839735
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5366514032839735
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5366514032839735
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5366514032839735
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9912297797700254,
+      "auc_step60_current": 0.5502695736122906
+    },
+    {
+      "include_initial_task": true,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.6135256285324499,
+      "auc_step60_current": 0.5121039662809136
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5191447682677245
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5191447682677245
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5196135118811838
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890154597233524,
+      "auc_step60_current": 0.5185678305779857
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187550854353133,
+      "auc_step60_current": 0.5235198349521316
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4633848657445077,
+      "auc_step60_current": 0.5264226990123867
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.330553295362083,
+      "auc_step60_current": 0.5052941547025531
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5346215136146117
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5346215136146117
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5352364122728573
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890154597233524,
+      "auc_step60_current": 0.5320608830257374
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187550854353133,
+      "auc_step60_current": 0.5252840025482779
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4633848657445077,
+      "auc_step60_current": 0.5332730680391327
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.330553295362083,
+      "auc_step60_current": 0.5072171039158937
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.525426894928646
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.525426894928646
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5258139281597384
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9890154597233524,
+      "auc_step60_current": 0.52747535429542
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.8187550854353133,
+      "auc_step60_current": 0.5198801528717713
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4633848657445077,
+      "auc_step60_current": 0.5357573297055348
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 1,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.330553295362083,
+      "auc_step60_current": 0.5111450486275685
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5223818822346203
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5223818822346203
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5223818822346203
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5226319114371437
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9491456468673718,
+      "auc_step60_current": 0.5171250116468609
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.35882831570382423,
+      "auc_step60_current": 0.4806027542589085
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10333604556550041,
+      "auc_step60_current": 0.4627967021308275
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214902621153096
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214902621153096
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5214902621153096
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5219259287120881
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9491456468673718,
+      "auc_step60_current": 0.516594901445834
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.35882831570382423,
+      "auc_step60_current": 0.47816289074892976
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10333604556550041,
+      "auc_step60_current": 0.4592857306529008
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5534946633991965
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5534946633991965
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5534946633991965
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.553775294362157
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9491456468673718,
+      "auc_step60_current": 0.5320526353107936
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.35882831570382423,
+      "auc_step60_current": 0.4802444255439535
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 3,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.10333604556550041,
+      "auc_step60_current": 0.46384694865472653
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5415396149625074
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5415396149625074
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5415396149625074
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5417050272182872
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9776240846216436,
+      "auc_step60_current": 0.5403397539288819
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4485353946297803,
+      "auc_step60_current": 0.5357620490299291
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09011391375101709,
+      "auc_step60_current": 0.5979044502254025
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353686852544783
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353686852544783
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5353686852544783
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5356341260269443
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9776240846216436,
+      "auc_step60_current": 0.5336378641062638
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4485353946297803,
+      "auc_step60_current": 0.5447101421308549
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09011391375101709,
+      "auc_step60_current": 0.5856453324901308
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5649219234173659
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5649219234173659
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5649219234173659
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9997965825874695,
+      "auc_step60_current": 0.5649873694648159
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9776240846216436,
+      "auc_step60_current": 0.5516422713314195
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.4485353946297803,
+      "auc_step60_current": 0.547705336776482
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 5,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 275,
+      "coverage_step60": 0.09011391375101709,
+      "auc_step60_current": 0.5926449570047353
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5497184508369548
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5497184508369548
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5497184508369548
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5497184508369548
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9906427990235964,
+      "auc_step60_current": 0.5508891528579188
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6318144833197722,
+      "auc_step60_current": 0.5208320894047407
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.11798209926769732,
+      "auc_step60_current": 0.5399960226645822
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5721389032681805
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5721389032681805
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5721389032681805
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5721534158332321
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9906427990235964,
+      "auc_step60_current": 0.5737034398585393
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6318144833197722,
+      "auc_step60_current": 0.5301431117456545
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.11798209926769732,
+      "auc_step60_current": 0.5353090798926977
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.593987213888261
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.593987213888261
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.593987213888261
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5936072269419392
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 0.9906427990235964,
+      "auc_step60_current": 0.594509263774961
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.6318144833197722,
+      "auc_step60_current": 0.5271613913233943
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": 10,
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 274,
+      "coverage_step60": 0.11798209926769732,
+      "auc_step60_current": 0.5353360443445808
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5648455661964785
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5648455661964785
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5648455661964785
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5648455661964785
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5648455661964785
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.561735516029099
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 5,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.611879576891782,
+      "auc_step60_current": 0.5136906786183627
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.575807080105794
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.575807080105794
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.575807080105794
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.575807080105794
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.575807080105794
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.5648507254339611
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 10,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.611879576891782,
+      "auc_step60_current": 0.5126500530176273
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.0,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370972905704202
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.5,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370972905704202
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.6,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370972905704202
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.7,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370972905704202
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.8,
+      "n_trajectories": 275,
+      "coverage_step60": 1.0,
+      "auc_step60_current": 0.5370972905704202
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.9,
+      "n_trajectories": 275,
+      "coverage_step60": 0.991253051261188,
+      "auc_step60_current": 0.550849490070766
+    },
+    {
+      "include_initial_task": false,
+      "embedding_dim": 2048,
+      "last_n": "all",
+      "top_k": 25,
+      "min_cos": 0.95,
+      "n_trajectories": 273,
+      "coverage_step60": 0.611879576891782,
+      "auc_step60_current": 0.5120158602886739
+    }
+  ]
+}

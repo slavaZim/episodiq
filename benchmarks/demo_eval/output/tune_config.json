@@ -1,0 +1,6 @@
+{
+  "top_k": 10,
+  "similarity_threshold": 0.2,
+  "tune_coverage_step60": 0.4871,
+  "tune_auc_step60_current": 0.7935
+}

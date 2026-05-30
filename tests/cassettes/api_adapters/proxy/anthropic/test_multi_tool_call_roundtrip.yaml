@@ -1,0 +1,178 @@
+interactions:
+- request:
+    body: '{"model":"claude-sonnet-4-20250514","max_tokens":100,"messages":[{"role":"user","content":"Call
+      both hello_world and fizzbuzz tools"}],"tools":[{"name":"hello_world","description":"Says
+      hello","input_schema":{"type":"object","properties":{}}},{"name":"fizzbuzz","description":"Does
+      fizzbuzz","input_schema":{"type":"object","properties":{}}}],"tool_choice":{"type":"any"}}'
+    headers:
+      Connection:
+      - keep-alive
+      Host:
+      - api.anthropic.com
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      anthropic-version:
+      - '2023-06-01'
+      content-length:
+      - '372'
+      content-type:
+      - application/json
+      user-agent:
+      - python-httpx/0.28.1
+      x-api-key:
+      - FILTERED
+      x-trajectory-id:
+      - 22222222-2222-2222-2222-222222222223
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"model":"claude-sonnet-4-20250514","id":"msg_0153wo6cxQ6PQrkEPcrvDghm","type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_014tRWB5SJdz7ATA3tMTYqe4","name":"hello_world","input":{},"caller":{"type":"direct"}},{"type":"tool_use","id":"toolu_01DDo5HzSeM9MTdGmX2v24be","name":"fizzbuzz","input":{},"caller":{"type":"direct"}}],"stop_reason":"tool_use","stop_sequence":null,"usage":{"input_tokens":406,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":40,"service_tier":"standard","inference_geo":"not_available"}}'
+    headers:
+      CF-RAY:
+      - 9d9a3c264dd6b950-AMS
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2026 12:55:38 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-organization-id:
+      - 0ef97715-2131-4a9e-931c-2a9c440a9950
+      anthropic-ratelimit-input-tokens-limit:
+      - '450000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '450000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2026-03-09T12:55:37Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '90000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '90000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2026-03-09T12:55:38Z'
+      anthropic-ratelimit-requests-limit:
+      - '1000'
+      anthropic-ratelimit-requests-remaining:
+      - '999'
+      anthropic-ratelimit-requests-reset:
+      - '2026-03-09T12:55:36Z'
+      anthropic-ratelimit-tokens-limit:
+      - '540000'
+      anthropic-ratelimit-tokens-remaining:
+      - '540000'
+      anthropic-ratelimit-tokens-reset:
+      - '2026-03-09T12:55:37Z'
+      cf-cache-status:
+      - DYNAMIC
+      request-id:
+      - req_011CYsYPvKyuJ51xcs5c9vae
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      x-envoy-upstream-service-time:
+      - '1508'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"model":"claude-sonnet-4-20250514","max_tokens":100,"messages":[{"role":"user","content":"Call
+      both hello_world and fizzbuzz tools"},{"role":"assistant","content":[{"type":"tool_use","id":"toolu_014tRWB5SJdz7ATA3tMTYqe4","name":"hello_world","input":{},"caller":{"type":"direct"}},{"type":"tool_use","id":"toolu_01DDo5HzSeM9MTdGmX2v24be","name":"fizzbuzz","input":{},"caller":{"type":"direct"}}]},{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_014tRWB5SJdz7ATA3tMTYqe4","content":"world"},{"type":"tool_result","tool_use_id":"toolu_01DDo5HzSeM9MTdGmX2v24be","content":"buzzz"}]}],"tools":[{"name":"hello_world","description":"Says
+      hello","input_schema":{"type":"object","properties":{}}},{"name":"fizzbuzz","description":"Does
+      fizzbuzz","input_schema":{"type":"object","properties":{}}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Host:
+      - api.anthropic.com
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate, zstd
+      anthropic-version:
+      - '2023-06-01'
+      content-length:
+      - '811'
+      content-type:
+      - application/json
+      user-agent:
+      - python-httpx/0.28.1
+      x-api-key:
+      - FILTERED
+      x-trajectory-id:
+      - 22222222-2222-2222-2222-222222222223
+    method: POST
+    uri: https://api.anthropic.com/v1/messages
+  response:
+    body:
+      string: '{"model":"claude-sonnet-4-20250514","id":"msg_01BfK6Xke1Hc2MnYcxAAA9tC","type":"message","role":"assistant","content":[{"type":"text","text":"I''ve
+        called both tools for you:\n- The `hello_world` function returned: \"world\"\n-
+        The `fizzbuzz` function returned: \"buzzz\""}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":526,"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":0},"output_tokens":40,"service_tier":"standard","inference_geo":"not_available"}}'
+    headers:
+      CF-RAY:
+      - 9d9a3c323e17fb87-AMS
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - default-src 'none'; frame-ancestors 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Mar 2026 12:55:40 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Robots-Tag:
+      - none
+      anthropic-organization-id:
+      - 0ef97715-2131-4a9e-931c-2a9c440a9950
+      anthropic-ratelimit-input-tokens-limit:
+      - '450000'
+      anthropic-ratelimit-input-tokens-remaining:
+      - '450000'
+      anthropic-ratelimit-input-tokens-reset:
+      - '2026-03-09T12:55:39Z'
+      anthropic-ratelimit-output-tokens-limit:
+      - '90000'
+      anthropic-ratelimit-output-tokens-remaining:
+      - '90000'
+      anthropic-ratelimit-output-tokens-reset:
+      - '2026-03-09T12:55:40Z'
+      anthropic-ratelimit-requests-limit:
+      - '1000'
+      anthropic-ratelimit-requests-remaining:
+      - '999'
+      anthropic-ratelimit-requests-reset:
+      - '2026-03-09T12:55:38Z'
+      anthropic-ratelimit-tokens-limit:
+      - '540000'
+      anthropic-ratelimit-tokens-remaining:
+      - '540000'
+      anthropic-ratelimit-tokens-reset:
+      - '2026-03-09T12:55:39Z'
+      cf-cache-status:
+      - DYNAMIC
+      request-id:
+      - req_011CYsYQ4Ru63j3ub9nez9eG
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      vary:
+      - Accept-Encoding
+      x-envoy-upstream-service-time:
+      - '1684'
+    status:
+      code: 200
+      message: OK
+version: 1
