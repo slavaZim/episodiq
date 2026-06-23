@@ -1,35 +1,30 @@
 #!/bin/bash
-# Step 9: leakage-free eval on the held-out 220 trajectories using the
-# peak-AUC config picked in step 08. Uses the same stratified ordering
-# (output/stratified_order.json) that step 08 generated, so the tune
-# corpus and eval queries stay on disjoint stratified slices.
+# Step 9: evaluate the tune-winner cascade config from step 8 on the
+# held-out eval slice. ``eval_cascade.py`` reapplies the same
+# ``Random(shuffle_seed).shuffle`` and takes trajectories at indices
+# ``[tune_limit:]`` as eval queries. Corpus = all completed
+# trajectories (self-trajectory excluded server-side) — the split
+# lives in hyperparameter selection, not the corpus.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-export EPISODIQ_MINHASH_K="${EPISODIQ_MINHASH_K:-512}"
-export EPISODIQ_NGRAM_N="${EPISODIQ_NGRAM_N:-3}"
-
 ENV=.env
-ORDER=output/stratified_order.json
 TUNE_CONFIG=output/tune_config.json
 EVAL_REPORT=output/eval_report.json
-TUNE_OFFSET=0
-TUNE_LIMIT=55
-EVAL_OFFSET=55
-EVAL_LIMIT=220
+N_WORKERS=4
+EVAL_MIN_STEP=50
 
-if [ ! -f "$ORDER" ]; then
-  echo "Error: $ORDER not found — run step 08 first (it generates the stratified ordering)."
+if [ ! -f "$TUNE_CONFIG" ]; then
+  echo "Error: $TUNE_CONFIG not found — run step 08 first."
   exit 1
 fi
 
-echo "=== Step 10: Eval (corpus=$TUNE_LIMIT tune trajs, queries=$EVAL_LIMIT eval trajs, stratified) ==="
-PYTHONUNBUFFERED=1 uv run python eval_sweep.py \
+echo "=== Step 9: eval cascade on held-out slice ==="
+PYTHONUNBUFFERED=1 uv run python eval_cascade.py \
   --env "$ENV" \
   --config "$TUNE_CONFIG" \
-  --order-file "$ORDER" \
-  --tune-offset "$TUNE_OFFSET" --tune-limit "$TUNE_LIMIT" \
-  --eval-offset "$EVAL_OFFSET" --eval-limit "$EVAL_LIMIT" \
-  --output "$EVAL_REPORT"
+  --output "$EVAL_REPORT" \
+  --n-workers "$N_WORKERS" \
+  --eval-min-step "$EVAL_MIN_STEP"
 
 echo "=== Done: $EVAL_REPORT ==="

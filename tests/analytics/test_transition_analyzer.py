@@ -1,8 +1,8 @@
 """Unit tests for the post-refactor TransitionAnalyzer (loop + path-frequency
-+ fail_frac signals from a pre-retrieved candidate list).
++ fail_similarity signals from a pre-retrieved candidate list).
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import UUID, uuid4
 
 from episodiq.analytics.transition_analyzer import TransitionAnalyzer
@@ -14,7 +14,8 @@ from episodiq.retrieval.candidate import RetrievalCandidate
 class FakePath:
     """Stand-in for TrajectoryPath in analyzer.analyze()."""
 
-    trace: list[str]
+    trace: list[str] = field(default_factory=list)
+    data: dict | None = None
 
 
 def _candidate(
@@ -91,27 +92,55 @@ class TestPathFrequency:
         assert sig.n_matches == 1
 
 
-class TestFailFrac:
-    def test_no_candidates_returns_none(self):
+class TestFailSimilarity:
+    def test_no_candidates_no_prev_returns_none(self):
         analytics = _analyzer().analyze(FakePath(trace=["o:foo"]), [])
-        assert analytics.fail_frac is None
+        assert analytics.fail_similarity is None
 
-    def test_all_successes_yields_zero(self):
-        cands = [_candidate(uuid4(), status="success") for _ in range(3)]
-        analytics = _analyzer().analyze(FakePath(trace=["o:foo"]), cands)
-        assert analytics.fail_frac == 0.0
+    def test_no_candidates_carries_prev_forward(self):
+        """A path with empty retrieval doesn't contribute — the running
+        aggregate from the previous path is preserved verbatim.
+        """
+        prev = FakePath(data={
+            "fail_similarity": {
+                "current": 0.3, "cummax": 0.5, "cummean": 0.4,
+                "cummeanmax": 0.4, "_count": 2,
+            },
+        })
+        analytics = _analyzer().analyze(FakePath(trace=["o:foo"]), [], prev)
+        assert analytics.fail_similarity == prev.data["fail_similarity"]
 
-    def test_all_failures_yields_one(self):
-        cands = [_candidate(uuid4(), status="failure") for _ in range(3)]
-        analytics = _analyzer().analyze(FakePath(trace=["o:foo"]), cands)
-        assert analytics.fail_frac == 1.0
-
-    def test_mixed_yields_correct_fraction(self):
+    def test_first_contributor_initializes_dict(self):
         cands = [
-            _candidate(uuid4(), status="failure"),
-            _candidate(uuid4(), status="success"),
             _candidate(uuid4(), status="failure"),
             _candidate(uuid4(), status="success"),
         ]
         analytics = _analyzer().analyze(FakePath(trace=["o:foo"]), cands)
-        assert analytics.fail_frac == 0.5
+        assert analytics.fail_similarity == {
+            "current": 0.5, "cummax": 0.5, "cummean": 0.5,
+            "cummeanmax": 0.5, "_count": 1,
+        }
+
+    def test_rolls_aggregates_with_prev(self):
+        """prev count=2 mean=0.4 max=0.5 cummeanmax=0.45; current=0.7 →
+        new mean = (0.4*2 + 0.7)/3 = 0.5; cummax = 0.7;
+        cummeanmax = max(0.45, 0.5) = 0.5; count = 3.
+        """
+        prev = FakePath(data={
+            "fail_similarity": {
+                "current": 0.3, "cummax": 0.5, "cummean": 0.4,
+                "cummeanmax": 0.45, "_count": 2,
+            },
+        })
+        cands = [_candidate(uuid4(), status="failure")] * 7 + [
+            _candidate(uuid4(), status="success") for _ in range(3)
+        ]
+        analytics = _analyzer().analyze(
+            FakePath(trace=["o:foo"]), cands, prev,
+        )
+        sim = analytics.fail_similarity
+        assert sim["current"] == 0.7
+        assert sim["cummax"] == 0.7
+        assert sim["cummean"] == 0.5
+        assert sim["cummeanmax"] == 0.5
+        assert sim["_count"] == 3

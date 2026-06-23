@@ -60,6 +60,7 @@ class Clusterer:
             n_neighbors=effective_neighbors,
             metric="euclidean",
             random_state=42,
+            n_jobs=1,  # forces deterministic single-threaded execution
         )
         reduced = reducer.fit_transform(vectors)
 

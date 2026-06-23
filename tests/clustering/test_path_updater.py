@@ -6,8 +6,8 @@ from uuid import UUID, uuid4
 
 import pytest
 
-from episodiq.analytics.path_state import PathStateCalculator
 from episodiq.clustering.path_updater import TrajectoryPathUpdater
+from episodiq.retrieval.path_state import PathStateCalculator
 
 from tests.in_memory_repos import (
     Cluster,
@@ -31,7 +31,7 @@ def _add_msg(
         id=uuid4(),
         trajectory_id=trajectory_id,
         role=role,
-        content=[{"text": label}],
+        content=[{"type": "text", "text": label}],
         index=index,
         cluster_id=cluster.id,
         cluster=cluster,
@@ -72,6 +72,85 @@ class TestTrajectoryPathUpdater:
         assert path.action_message_id is None
         assert path.to_observation_id is None
         assert path.trace == ["o:text:hello"]
+
+    @pytest.mark.asyncio
+    async def test_parallel_tool_calls_emit_paths_sharing_group(self):
+        """Assistant with N>1 tool_call blocks → N paths, same
+        action_message_id + parallel_group (= asst.index), different
+        to_observation_id matched by tool_call_id."""
+        msg_repo = InMemoryMessageRepository()
+        path_repo = InMemoryTrajectoryPathRepository(msg_repo)
+        tid = uuid4()
+        m_obs = _add_msg(
+            msg_repo, trajectory_id=tid, index=0, role="user",
+            label="o:text:0",
+        )
+        # Assistant with two parallel tool_calls.
+        act_cluster = Cluster(
+            id=uuid4(), type="assistant", category="text",
+            label="a:tool:par",
+        )
+        msg_repo.add_cluster(act_cluster)
+        m_action = Message(
+            id=uuid4(),
+            trajectory_id=tid,
+            role="assistant",
+            content=[
+                {"type": "tool_call", "id": "c1",
+                 "tool_name": "search", "input": {}},
+                {"type": "tool_call", "id": "c2",
+                 "tool_name": "fetch", "input": {}},
+            ],
+            index=1,
+            cluster_id=act_cluster.id,
+            cluster=act_cluster,
+            created_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        )
+        msg_repo.add_message(m_action)
+        # Two tool responses, one per call, by tool_call_id.
+        resp_clusters = []
+        resp_msgs = []
+        for idx, (cid, label) in enumerate(
+            (("c1", "o:tool:1"), ("c2", "o:tool:2")), start=2,
+        ):
+            cl = Cluster(id=uuid4(), type="tool", category="tool", label=label)
+            msg_repo.add_cluster(cl)
+            resp_clusters.append(cl)
+            rm = Message(
+                id=uuid4(),
+                trajectory_id=tid,
+                role="tool",
+                content=[
+                    {"type": "tool_response", "id": cid,
+                     "tool_name": "x", "tool_response": "ok"},
+                ],
+                index=idx,
+                cluster_id=cl.id,
+                cluster=cl,
+                created_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+            )
+            msg_repo.add_message(rm)
+            resp_msgs.append(rm)
+
+        await TrajectoryPathUpdater(
+            msg_repo, path_repo, PathStateCalculator(),
+        ).update()
+
+        # Two parallel paths share parallel_group; trailing pending path
+        # is emitted from the last tool response (analogous to the
+        # "trajectory ended on observation" tail of the sequential case).
+        parallel_paths = sorted(
+            (p for p in path_repo._paths if p.parallel_group is not None),
+            key=lambda p: p.index,
+        )
+        assert len(parallel_paths) == 2
+        for p in parallel_paths:
+            assert p.from_observation_id == m_obs.id
+            assert p.action_message_id == m_action.id
+            assert p.parallel_group == m_action.index
+        assert {p.to_observation_id for p in parallel_paths} == {
+            resp_msgs[0].id, resp_msgs[1].id,
+        }
 
     @pytest.mark.asyncio
     async def test_obs_action_obs_yields_completed_and_pending(self):

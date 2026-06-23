@@ -2,16 +2,19 @@ from typing import Generic, NamedTuple, TypeVar
 from uuid import UUID
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import cast, delete, func, select, text, update
+from sqlalchemy import (
+    ARRAY, BigInteger, Column, Integer, MetaData, SmallInteger, Table,
+    cast, delete, func, or_, select, text, update,
+)
+from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import aliased, contains_eager, defer, joinedload
+from sqlalchemy.orm import aliased, contains_eager, joinedload
 
 from episodiq.api_adapters.base import (
     CanonicalMessage,
     CanonicalAssistantMessage,
 )
 from episodiq.config import get_config
-from episodiq.retrieval.minhash import max_pool_jaccard_per_key
 from episodiq.storage.postgres.models import (
     Base,
     Cluster,
@@ -21,20 +24,29 @@ from episodiq.storage.postgres.models import (
     TokenMapping,
     Trajectory,
     TrajectoryPath,
+    TrajectoryWindowLSH,
 )
 
 ModelT = TypeVar("ModelT", bound=Base)
 
-# fetch_similar dedup-by-trajectory paging: page size = limit * DEDUP_PAGE_FACTOR;
-# pages through the HNSW nearest paths until `limit` distinct trajectories are
-# collected, the index is exhausted, or DEDUP_MAX_PAGES is reached.
-DEDUP_PAGE_FACTOR = 8
-DEDUP_MAX_PAGES = 4
-
-
 class ClusterNeighbor(NamedTuple):
     cluster_id: UUID
     distance: float
+
+
+class Centroid(NamedTuple):
+    """Average embedding for a clustered group OR a noise group.
+
+    For HDBSCAN-clustered groups: ``cluster_id`` and ``label`` are set.
+    For noise groups (cluster_id IS NULL on the constituent messages):
+    ``cluster_id is None``, ``label is None``; identified by ``(cluster_type,
+    category)``.
+    """
+    cluster_type: str
+    category: str
+    embedding: list[float]
+    cluster_id: UUID | None = None
+    label: str | None = None
 
 
 class BaseRepository(Generic[ModelT]):
@@ -143,23 +155,48 @@ class ClusterRepository(BaseRepository[Cluster]):
             delete(Cluster).where(Cluster.type == type, Cluster.category == category)
         )
 
-    async def get_centroids(
-        self, cluster_ids: set[UUID],
-    ) -> list[tuple[UUID, str, list[float]]]:
-        """Compute AVG(embedding) per cluster, cast back to vector(dims) so
-        pgvector returns a parsed list of floats (AVG strips the Vector type)."""
+    async def get_categories(self, type: str) -> list[str]:
+        """Sorted distinct ``category`` values for clusters of ``type``.
+
+        Stable order is required by the per-category noise encoding: a
+        noise ordinal of ``-1 - i`` carries the i-th category from this
+        list. Used by TokenAssigner after clusters are built; pre-cluster
+        flows go through MessageRepository.get_categories.
+        """
+        stmt = (
+            select(Cluster.category)
+            .where(Cluster.type == type)
+            .distinct()
+            .order_by(Cluster.category)
+        )
+        return [row[0] for row in (await self.session.execute(stmt)).all()]
+
+    async def get_centroids(self, cluster_ids: set[UUID]) -> list[Centroid]:
+        """Compute AVG(embedding) per cluster. Casts back to vector(dims) so
+        pgvector returns parsed floats (AVG strips the Vector type)."""
         dims = get_config().message_dims
         stmt = (
             select(
                 Cluster.id,
+                Cluster.type,
+                Cluster.category,
                 Cluster.label,
                 cast(func.avg(Message.embedding), Vector(dims)).label("centroid"),
             )
             .join(Message, Message.cluster_id == Cluster.id)
             .where(Cluster.id.in_(cluster_ids), Message.embedding.is_not(None))
-            .group_by(Cluster.id, Cluster.label)
+            .group_by(Cluster.id, Cluster.type, Cluster.category, Cluster.label)
         )
-        return list((await self.session.execute(stmt)).all())
+        return [
+            Centroid(
+                cluster_type=r.type,
+                category=r.category,
+                embedding=list(r.centroid),
+                cluster_id=r.id,
+                label=r.label,
+            )
+            for r in (await self.session.execute(stmt)).all()
+        ]
 
 
 class MessageRepository(BaseRepository[Message]):
@@ -240,10 +277,17 @@ class MessageRepository(BaseRepository[Message]):
             )
             stmt = stmt.where(earlier_observation.exists())
 
+        # Stable order so downstream UMAP+HDBSCAN are reproducible across
+        # grid search and final clustering.
+        stmt = stmt.order_by(Message.id)
         return list((await self.session.execute(stmt)).scalars().all())
 
-    async def get_distinct_categories(self, cluster_type: str) -> list[str]:
-        """Return distinct non-null category values for a cluster_type."""
+    async def get_categories(self, cluster_type: str) -> list[str]:
+        """Sorted distinct non-null category values for a ``cluster_type``.
+
+        Used pre-clustering (no Cluster rows yet); ClusterRepository.get_categories
+        is the post-clustering equivalent.
+        """
         stmt = (
             select(Message.category)
             .where(
@@ -251,8 +295,42 @@ class MessageRepository(BaseRepository[Message]):
                 Message.category.is_not(None),
             )
             .distinct()
+            .order_by(Message.category)
         )
         return list((await self.session.execute(stmt)).scalars().all())
+
+    async def get_category_centroids(self) -> list[Centroid]:
+        """AVG(embedding) over message-level NOISE messages, grouped by
+        (cluster_type, category). Returns one ``Centroid`` per category
+        with ``cluster_id=None`` (noise) and ``label=None``.
+
+        Used by ActObsBuilder to substitute a category-specific anchor
+        for one-side-noise pairs in the clustering pool.
+        """
+        dims = get_config().message_dims
+        stmt = (
+            select(
+                Message.cluster_type,
+                Message.category,
+                cast(func.avg(Message.embedding), Vector(dims)).label("centroid"),
+            )
+            .where(
+                Message.cluster_id.is_(None),
+                Message.embedding.is_not(None),
+                Message.cluster_type.is_not(None),
+                Message.category.is_not(None),
+            )
+            .group_by(Message.cluster_type, Message.category)
+        )
+        return [
+            Centroid(
+                cluster_type=ct,
+                category=cat,
+                embedding=list(centroid),
+            )
+            for ct, cat, centroid in (await self.session.execute(stmt)).all()
+            if centroid is not None
+        ]
 
     async def find_neighbors(
         self,
@@ -314,89 +392,26 @@ class MessageRepository(BaseRepository[Message]):
 
 
 class ActObsCluster(NamedTuple):
-    a_cluster_id: UUID
-    o_cluster_id: UUID
+    a_cluster_id: UUID | None
+    o_cluster_id: UUID | None
+    a_category: str | None
+    o_category: str | None
 
 
 class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
     model = TrajectoryPath
 
-    async def get_minhash_corpus(
-        self,
-    ) -> list[tuple[UUID, UUID | None, str, list[int]]]:
-        """All retrieval-eligible paths: ``(trajectory_id,
-        action_cluster_id, trajectory_status, minhash_sig)``. Used by the
-        live prefilter and by offline sweeps that pre-load the corpus once.
-        """
-        stmt = (
-            select(
-                TrajectoryPath.trajectory_id,
-                Message.cluster_id.label("action_cluster_id"),
-                TrajectoryPath.trajectory_status,
-                TrajectoryPath.minhash_sig,
-            )
-            .join(Message, Message.id == TrajectoryPath.action_message_id)
-            .where(TrajectoryPath.minhash_sig.is_not(None))
-            .where(TrajectoryPath.trajectory_status.in_(("success", "failure")))
-        )
-        result = await self.session.execute(stmt)
-        return [
-            (row.trajectory_id, row.action_cluster_id, row.trajectory_status,
-             row.minhash_sig)
-            for row in result
-            if row.minhash_sig
-        ]
-
-    async def minhash_prefilter(
-        self,
-        query_signature: list[int],
-        exclude_trajectory_id: UUID,
-        limit: int,
-        min_similarity: float = 0.0,
-        corpus: list[tuple[UUID, UUID | None, str, list[int]]] | None = None,
-    ) -> list[tuple[UUID, float, UUID | None, str]]:
-        """MinHash Jaccard-estimate prefilter. Computes per-trajectory
-        MAX-pool similarity between the query signature and the retrieval
-        corpus, and returns the top ``limit`` rows ``(trajectory_id, sim,
-        best_path_action_cluster_id, trajectory_status)`` with sim >=
-        ``min_similarity``, sorted by sim descending. Excludes the query
-        trajectory.
-
-        If ``corpus`` is provided, it is used as-is (no DB round-trip);
-        otherwise the full corpus is fetched. Callers that issue many
-        searches against the same corpus should cache it and pass it in.
-        """
-        if not query_signature:
-            return []
-        if corpus is None:
-            corpus = await self.get_minhash_corpus()
-        meta: dict[UUID, tuple[UUID | None, str]] = {}
-        keyed: list[tuple[UUID, list[int]]] = []
-        for tid, action_cid, status, sig in corpus:
-            if tid == exclude_trajectory_id:
-                continue
-            if tid not in meta:
-                meta[tid] = (action_cid, status)
-            keyed.append((tid, sig))
-        per_traj_sim = max_pool_jaccard_per_key(query_signature, keyed)
-        ranked = [
-            (tid, sim, meta[tid][0], meta[tid][1])
-            for tid, sim in per_traj_sim.items()
-            if sim >= min_similarity
-        ]
-        ranked.sort(key=lambda x: -x[1])
-        return ranked[:limit]
-
-    async def get_paths_with_tokens_for_trajectories(
+    async def get_latest_trace_tokens_for_trajectories(
         self, trajectory_ids: list[UUID],
-    ) -> list[tuple[UUID, UUID | None, str, list[int]]]:
-        """Fetch (trajectory_id, action_cluster_id, trajectory_status,
-        trace_tokens) per path. Skips paths with NULL trace_tokens. action's
-        cluster_id is taken from the joined action_message; trajectory_status
-        is denormalized on TrajectoryPath.
+    ) -> dict[UUID, tuple[UUID | None, str, list[int]]]:
+        """``trajectory_id → (action_cluster_id, trajectory_status, tokens)``
+        for the highest-index path with non-NULL ``trace_tokens`` per traj.
+
+        Empty result for trajectories with no indexed path. Used by the
+        cascade Stage-3 exact min-shift rerank.
         """
         if not trajectory_ids:
-            return []
+            return {}
         stmt = (
             select(
                 TrajectoryPath.trajectory_id,
@@ -404,38 +419,79 @@ class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
                 TrajectoryPath.trajectory_status,
                 TrajectoryPath.trace_tokens,
             )
+            .distinct(TrajectoryPath.trajectory_id)
             .join(Message, Message.id == TrajectoryPath.action_message_id)
             .where(TrajectoryPath.trajectory_id.in_(trajectory_ids))
             .where(TrajectoryPath.trace_tokens.is_not(None))
+            .order_by(TrajectoryPath.trajectory_id, TrajectoryPath.index.desc())
         )
         result = await self.session.execute(stmt)
-        return [
-            (row.trajectory_id, row.action_cluster_id, row.trajectory_status,
-             row.trace_tokens)
+        return {
+            row.trajectory_id: (
+                row.action_cluster_id, row.trajectory_status, list(row.trace_tokens),
+            )
             for row in result
-        ]
+        }
 
     async def collect_act_obs(self) -> list[ActObsCluster]:
-        """Distinct (action_cluster_id, to_observation_cluster_id) act_obs over
-        all completed trajectory_paths. Noise filtered server-side: both
-        cluster_ids on the joined messages must be set.
+        """Distinct (action_cluster_id, to_observation_cluster_id) act_obs
+        pairs over all completed trajectory_paths.
+
+        Includes pairs where one side fell into message-level noise
+        (cluster_id IS NULL), as long as the other side is clustered.
+        The builder substitutes the per-category noise centroid for the
+        NULL side so HDBSCAN sees those pairs as their own dense regions.
+
+        Both-noise pairs are excluded — they perturbed HDBSCAN topology
+        (~-0.03 rmean) without contributing signal; path_updater
+        carry-forwards on unmapped pairs.
+
+        Sorted by COUNT(*) DESC — density prior. NULL-side pairs sink to
+        the end via NULLS LAST tie-break.
         """
         Action = aliased(Message)
         ToObs = aliased(Message)
+        pair_count = func.count().label("pair_count")
+
         stmt = (
             select(
                 Action.cluster_id.label("a_cluster_id"),
                 ToObs.cluster_id.label("o_cluster_id"),
+                Action.category.label("a_category"),
+                ToObs.category.label("o_category"),
+                pair_count,
             )
             .select_from(TrajectoryPath)
             .join(Action, Action.id == TrajectoryPath.action_message_id)
             .join(ToObs, ToObs.id == TrajectoryPath.to_observation_id)
-            .where(Action.cluster_id.is_not(None))
-            .where(ToObs.cluster_id.is_not(None))
-            .distinct()
+            .where(
+                or_(
+                    Action.cluster_id.is_not(None),
+                    ToObs.cluster_id.is_not(None),
+                ),
+                Action.category.is_not(None),
+                ToObs.category.is_not(None),
+            )
+            .group_by(
+                Action.cluster_id, ToObs.cluster_id,
+                Action.category, ToObs.category,
+            )
+            .order_by(
+                pair_count.desc(),
+                Action.cluster_id.nulls_last(),
+                ToObs.cluster_id.nulls_last(),
+            )
         )
         result = await self.session.execute(stmt)
-        return [ActObsCluster(a, o) for a, o in result.all()]
+        return [
+            ActObsCluster(
+                a_cluster_id=r.a_cluster_id,
+                o_cluster_id=r.o_cluster_id,
+                a_category=r.a_category,
+                o_category=r.o_category,
+            )
+            for r in result.all()
+        ]
 
     async def get_last(self, trajectory_id: UUID) -> TrajectoryPath | None:
         """Last path row for trajectory (most recent by created_at).
@@ -496,8 +552,8 @@ class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
         data: dict | None = None,
         trace: list[str] | None = None,
         trace_tokens: list[int] | None = None,
-        minhash_sig: list[int] | None = None,
         trajectory_status: str = "pending",
+        parallel_group: int | None = None,
     ) -> TrajectoryPath:
         """Create path row. Pending if action/to_obs are None."""
         row = TrajectoryPath(
@@ -508,8 +564,8 @@ class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
             data=data,
             trace=trace or [],
             trace_tokens=trace_tokens,
-            minhash_sig=minhash_sig,
             trajectory_status=trajectory_status,
+            parallel_group=parallel_group,
         )
         self.session.add(row)
         await self.session.flush()
@@ -527,80 +583,6 @@ class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
         msg = result.scalar_one()
         return msg.cluster_id, msg.cluster_label
 
-    async def fetch_similar(
-        self,
-        profile: list[float],
-        exclude_trajectory_id: UUID,
-        limit: int,
-        defer_embed: bool = True,
-    ) -> list[TrajectoryPath]:
-        """HNSW L2 (euclidean) fetch, deduplicated to one path per trajectory.
-
-        Pages through the HNSW nearest paths in batches of limit*DEDUP_PAGE_FACTOR,
-        keeping the nearest path of each trajectory (first hit wins), until
-        `limit` distinct trajectories are collected, the index is exhausted, or
-        DEDUP_MAX_PAGES is reached. Returns the `limit` nearest distinct
-        trajectories, eager-loading trajectory + action_message.cluster.
-
-        Uses strict_order iterative scan: with no rerank stage the retrieval
-        order is final, and the per-trajectory dedup ("first hit = nearest")
-        plus OFFSET paging both require exact distance order.
-        """
-        dist = TrajectoryPath.profile.l2_distance(profile)
-        where = (
-            TrajectoryPath.trajectory_id != exclude_trajectory_id,
-            TrajectoryPath.to_observation_id.isnot(None),
-            TrajectoryPath.trajectory_status.in_(["success", "failure"]),
-        )
-        await self.session.execute(
-            text("SET LOCAL hnsw.iterative_scan = strict_order")
-        )
-        page_size = limit * DEDUP_PAGE_FACTOR
-
-        nearest: dict[UUID, UUID] = {}  # trajectory_id -> nearest path id
-        for page in range(DEDUP_MAX_PAGES):
-            offset = page * page_size
-            # pgvector caps hnsw.ef_search at 1000.
-            ef_search = min(1000, max(40, offset + page_size))
-            await self.session.execute(text(f"SET LOCAL hnsw.ef_search = {ef_search}"))
-            rows = (
-                await self.session.execute(
-                    select(TrajectoryPath.id, TrajectoryPath.trajectory_id)
-                    .where(*where)
-                    .order_by(dist)
-                    .offset(offset)
-                    .limit(page_size)
-                )
-            ).all()
-            if not rows:
-                break
-            for path_id, traj_id in rows:
-                if traj_id not in nearest:
-                    nearest[traj_id] = path_id
-            if len(nearest) >= limit:
-                break
-
-        # `nearest` is insertion-ordered = distance-ordered -> first `limit` win
-        path_ids = list(nearest.values())[:limit]
-        if not path_ids:
-            return []
-
-        opts = [
-            joinedload(TrajectoryPath.trajectory),
-            joinedload(TrajectoryPath.action_message).joinedload(Message.cluster),
-            joinedload(TrajectoryPath.from_observation),
-        ]
-        if defer_embed:
-            opts.append(defer(TrajectoryPath.profile))
-        entities = (
-            await self.session.execute(
-                select(TrajectoryPath)
-                .where(TrajectoryPath.id.in_(path_ids))
-                .options(*opts)
-            )
-        ).scalars().unique().all()
-        by_id = {e.id: e for e in entities}
-        return [by_id[pid] for pid in path_ids if pid in by_id]
 
     async def get_completed(
         self, limit: int | None = None, require_tokens: bool = False,
@@ -628,6 +610,125 @@ class TrajectoryPathRepository(BaseRepository[TrajectoryPath]):
         return list((await self.session.execute(stmt)).scalars().unique().all())
 
 
+def make_window_lsh_table(name: str) -> Table:
+    """Build a SQLAlchemy Table mirroring the TrajectoryWindowLSH schema under
+    a custom physical name. Used by sweep to spin up alt tables that the
+    production repo can read/write without copying any query logic.
+    """
+    return Table(
+        name,
+        MetaData(),
+        Column("trajectory_id", PGUUID(as_uuid=True), primary_key=True),
+        Column("window_center", Integer, primary_key=True),
+        Column("band_index", SmallInteger, primary_key=True),
+        Column("band_hash", BigInteger, nullable=False),
+    )
+
+
+class TrajectoryWindowLSHRepository:
+    """LSH band index repo. Defaults to the production
+    ``trajectory_window_lsh`` table; pass ``table=make_window_lsh_table(...)``
+    to point the same query logic at an alternative physical table
+    (sweep use-case, isolated experiments).
+    """
+
+    def __init__(
+        self, session: AsyncSession, *, table: Table | None = None,
+    ) -> None:
+        self.session = session
+        self._table = table if table is not None else TrajectoryWindowLSH.__table__
+
+    async def delete_for_trajectories(self, trajectory_ids: list[UUID]) -> None:
+        if not trajectory_ids:
+            return
+        t = self._table
+        await self.session.execute(
+            delete(t).where(t.c.trajectory_id.in_(trajectory_ids)),
+        )
+
+    async def bulk_insert(
+        self, rows: list[tuple[UUID, int, int, int]],
+    ) -> None:
+        """Insert ``(trajectory_id, window_center, band_index, band_hash)`` rows.
+
+        Caller must dedupe (table primary key is the first three columns).
+        """
+        if not rows:
+            return
+        await self.session.execute(
+            self._table.insert(),
+            [
+                dict(
+                    trajectory_id=tid, window_center=wc,
+                    band_index=bi, band_hash=bh,
+                )
+                for tid, wc, bi, bh in rows
+            ],
+        )
+
+    async def lookup(
+        self,
+        band_pairs: list[tuple[int, int]],
+        *,
+        step_min: int,
+        step_max: int,
+        top_uniq: int,
+        exclude_trajectory_id: UUID | None = None,
+        aggregation: str = "mean",
+    ) -> list[tuple[UUID, float]]:
+        """Top ``top_uniq`` candidate trajectories for one query anchor,
+        ranked by ``aggregation`` (``"min_distance"`` or ``"mean"``) of band-hit
+        counts over the anchor's neighborhood ``[step_min, step_max]``.
+        Validation is the caller's responsibility (RetrievalConfig).
+        """
+        if not band_pairs:
+            return []
+        idx_arr = [int(bi) for bi, _ in band_pairs]
+        hash_arr = [int(bh) for _, bh in band_pairs]
+        t = self._table
+
+        per_window = (
+            select(
+                t.c.trajectory_id.label("tid"),
+                t.c.window_center.label("wc"),
+                func.count().label("band_count"),
+            )
+            .where(
+                func.row(t.c.band_index, t.c.band_hash).in_(
+                    select(
+                        func.unnest(cast(idx_arr, ARRAY(SmallInteger))).label("bi"),
+                        func.unnest(cast(hash_arr, ARRAY(BigInteger))).label("bh"),
+                    ),
+                ),
+                t.c.window_center >= step_min,
+                t.c.window_center <= step_max,
+            )
+            .group_by(t.c.trajectory_id, t.c.window_center)
+        )
+        if exclude_trajectory_id is not None:
+            per_window = per_window.where(
+                t.c.trajectory_id != exclude_trajectory_id,
+            )
+        per_window = per_window.subquery()
+
+        if aggregation == "min_distance":
+            # Optimistic — pick the anchor whose match-count is highest
+            # (= minimum distance) per candidate, mirroring the
+            # agg-shift kernel's best-shift-wins semantics downstream.
+            score = func.max(per_window.c.band_count)
+        else:  # mean
+            score = func.avg(cast(per_window.c.band_count, Integer))
+        score = score.label("score")
+        stmt = (
+            select(per_window.c.tid, score)
+            .group_by(per_window.c.tid)
+            .order_by(score.desc())
+            .limit(top_uniq)
+        )
+        result = await self.session.execute(stmt)
+        return [(tid, float(s)) for tid, s in result.all()]
+
+
 class TokenClusterRepository(BaseRepository[TokenCluster]):
     model = TokenCluster
 
@@ -647,15 +748,3 @@ class TokenMappingRepository(BaseRepository[TokenMapping]):
 
     async def delete_all(self) -> None:
         await self.session.execute(delete(TokenMapping))
-
-    async def find_by_cluster_ids(
-        self, action_cluster_id: UUID, observation_cluster_id: UUID,
-    ) -> UUID | None:
-        """Direct lookup: (action_cluster_id, observation_cluster_id) →
-        token_cluster_id (or None if not indexed).
-        """
-        stmt = select(TokenMapping.token_cluster_id).where(
-            TokenMapping.action_cluster_id == action_cluster_id,
-            TokenMapping.observation_cluster_id == observation_cluster_id,
-        )
-        return (await self.session.execute(stmt)).scalar_one_or_none()

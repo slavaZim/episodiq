@@ -1,17 +1,52 @@
 {
+  "winner_metric": "cummean",
+  "tune_auc": 0.644,
+  "eval_auc": 0.698270894348933,
+  "eval_auc_ci": {
+    "lo": 0.608817661168329,
+    "hi": 0.7816613658183225
+  },
+  "eval_auc_per_metric": {
+    "cummax": 0.6760736263748046,
+    "cummean": 0.698270894348933,
+    "cummeanmax": 0.6177137005962099
+  },
+  "eval_auc_ci_per_metric": {
+    "cummax": {
+      "lo": 0.5895951762327332,
+      "hi": 0.757316747184492,
+      "mean": 0.6754591222608098
+    },
+    "cummean": {
+      "lo": 0.608817661168329,
+      "hi": 0.7816613658183225,
+      "mean": 0.6967415623404867
+    },
+    "cummeanmax": {
+      "lo": 0.5142831686611398,
+      "hi": 0.7162349481654919,
+      "mean": 0.6151684889842257
+    }
+  },
+  "n_eval_trajs": 175,
+  "n_eval_snapshots": 13578,
+  "n_boot": 200,
   "config": {
-    "top_k": 10,
-    "similarity_threshold": 0.2
-  },
-  "tune": {
-    "coverage_step60": 0.4871,
-    "auc_step60_current": 0.7935
-  },
-  "eval": {
-    "n_snapshots_total": 16251,
-    "n_snapshots_with_shortlist": 9366,
-    "n_trajectories": 219,
-    "coverage_step60": 0.22199488491048594,
-    "auc_step60_current": 0.7048009855108238
+    "window": 10,
+    "aggregation": "min_distance",
+    "metric": "cummean",
+    "prefetch_n_uniq": 270,
+    "jaccard_n_uniq": 120,
+    "top_k": 12,
+    "penalty_shape": "lin",
+    "lam": 1.2,
+    "gap_open": 1.9,
+    "gap_extend": 1.3,
+    "sigma": 0.5,
+    "tune_auc": 0.644,
+    "tune_limit": 100,
+    "shuffle_seed": 42,
+    "shuffle_field": "meta.instance_id",
+    "stratify_field": "status"
   }
 }

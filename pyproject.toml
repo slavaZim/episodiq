@@ -44,6 +44,7 @@ dependencies = [
     "umap-learn>=0.5.12",
     "uvicorn[standard]>=0.40.0",
     "pyclustering>=0.10.1.2",
+    "optuna>=4.9.0",
 ]
 
 [project.urls]

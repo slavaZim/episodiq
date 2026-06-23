@@ -1,8 +1,8 @@
 {
-  "min_cluster_size": 14,
-  "min_samples": 7,
-  "umap_dims": 70,
-  "umap_n_neighbors": 15,
+  "min_cluster_size": 10,
+  "min_samples": 5,
+  "umap_dims": 60,
+  "umap_n_neighbors": 5,
   "cluster_selection_method": "eom",
   "cluster_selection_epsilon": 0.0
 }
