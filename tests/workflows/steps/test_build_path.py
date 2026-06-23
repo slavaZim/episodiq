@@ -208,11 +208,10 @@ class TestBuildPathStep:
         assert paths[1].trace == ["o:text:0", "a:text:0", "o:text:1"]
 
     @pytest.mark.asyncio
-    async def test_close_writes_trace_tokens_and_minhash(self, monkeypatch):
-        """When TokenAssigner returns an ordinal, the closed path gets cumulative
-        trace_tokens + a fresh minhash_sig (once enough tokens accumulate to
-        form n-grams). The new pending path inherits trace_tokens but never
-        minhash_sig.
+    async def test_close_writes_trace_tokens(self, monkeypatch):
+        """When TokenAssigner returns an ordinal, the closed path gets
+        cumulative ``trace_tokens``. The new pending path inherits the
+        same cumulative tokens forward.
         """
         monkeypatch.setattr(
             "episodiq.workflows.steps.build_path.TokenAssigner.assign",
@@ -248,10 +247,106 @@ class TestBuildPathStep:
         assert paths[0].trace_tokens == [7]
         assert paths[1].trace_tokens == [7, 8]
         assert paths[2].trace_tokens == [7, 8, 9]
-        # n=3 ngrams need >= 3 tokens, so signature is computed only here.
-        assert paths[0].minhash_sig is None
-        assert paths[1].minhash_sig is None
-        assert paths[2].minhash_sig is not None
-        # Latest pending path inherits tokens but never minhash_sig.
+        # Latest pending path inherits tokens.
         assert paths[3].trace_tokens == [7, 8, 9]
-        assert paths[3].minhash_sig is None
+
+    @pytest.mark.asyncio
+    async def test_parallel_tool_calls_emit_n_paths_with_group(
+        self, monkeypatch,
+    ):
+        """When a parallel-tool-call action is closed with N tool
+        responses, N paths get emitted with the same ``parallel_group``,
+        ``from_observation_id``, and ``action_message_id``. The token
+        batch is sorted ASC (canonical order) so all N paths share the
+        same ``trace_tokens``.
+        """
+        # Assigner returns ordinals in call order (out-of-sort) to prove
+        # the calculator sorts ASC before writing.
+        monkeypatch.setattr(
+            "episodiq.workflows.steps.build_path.TokenAssigner.assign",
+            AsyncMock(side_effect=[9, 3]),
+        )
+
+        tid = uuid4()
+        c_user = _cluster("observation", "text", "o:text:user")
+        c_act_par = _cluster("action", "tool", "a:tool:par")
+        c_tool_a = _cluster("observation", "tool", "o:tool:a")
+        c_tool_b = _cluster("observation", "tool", "o:tool:b")
+        c_act_next = _cluster("action", "text", "a:text:next")
+        for c in (c_user, c_act_par, c_tool_a, c_tool_b, c_act_next):
+            self._register_cluster(c)
+
+        user_msg = _obs(tid, 0, c_user)
+        parallel_asst = Message(
+            id=uuid4(),
+            trajectory_id=tid,
+            role="assistant",
+            content=[
+                {"type": "tool_call", "id": "c1",
+                 "tool_name": "search", "input": {}},
+                {"type": "tool_call", "id": "c2",
+                 "tool_name": "fetch", "input": {}},
+            ],
+            index=1,
+            cluster=c_act_par,
+            cluster_id=c_act_par.id,
+            category="tool",
+        )
+        tool_a = Message(
+            id=uuid4(), trajectory_id=tid, role="tool",
+            content=[{"type": "tool_response", "id": "c1",
+                      "tool_name": "search", "tool_response": "ok"}],
+            index=2, cluster=c_tool_a, cluster_id=c_tool_a.id,
+            category="tool",
+        )
+        tool_b = Message(
+            id=uuid4(), trajectory_id=tid, role="tool",
+            content=[{"type": "tool_response", "id": "c2",
+                      "tool_name": "fetch", "tool_response": "ok"}],
+            index=3, cluster=c_tool_b, cluster_id=c_tool_b.id,
+            category="tool",
+        )
+        next_asst = _act(tid, 4, c_act_next)
+        for m in (user_msg, parallel_asst, tool_a, tool_b, next_asst):
+            self.msg_repo.add_message(m)
+
+        # Step 1: user → parallel asst (creates a pending path).
+        ctx = self._make_context(
+            trajectory_id=tid,
+            input_messages=[_input_msg(user_msg)],
+            output_message=_output_msg(parallel_asst),
+        )
+        await BuildPathStep(ctx).exec()
+
+        # Step 2: both tool responses arrive together → close +
+        # expand to 2 parallel paths, then new pending.
+        ctx = self._make_context(
+            trajectory_id=tid,
+            input_messages=[_input_msg(tool_a), _input_msg(tool_b)],
+            output_message=_output_msg(next_asst),
+        )
+        await BuildPathStep(ctx).exec()
+
+        paths = sorted(self.path_repo._paths, key=lambda p: p.index)
+        # Step 1 created 1 pending; step 2 updated that pending in place
+        # (closed with tool_a) + created 1 more closed (tool_b) + created
+        # 1 new pending. Total = 3.
+        assert len(paths) == 3
+
+        parallel_paths = [p for p in paths if p.parallel_group is not None]
+        assert len(parallel_paths) == 2
+        for p in parallel_paths:
+            assert p.parallel_group == parallel_asst.index
+            assert p.from_observation_id == user_msg.id
+            assert p.action_message_id == parallel_asst.id
+            # Tokens sorted ASC inside the parallel batch: [3, 9] not [9, 3].
+            assert p.trace_tokens == [3, 9]
+        assert {p.to_observation_id for p in parallel_paths} == {
+            tool_a.id, tool_b.id,
+        }
+
+        pending = paths[-1]
+        assert pending.from_observation_id == tool_b.id
+        assert pending.action_message_id == next_asst.id
+        assert pending.parallel_group is None
+        assert pending.trace_tokens == [3, 9]

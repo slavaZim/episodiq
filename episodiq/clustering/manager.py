@@ -73,7 +73,7 @@ async def _resolve_categories(
     """Resolve category="tool" into concrete tool names, or pass through."""
     if category == "tool":
         if cluster_type not in cache:
-            cats = await repo.get_distinct_categories(cluster_type)
+            cats = await repo.get_categories(cluster_type)
             cache[cluster_type] = [c for c in cats if c != "text"]
         return cache[cluster_type]
     return [category]

@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import BigInteger, CheckConstraint, ForeignKey, Integer, String, DateTime, Text, UniqueConstraint
+from sqlalchemy import BigInteger, CheckConstraint, ForeignKey, Integer, SmallInteger, String, DateTime, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB, UUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
@@ -112,14 +112,15 @@ class TrajectoryPath(Base):
     # per-path signal metadata: running cummax, current failure score, loop counts
     data: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
     index: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    # Set on paths emitted from a parallel tool-call batch — all N paths in
+    # the same assistant message share this group id (= the assistant
+    # message's own ``index``). NULL for ordinary sequential paths. The
+    # tokenizer sorts tokens within a group to make ordering invariant.
+    parallel_group: Mapped[int | None] = mapped_column(Integer, nullable=True)
     trace: Mapped[list] = mapped_column(JSONB, server_default="[]", nullable=False)
     # per-position act_obs-level token cluster ids (one int per act_obs position)
     trace_tokens: Mapped[list[int] | None] = mapped_column(
         ARRAY(Integer), nullable=True
-    )
-    # MinHash signature of the path's n-gram set over trace_tokens
-    minhash_sig: Mapped[list[int] | None] = mapped_column(
-        ARRAY(BigInteger), nullable=True,
     )
     trajectory_status: Mapped[str] = mapped_column(String(20), server_default="pending", nullable=False)
     created_at: Mapped[datetime] = mapped_column(
@@ -219,3 +220,22 @@ class OriginResponse(Base):
     )
 
     message: Mapped["Message | None"] = relationship(back_populates="origin_response")
+
+
+class TrajectoryWindowLSH(Base):
+    """LSH band index over per-window MinHash signatures.
+
+    One row per (trajectory, window_center, band_index). ``band_hash``
+    is the rolled hash of the corresponding signature slice; the lookup
+    index on ``(band_index, band_hash, window_center)`` powers fast
+    band+temporal candidate retrieval.
+    """
+    __tablename__ = "trajectory_window_lsh"
+
+    trajectory_id: Mapped[uuid.UUID] = mapped_column(
+        UUID, ForeignKey("trajectories.id", ondelete="CASCADE"),
+        primary_key=True,
+    )
+    window_center: Mapped[int] = mapped_column(Integer, primary_key=True)
+    band_index: Mapped[int] = mapped_column(SmallInteger, primary_key=True)
+    band_hash: Mapped[int] = mapped_column(BigInteger, nullable=False)

@@ -174,6 +174,11 @@ class CanonicalAssistantMessage(CanonicalMessage):
         ]
         return calls or None
 
+    @property
+    def tool_calls_count(self) -> int:
+        """Number of ``tool_call`` blocks in this message (0 for text-only)."""
+        return sum(1 for b in self.content if b.get("type") == "tool_call")
+
     @classmethod
     def build(
         cls,

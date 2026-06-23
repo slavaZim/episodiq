@@ -8,7 +8,6 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-from sqlalchemy.pool import NullPool
 
 from episodiq.analytics.tune.path_frequency import (
     DEFAULT_HIGH_PERCENTILE,
@@ -16,112 +15,40 @@ from episodiq.analytics.tune.path_frequency import (
     DEFAULT_SAMPLE_SIZE as PATH_FREQ_SAMPLE_SIZE,
     PathFrequencyResult,
 )
-from episodiq.analytics.tune.top_k import (
-    CONCURRENCY as TOPK_CONCURRENCY,
-    DEFAULT_SAMPLE_SIZE as TOPK_SAMPLE_SIZE,
-    DEFAULT_TOLERANCE,
-    DEFAULT_TOPK_GRID,
-    TopKResult,
-)
 from episodiq.cli.env import _load_dotenv
 from episodiq.config import get_config
+from episodiq.retrieval.tune.constants import (
+    DEFAULT_AGGREGATION_GRID,
+    DEFAULT_EARLY_STOP_PATIENCE,
+    DEFAULT_EVAL_MIN_STEP,
+    DEFAULT_MULTIVARIATE,
+    DEFAULT_N_JOBS,
+    DEFAULT_N_TRIALS,
+    DEFAULT_N_WORKERS,
+    DEFAULT_OPTUNA_SEED,
+    DEFAULT_WINDOW_GRID,
+)
 
 app = typer.Typer()
 console = Console()
 
 
-def _make_session_factory(database_url: str) -> async_sessionmaker:
-    engine = create_async_engine(database_url, poolclass=NullPool)
+def _make_session_factory(
+    database_url: str, *, pool_size: int = 5, max_overflow: int = 10,
+) -> async_sessionmaker:
+    """Default to a sized connection pool — the sweep opens one session
+    per snapshot per trial under high concurrency, so reusing
+    connections is much cheaper than ``NullPool``'s
+    "new-connection-per-checkout".
+    """
+    engine = create_async_engine(
+        database_url, pool_size=pool_size, max_overflow=max_overflow,
+    )
     return async_sessionmaker(engine, expire_on_commit=False)
 
 
 def _parse_int_list(value: str) -> list[int]:
     return [int(x.strip()) for x in value.split(",") if x.strip()]
-
-
-# ---------------------------------------------------------------------------
-# top-k
-# ---------------------------------------------------------------------------
-
-def _topk_table(result: TopKResult) -> Table:
-    table = Table(title="fail_frac AUC by top_k")
-    table.add_column("top_k", justify="right", style="cyan")
-    table.add_column("AUC", justify="right")
-    table.add_column("95% CI", justify="right")
-    table.add_column("n", justify="right")
-
-    for point in result.grid:
-        is_best = point.top_k == result.suggested_top_k
-        style = "bold green" if is_best else ""
-        marker = " <-" if is_best else ""
-        auc_cell = (
-            f"[{style}]{point.auc:.3f}{marker}[/{style}]" if style
-            else f"{point.auc:.3f}"
-        )
-        table.add_row(
-            str(point.top_k),
-            auc_cell,
-            f"{point.auc_ci_lower:.3f}-{point.auc_ci_upper:.3f}",
-            str(point.n_trajectories),
-        )
-
-    return table
-
-
-@app.command(name="top-k")
-def top_k(
-    env: Path = typer.Option(Path(".env"), "--env", help="Path to .env file"),
-    topk: str = typer.Option(
-        ",".join(str(x) for x in DEFAULT_TOPK_GRID),
-        "--topk", help="Comma-separated top_k values",
-    ),
-    sample_size: int = typer.Option(
-        TOPK_SAMPLE_SIZE, "--sample", "-n", help="Trajectories to sample",
-    ),
-    concurrency: int = typer.Option(
-        TOPK_CONCURRENCY, "--concurrency", "-w", help="Concurrent retrievals",
-    ),
-    tolerance: float = typer.Option(
-        DEFAULT_TOLERANCE, "--tolerance", "-t",
-        help="AUC tolerance for suggesting the smallest top_k",
-    ),
-) -> None:
-    """Sweep top_k, suggest the smallest value within tolerance of the best fail_frac AUC."""
-    from episodiq.analytics.tune.top_k import TopKTuner
-    from episodiq.storage.postgres.repository import TrajectoryRepository
-
-    topk_grid = _parse_int_list(topk)
-
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-
-    _load_dotenv(env)
-    config = get_config()
-    session_factory = _make_session_factory(config.get_database_url())
-
-    async def _run() -> TopKResult:
-        async with session_factory() as session:
-            traj_repo = TrajectoryRepository(session)
-            tuner = TopKTuner(traj_repo, session_factory)
-            return await tuner.run(
-                topk_grid=topk_grid,
-                sample_size=sample_size,
-                concurrency=concurrency,
-                tolerance=tolerance,
-            )
-
-    result = asyncio.run(_run())
-
-    if not result.grid:
-        console.print(
-            "[red]No usable samples. Check that paths have profiles.[/red]"
-        )
-        raise typer.Exit(1)
-
-    console.print(
-        f"\nTrajectories: {result.n_trajectories}  Paths: {result.n_paths}\n"
-    )
-    console.print(_topk_table(result))
-    console.print(f"\n[bold]Suggested: EPISODIQ_RETRIEVAL_TOP_K={result.suggested_top_k}[/bold]")
 
 
 # ---------------------------------------------------------------------------
@@ -167,122 +94,201 @@ def _variance_table(result: PathFrequencyResult) -> Table:
 @app.command(name="retrieval-sweep")
 def retrieval_sweep(
     env: Path = typer.Option(Path(".env"), "--env", help="Path to .env file"),
-    top_k: str = typer.Option(None, "--top-k", help="Comma-separated top_k values"),
-    sim: str = typer.Option(None, "--sim", help="Comma-separated similarity thresholds"),
-    limit: int = typer.Option(None, "--limit", help="Tune-query trajectory count"),
-    offset: int = typer.Option(0, "--offset", help="Tune-query trajectory offset"),
-    order_file: Path = typer.Option(
-        None, "--order-file",
-        help="JSON list of trajectory UUIDs; overrides default UUID ordering "
-             "for --offset/--limit slicing. Use for stratified tune/eval splits.",
+    w_grid: str = typer.Option(
+        ",".join(str(w) for w in DEFAULT_WINDOW_GRID), "--w-grid",
+        help="Comma-separated EVEN window sizes W = 2w (e.g. 10,14 = "
+             "w∈{5,7}). Each value triggers a fresh LSH alt-table rebuild "
+             "from existing trace_tokens.",
     ),
-    save_output: Path = typer.Option(None, "--save-output", help="Save full sweep as CSV"),
-    min_step: int = typer.Option(
-        None, "--min-step",
-        help="Lower bound for the per-step AUC/coverage window "
-             "(default: EVAL_STEP=60 from sweep.py). Lower this for short "
-             "trajectories so paths reach the window at all.",
+    n_trials: int = typer.Option(
+        DEFAULT_N_TRIALS, "--n-trials",
+        help="Optuna trials per W per metric study.",
+    ),
+    limit: int = typer.Option(
+        None, "--limit", help="Tune-slice trajectory count (default: all)",
+    ),
+    offset: int = typer.Option(
+        0, "--offset", help="Tune-slice trajectory offset",
+    ),
+    eval_min_step: int = typer.Option(
+        DEFAULT_EVAL_MIN_STEP, "--eval-min-step",
+        help="Lower bound on snapshot step for the per-step AUC window.",
+    ),
+    seed: int = typer.Option(
+        DEFAULT_OPTUNA_SEED, "--seed", help="Optuna sampler seed",
+    ),
+    alt_table_suffix: str = typer.Option(
+        "", "--alt-table-suffix",
+        help="Suffix appended to alt LSH table names so parallel runs of "
+             "this command don't collide. Defaults to empty.",
+    ),
+    agg_grid: str = typer.Option(
+        ",".join(DEFAULT_AGGREGATION_GRID), "--agg-grid",
+        help="Comma-separated neighborhood aggregations to sweep over: "
+             "'mean,min'. Each one is its own outer slot alongside W "
+             "with a fresh cache.",
+    ),
+    multivariate: bool = typer.Option(
+        DEFAULT_MULTIVARIATE, "--multivariate/--no-multivariate",
+        help="Use TPE's multivariate Parzen estimator (joint over continuous "
+             "params). Catches correlations univariate TPE misses.",
+    ),
+    n_jobs: int = typer.Option(
+        DEFAULT_N_JOBS, "--n-jobs",
+        help="Optuna threaded trials per metric study (outer concurrency). "
+             "Total peak DB sessions ≈ n_jobs × n_workers.",
+    ),
+    n_workers: int = typer.Option(
+        DEFAULT_N_WORKERS, "--n-workers",
+        help="Concurrent retrieval.search() calls inside one trial (inner "
+             "concurrency, asyncio.Semaphore-bounded).",
+    ),
+    early_stop_patience: int = typer.Option(
+        DEFAULT_EARLY_STOP_PATIENCE, "--early-stop-patience",
+        help="Stop one (W, agg) study once this many consecutive trials "
+             "fail to improve best_seen. 0 disables.",
+    ),
+    save_trials: Path = typer.Option(
+        None, "--save-trials",
+        help="Write all trials (params + per-metric AUC) as CSV",
+    ),
+    shuffle_seed: int = typer.Option(
+        None, "--shuffle-seed",
+        help="Deterministic Random(seed).shuffle of trajectories before "
+             "offset/limit slicing. Use the same seed in basic.py for a "
+             "parallel tune/eval split.",
+    ),
+    shuffle_field: str = typer.Option(
+        None, "--shuffle-field",
+        help="Dotted path selecting the pre-shuffle sort key (e.g. 'id' "
+             "or 'meta.instance_id'). Two pipelines that share the same "
+             "field + seed pick identical tune/eval slices. None = use "
+             "the DB-provided UUID order.",
+    ),
+    stratify_field: str = typer.Option(
+        None, "--stratify-field",
+        help="Dotted path used to stratify the shuffled list (e.g. "
+             "'status'). Every tune/eval prefix inherits the population's "
+             "class distribution along that key, neutralising seed-driven "
+             "imbalance. None = no stratification.",
+    ),
+    objective_metric: str = typer.Option(
+        None, "--objective-metric",
+        help="Restrict TPE's metric-as-categorical sampler to a single "
+             "metric (e.g. 'cummean'). When set, every trial optimises "
+             "that metric's weighted AUC. Default samples all three.",
     ),
 ) -> None:
-    """Sweep (top_k, similarity_threshold) for MinHash retrieval.
+    """Optuna sweep of the retrieval cascade across W + cheap knobs.
 
-    Tune queries: deterministic slice over completed trajectories. Default
-    order is by trajectory UUID; pass ``--order-file`` to use an externally
-    computed (e.g. stratified) ordering. Each query path runs leave-one-out
-    against the rest of the corpus.
+    Outer grid: W. Each W rebuilds its alt LSH table from existing
+    trace_tokens (no retokenization). Inner: three Optuna TPE studies
+    (one per metric — cummax, cummean, cummeanmax) over
+    prefetch_n_uniq / jaccard_n_uniq / top_k / penalty_shape / lam /
+    gap_open / gap_extend. Each trial fans out ``retrieval.search()``
+    across snapshots via asyncio.gather; concurrency = n_jobs × n_workers.
     """
     import csv as _csv
-    import json as _json
-    from uuid import UUID
+    from episodiq.analytics.metrics import SIMILARITY_METRICS as METRICS
     from episodiq.retrieval.tune.sweep import (
-        DEFAULT_SIM_GRID, DEFAULT_TOPK_GRID, DEFAULT_TUNE_LIMIT, EVAL_STEP,
-        RetrievalSweep,
+        RetrievalSweep, RetrievalSweepConfig,
     )
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     _load_dotenv(env)
     config = get_config()
-    session_factory = _make_session_factory(config.get_database_url())
 
-    topk_grid = _parse_int_list(top_k) if top_k else list(DEFAULT_TOPK_GRID)
-    sim_grid = (
-        [float(x.strip()) for x in sim.split(",") if x.strip()]
-        if sim else list(DEFAULT_SIM_GRID)
+    # Size the pool to comfortably fit n_workers × n_jobs concurrent
+    # sessions per W study, plus a margin for the warm-up phase.
+    pool_target = max(n_workers * n_jobs, 16)
+    session_factory = _make_session_factory(
+        config.get_database_url(),
+        pool_size=pool_target, max_overflow=pool_target,
     )
-    tune_limit = limit if limit is not None else DEFAULT_TUNE_LIMIT
-
-    ordered_ids: list[UUID] | None = None
-    if order_file is not None:
-        with open(order_file) as f:
-            ordered_ids = [UUID(s) for s in _json.load(f)]
-        logger = logging.getLogger(__name__)
-        logger.info("ordering: %s (%d ids)", order_file, len(ordered_ids))
-
-    effective_min_step = min_step if min_step is not None else EVAL_STEP
+    grid = tuple(_parse_int_list(w_grid))
+    agg_grid_t = tuple(s.strip() for s in agg_grid.split(",") if s.strip())
+    from episodiq.analytics.metrics import SIMILARITY_METRICS as _METS
+    metric_choices = (
+        (objective_metric,) if objective_metric else _METS
+    )
+    sweep_cfg = RetrievalSweepConfig(
+        window_grid=grid,
+        n_trials_per_window=n_trials,
+        eval_min_step=eval_min_step,
+        optuna_seed=seed,
+        alt_table_suffix=alt_table_suffix,
+        aggregation_grid=agg_grid_t,
+        metric_choices=metric_choices,
+        multivariate=multivariate,
+        n_jobs=n_jobs,
+        n_workers=n_workers,
+        early_stop_patience=early_stop_patience,
+    )
 
     async def _run():
         sweep = RetrievalSweep(
-            session_factory, limit=tune_limit, offset=offset,
-            ordered_traj_ids=ordered_ids,
-            min_step=effective_min_step,
+            session_factory, sweep_cfg, limit=limit, offset=offset,
+            shuffle_seed=shuffle_seed, shuffle_field=shuffle_field,
+            stratify_field=stratify_field,
         )
-        return await sweep.run(topk_grid, sim_grid)
+        return await sweep.run()
 
     report = asyncio.run(_run())
 
-    table = Table(title="Retrieval sweep (AUC@s60 + coverage)")
-    for col, just in [
-        ("top_k", "right"), ("sim", "right"),
-        ("cov@s60", "right"), ("AUC@s60", "right"),
-        ("n_snaps", "right"),
-    ]:
-        table.add_column(col, justify=just)
-    best = report.best
+    if not report.trials:
+        console.print("[red]No trials produced any signal. Check --limit / --eval-min-step.[/red]")
+        raise typer.Exit(1)
 
-    def _fmt_auc(v):
-        return f"{v:.3f}" if v is not None else "n/a"
+    overall_best = report.best
+    for m in METRICS:
+        table = Table(title=f"Retrieval sweep — {m}")
+        table.add_column("W", justify="right", style="cyan")
+        table.add_column("agg", justify="left")
+        table.add_column("AUC", justify="right")
+        table.add_column("params", overflow="fold")
+        for W in grid:
+            for agg in agg_grid_t:
+                t = report.by_window_agg_per_metric(W, agg).get(m)
+                if t is None:
+                    continue
+                is_overall = overall_best is not None and t is overall_best
+                auc_cell = f"{t.target_auc:.4f}"
+                if is_overall:
+                    auc_cell = f"[bold green]{auc_cell}[/bold green]"
+                params_str = ", ".join(f"{k}={v}" for k, v in t.params.items())
+                table.add_row(str(W), agg, auc_cell, params_str)
+        console.print(table)
+        console.print()
 
-    def _fmt_cov(c):
-        return f"{c * 100:.1f}%" if c is not None else "n/a"
-
-    for p in sorted(
-        report.points,
-        key=lambda x: -(x.auc_step60_current or -1.0),
-    ):
-        is_best = best is not None and p == best
-        s60 = _fmt_auc(p.auc_step60_current)
-        s60_cell = f"[bold green]{s60}[/bold green]" if is_best else s60
-        table.add_row(
-            str(p.top_k), f"{p.similarity_threshold:.2f}",
-            _fmt_cov(p.coverage_step60), s60_cell,
-            str(p.n_snapshots),
-        )
-    console.print(table)
-
-    if save_output:
-        with open(save_output, "w", newline="") as f:
-            w = _csv.DictWriter(
-                f, fieldnames=[
-                    "top_k", "similarity_threshold",
-                    "coverage_step60", "auc_step60_current", "n_snapshots",
-                ],
-            )
+    if save_trials:
+        param_keys = sorted(report.trials[0].params.keys())
+        fieldnames = [
+            "window", "aggregation", "target_metric", *param_keys, "target_auc",
+        ]
+        fieldnames += [f"auc_{m}" for m in METRICS]
+        with open(save_trials, "w", newline="") as f:
+            w = _csv.DictWriter(f, fieldnames=fieldnames)
             w.writeheader()
-            for p in report.points:
-                w.writerow({
-                    "top_k": p.top_k,
-                    "similarity_threshold": f"{p.similarity_threshold:.4f}",
-                    "coverage_step60": (
-                        f"{p.coverage_step60:.4f}"
-                        if p.coverage_step60 is not None else ""
-                    ),
-                    "auc_step60_current": (
-                        f"{p.auc_step60_current:.4f}"
-                        if p.auc_step60_current is not None else ""
-                    ),
-                    "n_snapshots": p.n_snapshots,
-                })
-        console.print(f"Saved sweep CSV to {save_output}")
+            for t in report.trials:
+                row = {
+                    "window": t.window,
+                    "aggregation": t.aggregation,
+                    "target_metric": t.target_metric,
+                    "target_auc": f"{t.target_auc:.4f}",
+                }
+                for k, v in t.params.items():
+                    row[k] = (
+                        f"{v:.4f}" if isinstance(v, float) else str(v)
+                    )
+                for m in METRICS:
+                    v = t.auc_per_metric.get(m)
+                    row[f"auc_{m}"] = f"{v:.4f}" if v is not None else ""
+                w.writerow(row)
+        console.print(f"Saved trials CSV to {save_trials}")
+
+    # Per-step AUC curves live in eval-time tooling
+    # (benchmarks/demo_eval/eval_cascade.py) — the sweep keeps trial
+    # output to scalar weighted_aucs to stay leakage-cheap.
 
 
 @app.command(name="path-freq")
@@ -295,7 +301,10 @@ def path_freq(
     """Analyze trajectory paths and suggest action-variance thresholds."""
     from episodiq.analytics.tune.path_frequency import PathFrequencyTuner
     from episodiq.retrieval.retrieval import Retrieval
-    from episodiq.storage.postgres.repository import TrajectoryPathRepository
+    from episodiq.storage.postgres.repository import (
+        TrajectoryPathRepository,
+        TrajectoryWindowLSHRepository,
+    )
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -306,7 +315,13 @@ def path_freq(
     async def _run() -> PathFrequencyResult:
         async with session_factory() as session:
             path_repo = TrajectoryPathRepository(session)
-            retrieval = Retrieval(path_repo, config.retrieval)
+            lsh_repo = TrajectoryWindowLSHRepository(session)
+            retrieval = Retrieval(
+                path_repo, lsh_repo,
+                minhash_config=config.minhash,
+                retrieval_config=config.retrieval,
+                scoring_config=config.scoring,
+            )
             tuner = PathFrequencyTuner(
                 path_repo, retrieval,
                 low_percentile=low_pct,
@@ -327,3 +342,7 @@ def path_freq(
     console.print()
     console.print(f"[bold]Suggested thresholds (p{low_pct:.0f} / p{high_pct:.0f}):[/bold]")
     console.print(f"  EPISODIQ_LOW_ENTROPY={result.thresholds.low_entropy:.2f}  EPISODIQ_HIGH_ENTROPY={result.thresholds.high_entropy:.2f}")
+
+
+if __name__ == "__main__":
+    app()

@@ -70,7 +70,13 @@ class TokenSaver:
         )
 
         await self._mapping_repo.delete_all()
+        # Skip one-side-noise rows from token_mapping — they contributed to
+        # clustering centroids but should not be tokenized (path_updater
+        # carry-forwards on them).
+        written = 0
         for row, lbl in zip(pool.rows, result.labels):
+            if row.a_cluster_id is None or row.o_cluster_id is None:
+                continue
             label_int = int(lbl) if lbl >= 0 else NOISE_CLUSTER_ID
             token_cluster_id = cluster_id_to_uuid.get(label_int)
             await self._mapping_repo.create(
@@ -80,6 +86,10 @@ class TokenSaver:
                 observation_cluster_id=row.o_cluster_id,
                 token_cluster_id=token_cluster_id,
             )
-        logger.info("persisted %d token_mapping rows", len(pool.rows))
+            written += 1
+        logger.info(
+            "persisted %d token_mapping rows (skipped %d one-side-noise)",
+            written, len(pool.rows) - written,
+        )
 
         return len(cluster_id_to_uuid)

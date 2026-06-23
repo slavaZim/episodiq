@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "episodiq-ai"
-version = "0.1.0"
+version = "0.1.1"
 description = "Economical human-readable logs and structural retrieval for agentic trajectories"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -44,6 +44,7 @@ dependencies = [
     "umap-learn>=0.5.12",
     "uvicorn[standard]>=0.40.0",
     "pyclustering>=0.10.1.2",
+    "optuna>=4.9.0",
 ]
 
 [project.urls]

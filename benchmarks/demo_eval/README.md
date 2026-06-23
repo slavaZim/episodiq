@@ -1,18 +1,22 @@
 # Demo Evaluation Pipeline
 
-End-to-end walkthrough of the Episodiq pipeline on **SWE-rebench-openhands-trajectories** — 275 [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) trajectories. Seeds the DB, clusters messages and act_obs pairs, builds a MinHash retrieval index, tunes & evaluates the pattern-retrieval signal, and renders demo reports.
+End-to-end walkthrough of the Episodiq pipeline on **SWE-rebench-openhands-trajectories** — 275 [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) trajectories. Seeds the DB, clusters messages and act_obs pairs, builds the per-window MinHash LSH index, tunes & evaluates the cascade retrieval signal, and renders demo reports.
 
 > **Note:** the `--env` flag in every script loads a local `.env` file — convenience for the bench only. In production Episodiq reads config from environment variables directly.
 
 ## Headline numbers (latest run)
 
+`cummean` is the headline metric — running mean of per-snapshot `fail_similarity`, the most noise-robust of the three Episodiq aggregations. Per-trajectory bootstrap 95% CI (200 draws).
+
 | Metric | Value |
 |---|---|
-| Tune AUC @ step 60 (`current`, n=55) | **0.7935** at cov 48.7% |
-| Eval AUC @ step 60 (`current`, n=220) | **0.7048** at cov 22.2% |
-| Picked config | `top_k=10, similarity_threshold=0.20`, MinHash K=512, n-gram=3, 29-token vocab |
+| Tune AUC@s50 (cummean, n=100) | **0.6440** |
+| Eval AUC@s50 (cummean, n=175) | **0.6983** [0.609, 0.782] |
+| Picked config | `W=10  agg=min_distance  prefetch_n_uniq=220  jaccard_n_uniq=140  top_k=10  penalty=lin  lam=1.2  σ=0.5  gap_open=2.8  gap_extend=1.2`; LSH layout B=64, R=1 |
 
-Both slices come from a single stride-balanced stratified ordering (status × length quartile), so the 55-trajectory tune slice mirrors the full-population distribution (~65% failure on each side).
+Both slices come from the same `Random(42).shuffle` of instance-id-sorted trajectories, then a proportional interleave by status — both slices land at ~65% failure rate (population mean). The 100-trajectory tune slice drives hyperparam selection; the 175-trajectory eval slice is held out.
+
+Top-level [README](../../README.md#pattern-retrieval-vs-basic-rag) has the head-to-head against the Basic RAG baseline.
 
 ## Overview
 
@@ -23,14 +27,14 @@ Both slices come from a single stride-balanced stratified ordering (status × le
 04 Annotate clusters with LLM labels, then rebuild paths
 05 Grid-search AO tokenizer params
 06 Tokenize (act_obs pairs → token vocabulary)
-07 Build the MinHash index (trace_tokens + minhash_sig)
-08 Tune retrieval — pick best (top_k, similarity_threshold) on a 55-traj stratified tune slice
-09 Eval — score the remaining 220 trajectories
-10 Tune path-frequency entropy thresholds (uses tuned retrieval config)
+07 Build the per-window MinHash LSH index (trace_tokens + bands)
+08 Tune retrieval cascade on a 100-traj stratified tune slice (Optuna TPE)
+09 Eval — score the remaining 175 trajectories with the tune winner
+10 Tune path-frequency entropy thresholds (optional)
 11 Demo — dump every trajectory's report (JSONL with -a analytics)
 ```
 
-Steps 02 → 06 are fit on the full DB; steps 08 (tune) and 09 (eval) split via `output/stratified_order.json` so the tune slice is leakage-free.
+Steps 02 → 06 are fit on the full DB. Steps 08 + 09 share the same `Random(42).shuffle + proportional-interleave-by-status` ordering: 100 trajectories drive hyperparam selection, the remaining 175 are held out for eval. Both slices retain the population's ~65% failure rate.
 
 ## Prerequisites
 
@@ -85,7 +89,7 @@ Generates human-readable labels per cluster (contrastive annotation via `claude-
 ./06_tokenize.sh        # apply chosen tokenizer config
 ```
 
-Grid-search then run an HDBSCAN tokenizer over (action, observation) pair embeddings to produce a compact act_obs token vocabulary (the alphabet for MinHash n-grams). Same selection heuristic as step 02. Saved config: `output/tokenize_config.json`. Current pick: 29 tokens (`min_cluster_size=14, min_samples=7, umap_dims=70, umap_n_neighbors=15`).
+Grid-search then run an HDBSCAN tokenizer over (action, observation) pair embeddings to produce a compact act_obs token vocabulary (the alphabet for the per-window MinHash LSH bands consumed by the retrieval cascade). Same selection heuristic as step 02. Saved config: `output/tokenize_config.json`. Aim for ~50–60 tokens.
 
 ### Step 7: Build MinHash index
 
@@ -93,7 +97,7 @@ Grid-search then run an HDBSCAN tokenizer over (action, observation) pair embedd
 ./07_index_build.sh
 ```
 
-Builds `trace_tokens` + `minhash_sig` per `trajectory_path` row from the AO token mapping. Exports `EPISODIQ_MINHASH_K=512` and `EPISODIQ_NGRAM_N=3` as defaults — override via env if you want to sweep.
+Builds `trace_tokens` + per-window MinHash LSH bands per `trajectory_path` row from the AO token mapping. Exports `EPISODIQ_WMH_SIG_SIZE=64`, `EPISODIQ_WMH_NUM_BANDS=64` (= B=64, R=1; bench uses the wider band layout — see top-level README), and `EPISODIQ_RETRIEVAL_WINDOW=10`. Override via env to sweep.
 
 ### Step 8: Tune retrieval (top_k, similarity_threshold)
 
@@ -144,7 +148,7 @@ Renders every seeded trajectory through `episodiq report uuid --format json -a` 
 4. **Filter, then minimize `n_clusters`.** Workflow: filter `noise_ratio ≤ 0.25`, sort by `dbcv` desc, then look at `n_clusters` to break ties. The current `cluster_config.json` was picked by inspecting top-DBCV rows per pair and choosing the cleanest one with non-trivial cluster count.
 5. **Per-category — don't reuse one config.** `execute_bash` observations have a different shape than `think` actions. The grid runs per pair specifically so you can tune each independently.
 
-Same rules apply to the AO tokenizer in step 05 — pick a config that gives a small but meaningful token vocabulary (~10–50 tokens) with healthy noise.
+Same rules apply to the AO tokenizer in step 05 — pick a config that gives a small but meaningful token vocabulary (~50–60 tokens) with healthy noise.
 
 ## Troubleshooting
 

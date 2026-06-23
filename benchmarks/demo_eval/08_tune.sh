@@ -1,84 +1,100 @@
 #!/bin/bash
-# Step 8: retrieval-sweep on the first 55 trajectories of a stratified
-# ordering (balanced by status × length-quartile so the tune slice mirrors
-# the full-population distribution). Leave-one-out against the rest of the
-# completed trajectories. Picks the single config with the highest AUC@s60
-# in the target coverage band and writes it to output/tune_config.json for
-# step 10 to eval.
+# Step 8: retrieval-sweep over the cascade hyperparameters on a tune
+# slice (first TUNE_LIMIT trajectories after a deterministic
+# Random(SHUFFLE_SEED).shuffle of all completed trajectories). The
+# same seed in basic.py reproduces a parallel tune/eval split on the
+# naive baseline.
+#
+# Optuna TPE searches per (W, agg) over prefetch_n_uniq /
+# jaccard_n_uniq / top_k / penalty_shape / lam / gap_open / gap_extend
+# / sigma + metric-as-categorical. The overall best trial's params +
+# AUC land in output/tune_config.json for step 9 to eval against the
+# remainder of the shuffled list.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-export EPISODIQ_MINHASH_K="${EPISODIQ_MINHASH_K:-512}"
-export EPISODIQ_NGRAM_N="${EPISODIQ_NGRAM_N:-3}"
-
 ENV=.env
-ORDER=output/stratified_order.json
-SWEEP=output/sweep.csv
+TRIALS_CSV=output/sweep_trials.csv
 TUNE_CONFIG=output/tune_config.json
-TUNE_LIMIT=55
+TUNE_LIMIT=100
 TUNE_OFFSET=0
-TOPK_GRID=5,10,15,25
-SIM_GRID=0.01,0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50
+SHUFFLE_SEED=42
+# Sort by Trajectory.meta.instance_id BEFORE the seed shuffle so the
+# pre-shuffle order is dataset-derived and matches what basic.py sees
+# when it sorts HF rows on the same key. Same (field, seed) on both
+# sides ⇒ identical tune/eval slices.
+SHUFFLE_FIELD=meta.instance_id
+STRATIFY_FIELD=status
 
-echo "=== Step 8a: Compute stratified trajectory ordering ==="
-if [ -f "$ORDER" ]; then
-  echo "  using existing $ORDER (delete to regenerate)"
-else
-  PYTHONUNBUFFERED=1 uv run python stratify.py --env "$ENV" --output "$ORDER"
-fi
+N_TRIALS=30
+EARLY_STOP_PATIENCE=10
+N_JOBS=4
+N_WORKERS=4
+W_GRID=10,14
+AGG_GRID=mean,min_distance
+OBJECTIVE_METRIC=cummean
 
-echo ""
-echo "=== Step 8b: Retrieval sweep on $TUNE_LIMIT tune queries (offset=$TUNE_OFFSET, stratified) ==="
+mkdir -p output
+
+echo "=== Step 8: retrieval-sweep (tune slice: $TUNE_LIMIT trajs, seed=$SHUFFLE_SEED) ==="
 PYTHONUNBUFFERED=1 uv run episodiq tune retrieval-sweep \
   --env "$ENV" \
-  --order-file "$ORDER" \
+  --shuffle-seed "$SHUFFLE_SEED" \
+  --shuffle-field "$SHUFFLE_FIELD" \
+  --stratify-field "$STRATIFY_FIELD" \
   --limit "$TUNE_LIMIT" \
   --offset "$TUNE_OFFSET" \
-  --top-k "$TOPK_GRID" \
-  --sim "$SIM_GRID" \
-  --save-output "$SWEEP"
-
-TARGET_COV=0.60
-COV_TOL=0.20
+  --w-grid "$W_GRID" \
+  --agg-grid "$AGG_GRID" \
+  --n-trials "$N_TRIALS" \
+  --early-stop-patience "$EARLY_STOP_PATIENCE" \
+  --n-jobs "$N_JOBS" \
+  --n-workers "$N_WORKERS" \
+  --multivariate \
+  --objective-metric "$OBJECTIVE_METRIC" \
+  --save-trials "$TRIALS_CSV"
 
 echo ""
-echo "=== Step 8: Pick best AUC@s60 in coverage band $TARGET_COV +/- $COV_TOL ==="
-# CSV header: top_k,similarity_threshold,coverage_step60,auc_step60_current,n_snapshots
-PYTHONUNBUFFERED=1 uv run python - "$SWEEP" "$TUNE_CONFIG" "$TARGET_COV" "$COV_TOL" <<'EOF'
+echo "=== Step 8: pick champion (argmax target_auc across all trials) ==="
+PYTHONUNBUFFERED=1 uv run python - "$TRIALS_CSV" "$TUNE_CONFIG" "$TUNE_LIMIT" "$SHUFFLE_SEED" "$SHUFFLE_FIELD" "$STRATIFY_FIELD" <<'EOF'
 import csv, json, sys
 from pathlib import Path
 
-sweep_path, cfg_path = sys.argv[1], sys.argv[2]
-target_cov, tol = float(sys.argv[3]), float(sys.argv[4])
-rows = list(csv.DictReader(open(sweep_path)))
+trials_path, cfg_path, tune_limit, seed, shuffle_field, stratify_field = sys.argv[1:7]
+rows = list(csv.DictReader(open(trials_path)))
+if not rows:
+    raise SystemExit("no trials in CSV — sweep produced no signal")
 
-def auc(r):
-    v = r.get("auc_step60_current") or ""
-    return float(v) if v else -1.0
-
-def cov(r):
-    v = r.get("coverage_step60") or ""
-    return float(v) if v else -1.0
-
-band = [r for r in rows if abs(cov(r) - target_cov) <= tol]
-if not band:
-    print(f"  no sweep rows in coverage band {target_cov} +/- {tol}; "
-          f"falling back to best AUC overall")
-    band = rows
-best = max(band, key=auc)
+best = max(rows, key=lambda r: float(r["target_auc"]))
 cfg = {
+    "window": int(best["window"]),
+    "aggregation": best["aggregation"],
+    "metric": best["target_metric"],
+    "prefetch_n_uniq": int(best["prefetch_n_uniq"]),
+    "jaccard_n_uniq": int(best["jaccard_n_uniq"]),
     "top_k": int(best["top_k"]),
-    "similarity_threshold": float(best["similarity_threshold"]),
-    "tune_coverage_step60": cov(best),
-    "tune_auc_step60_current": auc(best),
+    "penalty_shape": best["penalty_shape"],
+    "lam": float(best["lam"]),
+    "gap_open": float(best["gap_open"]),
+    "gap_extend": float(best["gap_extend"]),
+    "sigma": float(best["sigma"]),
+    "tune_auc": float(best["target_auc"]),
+    "tune_limit": int(tune_limit),
+    "shuffle_seed": int(seed),
+    "shuffle_field": shuffle_field or None,
+    "stratify_field": stratify_field or None,
 }
 Path(cfg_path).write_text(json.dumps(cfg, indent=2))
 print(
-    f"  top_k={cfg['top_k']} sim={cfg['similarity_threshold']:.3f} "
-    f"cov@s60={cfg['tune_coverage_step60']:.3f} "
-    f"AUC@s60={cfg['tune_auc_step60_current']:.4f}"
+    f"  champion: W={cfg['window']} agg={cfg['aggregation']} "
+    f"metric={cfg['metric']} AUC={cfg['tune_auc']:.4f}"
 )
-print(f"  picked from {len(band)} / {len(rows)} band rows -> {cfg_path}")
+print(
+    f"  params: prefetch={cfg['prefetch_n_uniq']} jaccard={cfg['jaccard_n_uniq']} "
+    f"top_k={cfg['top_k']} penalty={cfg['penalty_shape']} lam={cfg['lam']} "
+    f"sigma={cfg['sigma']} gap_open={cfg['gap_open']} gap_extend={cfg['gap_extend']}"
+)
+print(f"  wrote -> {cfg_path}")
 EOF
 
 echo "=== Done ==="

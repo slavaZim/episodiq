@@ -1,33 +1,23 @@
 """Basic naive RAG baseline for agent-trajectory failure prediction.
 
-Pipeline
---------
-1. Load trajectories from a HuggingFace dataset (one per instance).
-2. Embed every distinct message via the configured embedder (default:
-   qwen3-embedding-8b on OpenRouter). Embeddings are cached on disk so
-   re-runs are cheap.
-3. For each trajectory build snapshots — points in time where retrieval
-   runs. A snapshot is emitted after each user|tool message.
-4. Query for a snapshot = mean of the last_N message embeddings in its
-   prefix. Cosine kNN across snapshots of OTHER trajectories; the top_k
-   distinct-trajectory neighbours produce fail_frac.
-5. Each candidate must clear `min_cos` (cosine similarity cutoff). Snapshots
-   with no surviving candidates are dropped. Per-snapshot fail_frac drives
-   the AUC@step current aggregation (most recent filtered snapshot <= s)
-   averaged over s in [60, max_step].
+Mirrors the demo_eval pipeline's tune/eval split (`08_tune.sh` /
+`09_eval.sh`):
 
-Sweep
------
-- ``embedding_dim``       : {1024, 2048}
-- ``last_N``              : {1, 3, 5, 10, all}
-- ``top_k``               : {5, 10, 25}
-- ``min_cos``             : cosine cutoff for candidate filtering
-- ``include_initial_task``: {True, False}
+  1. Load + dedupe trajectories from HuggingFace.
+  2. ``Random(--shuffle-seed).shuffle`` the trajectory list — same seed
+     in ``episodiq tune retrieval-sweep --shuffle-seed S`` gives a
+     parallel slice on the production cascade.
+  3. **Tune** phase: full grid over ``(dims, include_initial_task,
+     last_n, top_k)`` on the first ``--tune-limit`` trajectories
+     (leave-one-out — queries from tune, corpus = tune \\ self-traj).
+     Pick the config maximising AUC@step50 under ``--eval-metric``
+     (default ``cummeanmax`` to match prod sweep).
+  4. **Eval** phase: the single tune winner, queries = remainder of
+     the shuffled list, corpus = tune slice only.
 
-Output
-------
-JSON record per swept config: top_k, last_n, min_cos, dims,
-include_initial_task, coverage@s60, AUC@s60.
+Output JSON carries the winner config, the tune-side AUC under all 3
+``SIMILARITY_METRICS`` (cummax / cummean / cummeanmax), and the
+eval-side AUCs.
 
 Usage
 -----
@@ -35,6 +25,7 @@ Usage
         uv run python benchmarks/basic.py \\
             --dataset <hf-dataset-id> \\
             --repo <repo-name> \\
+            --shuffle-seed 42 --tune-limit 55 \\
             --output benchmarks/basic_results.json
 
 Dataset layout
@@ -55,19 +46,22 @@ import hashlib
 import json
 import logging
 import os
+import random
 from collections import defaultdict
 from pathlib import Path
 
 import httpx
 import numpy as np
-from sklearn.metrics import roc_auc_score
+
+from episodiq.analytics.metrics import (
+    SIMILARITY_METRICS, bootstrap_aucs, weighted_aucs,
+)
 
 logger = logging.getLogger(__name__)
 
-LAST_NS: list[int | None] = [1, 3, 5, 10, None]   # None = "all"
-TOP_KS: list[int] = [5, 10, 25]
-MIN_COS_GRID: list[float] = [0.0, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
-EVAL_STEP = 60
+LAST_NS: list[int | None] = [*range(1, 21), None]   # 1..20 + unbounded
+TOP_KS: list[int] = list(range(1, 51))   # 1..50
+EVAL_STEP = 50
 EMBED_DIMS = [1024, 2048]
 INCLUDE_INITIAL_TASK_VARIANTS = [True, False]
 EMBED_MODEL = "qwen/qwen3-embedding-8b"
@@ -264,6 +258,11 @@ def build_query_matrix(per_traj_paths, hash_to_vec, last_n):
     Q, ti_arr, pp_arr = [], [], []
     for ti, paths in enumerate(per_traj_paths):
         for k, (_snap_pos, prefix) in enumerate(paths):
+            # Skip snapshots whose history is shorter than the requested
+            # window — for last_n=N the first usable snapshot has N
+            # messages in its prefix. None = unbounded; always allowed.
+            if last_n is not None and len(prefix) < last_n:
+                continue
             chunk = prefix if last_n is None else prefix[-last_n:]
             ev = [hash_to_vec[text_id(t)] for t in chunk if text_id(t) in hash_to_vec]
             if not ev:
@@ -279,24 +278,32 @@ def build_query_matrix(per_traj_paths, hash_to_vec, last_n):
     return Qn, np.asarray(ti_arr), np.asarray(pp_arr)
 
 
-def retrieve_with_sims(Qn, traj_arr, resolved, max_k):
-    """Return (labels per snapshot, cosine sim per candidate per snapshot)."""
-    n = Qn.shape[0]
+def retrieve_with_sims(
+    Qq, Qc, ti_q, ti_c, resolved, max_k,
+):
+    """Cosine kNN: rows of ``Qq`` query against the corpus rows of
+    ``Qc``. ``ti_q``/``ti_c`` are trajectory indices for each row;
+    candidates sharing the query's trajectory are excluded (covers
+    leave-one-out when ``Qq is Qc`` and is a no-op for the disjoint
+    tune/eval split). Returns per-query ``[bool labels]`` and
+    ``[float sims]`` for up to ``max_k`` distinct corpus trajectories.
+    """
+    n_q = Qq.shape[0]
     batch = 512
     per_row_labels: list[list[bool]] = []
     per_row_sims: list[list[float]] = []
-    for s in range(0, n, batch):
-        e = min(s + batch, n)
-        sims = Qn[s:e] @ Qn.T
+    for s in range(0, n_q, batch):
+        e = min(s + batch, n_q)
+        sims = Qq[s:e] @ Qc.T
         for off in range(e - s):
             q = s + off
-            own = traj_arr[q]
+            own = ti_q[q]
             sim = sims[off].copy()
-            sim[traj_arr == own] = -1.0
+            sim[ti_c == own] = -1.0
             order = np.argsort(-sim)
             seen, picks, sim_picks = set(), [], []
             for j in order:
-                t = int(traj_arr[j])
+                t = int(ti_c[j])
                 if t in seen:
                     continue
                 seen.add(t)
@@ -306,36 +313,51 @@ def retrieve_with_sims(Qn, traj_arr, resolved, max_k):
                     break
             per_row_labels.append([not resolved[t] for t in picks])
             per_row_sims.append(sim_picks)
-        logger.info("  retrieve %d/%d", e, n)
+        logger.info("  retrieve %d/%d", e, n_q)
     return per_row_labels, per_row_sims
 
 
-def _current_auc_at_step(
+def _split_query_matrix(Qn, ti_arr, pp_arr, traj_mask):
+    """Slice ``(Qn, ti_arr, pp_arr)`` to the rows whose trajectory
+    index is in ``traj_mask`` (bool array, length = #trajectories).
+    """
+    keep = traj_mask[ti_arr]
+    return Qn[keep], ti_arr[keep], pp_arr[keep]
+
+
+def _auc_at_step(
     per_traj: dict,
     traj_label: dict,
     min_step: int,
-) -> float | None:
-    """Mean ROC AUC over s >= min_step using current aggregation."""
-    if not per_traj:
-        return None
-    max_step_per_traj = {
-        tid: max(s for s, _ in snaps) for tid, snaps in per_traj.items()
+) -> dict[str, float | None]:
+    """Weighted-AUC per metric — thin shim over the shared utility.
+    ``traj_label`` is 1=failure / 0=success; the utility expects
+    string status, so map here."""
+    status = {
+        tid: "failure" if lbl else "success"
+        for tid, lbl in traj_label.items()
     }
-    max_step = max(max_step_per_traj.values())
-    aucs = []
-    for s in range(min_step, max_step + 1):
-        y, scores = [], []
-        for tid, snaps in per_traj.items():
-            if max_step_per_traj[tid] < s:
-                continue
-            ordered = sorted([(st, ff) for st, ff in snaps if st <= s])
-            if not ordered:
-                continue
-            y.append(traj_label[tid])
-            scores.append(ordered[-1][1])
-        if len(set(y)) >= 2:
-            aucs.append(roc_auc_score(y, scores))
-    return float(np.mean(aucs)) if aucs else None
+    weighted = weighted_aucs(per_traj, status, eval_min_step=min_step)
+    return {m: weighted.get(m) for m in SIMILARITY_METRICS}
+
+
+def _build_per_traj(
+    per_row_labels: list[list[bool]],
+    per_row_sims: list[list[float]],
+    ti_arr: np.ndarray,
+    pp_arr: np.ndarray,
+    top_k: int,
+) -> dict:
+    """Collapse per-snapshot retrieval rows into the ``{tid: [(step,
+    fail_sim), ...]}`` shape consumed by the metric utilities."""
+    per_traj: dict = defaultdict(list)
+    for row_i, neighs in enumerate(per_row_labels):
+        cand = neighs[:top_k]
+        if not cand:
+            continue
+        ff = sum(1 for lab in cand if lab) / len(cand)
+        per_traj[int(ti_arr[row_i])].append((int(pp_arr[row_i]), ff))
+    return per_traj
 
 
 def evaluate(
@@ -345,46 +367,50 @@ def evaluate(
     pp_arr: np.ndarray,
     resolved: list[bool],
     top_k: int,
-    min_cos: float,
 ) -> dict:
-    per_traj: dict = defaultdict(list)
-    for row_i, neighs in enumerate(per_row_labels):
-        sims = per_row_sims[row_i]
-        # Drop candidates below the threshold, then take the top-k of the
-        # filtered list — matches the MinHash prefilter's traj-level cutoff.
-        kept_neighs = [
-            (lab, sim) for lab, sim in zip(neighs, sims) if sim >= min_cos
-        ]
-        if not kept_neighs:
-            continue
-        cand = kept_neighs[:top_k]
-        ff = sum(1 for lab, _ in cand if lab) / len(cand)
-        per_traj[int(ti_arr[row_i])].append((int(pp_arr[row_i]), ff))
-    traj_label = {ti: 1 if not resolved[ti] else 0 for ti in per_traj}
-    auc = _current_auc_at_step(per_traj, traj_label, EVAL_STEP)
-    # Per-snapshot density at step s: fraction of snapshots with step >= s
-    # that themselves passed the similarity filter.
-    filtered_set = {
-        (ti, st) for ti, snaps in per_traj.items() for st, _ in snaps
-    }
-    total = sum(
-        1 for i in range(len(per_row_labels))
-        if int(pp_arr[i]) >= EVAL_STEP
+    per_traj = _build_per_traj(
+        per_row_labels, per_row_sims, ti_arr, pp_arr, top_k,
     )
-    if total == 0:
-        cov = None
-    else:
-        covered = sum(
-            1 for i in range(len(per_row_labels))
-            if int(pp_arr[i]) >= EVAL_STEP
-            and (int(ti_arr[i]), int(pp_arr[i])) in filtered_set
-        )
-        cov = covered / total
+    traj_label = {ti: 1 if not resolved[ti] else 0 for ti in per_traj}
+    aucs = _auc_at_step(per_traj, traj_label, EVAL_STEP)
     return {
         "n_trajectories": len(per_traj),
-        "coverage_step60": cov,
-        "auc_step60_current": auc,
+        **{f"auc_step{EVAL_STEP}_{m}": aucs[m] for m in SIMILARITY_METRICS},
     }
+
+
+def evaluate_with_ci(
+    per_row_labels: list[list[bool]],
+    per_row_sims: list[list[float]],
+    ti_arr: np.ndarray,
+    pp_arr: np.ndarray,
+    resolved: list[bool],
+    top_k: int,
+    *,
+    n_boot: int = 200,
+    boot_seed: int = 42,
+) -> dict:
+    """Point-estimate AUC per metric + per-trajectory bootstrap 95% CI.
+    Eval-only — the sweep does NOT pay this cost per trial.
+    """
+    per_traj = _build_per_traj(
+        per_row_labels, per_row_sims, ti_arr, pp_arr, top_k,
+    )
+    status = {
+        ti: "failure" if not resolved[ti] else "success" for ti in per_traj
+    }
+    cis = bootstrap_aucs(
+        per_traj, status, eval_min_step=EVAL_STEP,
+        n_boot=n_boot, seed=boot_seed,
+    )
+    base = evaluate(
+        per_row_labels, per_row_sims, ti_arr, pp_arr, resolved, top_k,
+    )
+    base["auc_ci_per_metric"] = {
+        m: {"lo": ci.lo, "hi": ci.hi, "mean": ci.mean}
+        for m, ci in cis.items()
+    }
+    return base
 
 
 async def run(args):
@@ -394,7 +420,46 @@ async def run(args):
 
     trajs = load_repo(args.dataset, args.repo, args.limit)
     per_traj_msgs, resolved = extract_messages(trajs)
-    logger.info("messages collected for %d trajectories", len(per_traj_msgs))
+    n_total = len(per_traj_msgs)
+    logger.info("messages collected for %d trajectories", n_total)
+
+    # Sort by instance_id, seed-shuffle, then (optionally) stratify by
+    # ``resolved`` so the tune/eval prefix inherits the population's
+    # fail-rate regardless of seed — mirrors
+    # ``episodiq tune retrieval-sweep --stratify-field status`` on the
+    # DB side.
+    indices = list(range(n_total))
+    indices.sort(key=lambda i: str(trajs[i].get("instance_id") or ""))
+    random.Random(args.shuffle_seed).shuffle(indices)
+    if args.stratify:
+        # Group → proportional interleave. Each item's ticket is its
+        # within-group position normalised to (0, 1].
+        from collections import defaultdict
+        groups: dict = defaultdict(list)
+        for i in indices:
+            groups[bool(resolved[i])].append(i)
+        tickets = []
+        for cls, group in groups.items():
+            n = len(group)
+            for k, i in enumerate(group):
+                tickets.append(((k + 1) / n, cls, i))
+        tickets.sort(key=lambda x: (x[0], int(x[1])))
+        indices = [i for _, _, i in tickets]
+    per_traj_msgs = [per_traj_msgs[i] for i in indices]
+    resolved = [resolved[i] for i in indices]
+
+    tune_limit = min(args.tune_limit, n_total)
+    if tune_limit <= 0 or tune_limit >= n_total:
+        raise SystemExit(
+            f"--tune-limit must be in (0, {n_total}); got {args.tune_limit}",
+        )
+    tune_mask = np.zeros(n_total, dtype=bool)
+    tune_mask[:tune_limit] = True
+    eval_mask = ~tune_mask
+    logger.info(
+        "split: tune=%d eval=%d  seed=%d",
+        tune_mask.sum(), eval_mask.sum(), args.shuffle_seed,
+    )
 
     uniq, seen = [], set()
     for msgs in per_traj_msgs:
@@ -406,36 +471,99 @@ async def run(args):
     logger.info("uniq texts to embed: %d", len(uniq))
 
     cache_dir = Path(args.cache_dir) / args.repo.replace("/", "__")
-    all_results: dict = {}
+    tune_results: dict = {}
 
+    # --- Tune phase: full grid; queries=tune slice, corpus=ALL --------
+    # Mirrors the cascade sweep: tune-slice snapshots drive AUC for the
+    # hyperparam picker, but the corpus is the full population (LSH
+    # alt-table in production indexes everything; here Qc=Qn).
     for dims in EMBED_DIMS:
         hash_to_vec = await embed_all(uniq, api_key, cache_dir, dims)
         for include_task in INCLUDE_INITIAL_TASK_VARIANTS:
             per_traj_paths = build_snapshots(per_traj_msgs, include_task)
             total_paths = sum(len(p) for p in per_traj_paths)
-            logger.info("=== dims=%d include_initial_task=%s: %d snapshots ===",
+            logger.info("=== tune: dims=%d include_initial_task=%s: %d snapshots ===",
                         dims, include_task, total_paths)
             for n in LAST_NS:
                 Qn, ti_arr, pp_arr = build_query_matrix(
                     per_traj_paths, hash_to_vec, n)
-                logger.info("dims=%d include_task=%s last_n=%s: Q %s",
-                            dims, include_task, "all" if n is None else n, Qn.shape)
+                # Restrict queries to the tune slice; corpus stays full.
+                Qt, ti_t, pp_t = _split_query_matrix(
+                    Qn, ti_arr, pp_arr, tune_mask,
+                )
+                logger.info("tune dims=%d include_task=%s last_n=%s: Qq=%s corpus=%s",
+                            dims, include_task, "all" if n is None else n,
+                            Qt.shape, Qn.shape)
                 per_row_labels, per_row_sims = retrieve_with_sims(
-                    Qn, ti_arr, resolved, max(TOP_KS),
+                    Qt, Qn, ti_t, ti_arr, resolved, max(TOP_KS),
                 )
                 for top_k in TOP_KS:
-                    for min_cos in MIN_COS_GRID:
-                        res = evaluate(
-                            per_row_labels, per_row_sims, ti_arr, pp_arr,
-                            resolved, top_k, min_cos,
-                        )
-                        key = (
-                            include_task, dims,
-                            "all" if n is None else n, top_k, min_cos,
-                        )
-                        all_results[key] = res
+                    res = evaluate(
+                        per_row_labels, per_row_sims, ti_t, pp_t,
+                        resolved, top_k,
+                    )
+                    key = (
+                        include_task, dims,
+                        "all" if n is None else n, top_k,
+                    )
+                    tune_results[key] = res
 
-    return all_results, len(per_traj_msgs), sum(1 for r in resolved if not r)
+    # --- Pick top config per metric, eval each on the held-out slice.
+    # The naive RAG baseline gets its strongest possible footing: for
+    # every metric ``m`` we let it pick its OWN best hyperparameters
+    # (those that maximise tune AUC under ``m``), then evaluate that
+    # config separately. Reporting all three winners with CIs shows
+    # the baseline's best shot across metrics — no single-metric
+    # restriction biases the comparison against it.
+    winners_per_metric: dict[str, dict] = {}
+    for m in SIMILARITY_METRICS:
+        col = f"auc_step{EVAL_STEP}_{m}"
+        def _tune_auc(k, _col=col):
+            v = tune_results[k].get(_col)
+            return v if v is not None else -1.0
+        best_key = max(tune_results, key=_tune_auc)
+        best_include, best_dims, best_last_n, best_top_k = best_key
+        tune_auc = _tune_auc(best_key)
+        logger.info(
+            "metric=%s tune winner: include_task=%s dims=%d last_n=%s "
+            "top_k=%d tune_auc=%.4f",
+            m, best_include, best_dims, best_last_n, best_top_k, tune_auc,
+        )
+
+        # Eval the per-metric winner against the held-out slice.
+        hash_to_vec = await embed_all(uniq, api_key, cache_dir, best_dims)
+        per_traj_paths = build_snapshots(per_traj_msgs, best_include)
+        last_n_val = None if best_last_n == "all" else int(best_last_n)
+        Qn, ti_arr, pp_arr = build_query_matrix(
+            per_traj_paths, hash_to_vec, last_n_val,
+        )
+        Qq, ti_q, pp_q = _split_query_matrix(Qn, ti_arr, pp_arr, eval_mask)
+        per_row_labels, per_row_sims = retrieve_with_sims(
+            Qq, Qn, ti_q, ti_arr, resolved, best_top_k,
+        )
+        eval_res = evaluate_with_ci(
+            per_row_labels, per_row_sims, ti_q, pp_q, resolved, best_top_k,
+            n_boot=args.n_boot, boot_seed=args.boot_seed,
+        )
+        col_m = f"auc_step{EVAL_STEP}_{m}"
+        ci = eval_res.get("auc_ci_per_metric", {}).get(m)
+        winners_per_metric[m] = {
+            "include_initial_task": best_include,
+            "embedding_dim": best_dims,
+            "last_n": best_last_n,
+            "top_k": best_top_k,
+            "tune_auc": tune_auc,
+            "eval_auc": eval_res.get(col_m),
+            "eval_auc_ci": (
+                {"lo": ci["lo"], "hi": ci["hi"]} if ci else None
+            ),
+            "eval_all_metrics": {
+                m2: eval_res.get(f"auc_step{EVAL_STEP}_{m2}")
+                for m2 in SIMILARITY_METRICS
+            },
+            "eval_ci_all_metrics": eval_res.get("auc_ci_per_metric"),
+        }
+    return tune_results, winners_per_metric, n_total, sum(1 for r in resolved if not r)
 
 
 def _fmt_auc(v):
@@ -443,53 +571,63 @@ def _fmt_auc(v):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Basic naive RAG baseline (no bootstrap)")
+    parser = argparse.ArgumentParser(
+        description="Basic naive RAG baseline with tune/eval split",
+    )
     parser.add_argument("--dataset", default="nebius/SWE-rebench-openhands-trajectories")
     parser.add_argument("--repo", default="tobymao/sqlglot")
     parser.add_argument("--limit", type=int, default=None,
                         help="cap trajectory count (default: all, stratified)")
+    parser.add_argument("--shuffle-seed", type=int, default=42,
+                        help="Random(seed).shuffle of trajectories before "
+                             "tune/eval split. Use the same seed in "
+                             "`episodiq tune retrieval-sweep --shuffle-seed S` "
+                             "for a parallel split on the cascade.")
+    parser.add_argument("--tune-limit", type=int, default=55,
+                        help="number of trajectories in the tune slice "
+                             "(first N after shuffle); the rest become eval queries.")
+    parser.add_argument("--stratify", action="store_true",
+                        help="Proportionally interleave shuffled trajectories "
+                             "by ``resolved`` so tune/eval prefix preserves the "
+                             "population fail-rate.")
     parser.add_argument("--cache-dir", default="benchmarks/.basic_cache")
     parser.add_argument("--output", default="benchmarks/basic_results.json")
     parser.add_argument("--api-key", default=None,
                         help="OpenRouter API key (falls back to OPENROUTER_API_KEY env)")
+    parser.add_argument("--n-boot", type=int, default=200,
+                        help="Bootstrap draws for per-metric eval AUC CI (95 pct).")
+    parser.add_argument("--boot-seed", type=int, default=42,
+                        help="RNG seed for bootstrap reproducibility.")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-    results, n_traj, n_fail = asyncio.run(run(args))
+    tune_results, winners_per_metric, n_traj, n_fail = asyncio.run(run(args))
 
     print(f"\n=== {args.dataset} | repo={args.repo} ===")
-    print(f"n_trajectories: {n_traj}  n_fail: {n_fail}  fail_rate: {n_fail/n_traj:.3f}\n")
+    print(f"n_trajectories: {n_traj}  n_fail: {n_fail}  fail_rate: {n_fail/n_traj:.3f}")
+    print(f"shuffle_seed: {args.shuffle_seed}  tune_limit: {args.tune_limit}\n")
 
-    def _fmt_cov(c):
-        return f"{c * 100:.1f}%" if c is not None else "n/a"
-
-    for include_task in INCLUDE_INITIAL_TASK_VARIANTS:
-        for dims in EMBED_DIMS:
-            print(f"\n--- include_initial_task={include_task}  dims={dims} ---")
-            print(f"{'last_N':>6} {'top_k':>5} {'min_cos':>7}  "
-                  f"{'cov@s60':>7} {'AUC@s60':>9}")
-            for n in LAST_NS:
-                n_lab = "all" if n is None else str(n)
-                for top_k in TOP_KS:
-                    for min_cos in MIN_COS_GRID:
-                        r = results.get((include_task, dims, "all" if n is None else n, top_k, min_cos))
-                        if r is None:
-                            continue
-                        print(
-                            f"{n_lab:>6} {top_k:>5} {min_cos:>7.2f}  "
-                            f"{_fmt_cov(r['coverage_step60']):>7} "
-                            f"{_fmt_auc(r['auc_step60_current']):>9}"
-                        )
+    print("=== Per-metric winners (each metric picks its OWN best config) ===")
+    for m in SIMILARITY_METRICS:
+        w = winners_per_metric[m]
+        ci = w.get("eval_auc_ci")
+        ci_str = f"  [{ci['lo']:.4f}, {ci['hi']:.4f}]" if ci else ""
+        print(f"\n--- metric: {m} ---")
+        print(f"  include_initial_task = {w['include_initial_task']}")
+        print(f"  embedding_dim        = {w['embedding_dim']}")
+        print(f"  last_n               = {w['last_n']}")
+        print(f"  top_k                = {w['top_k']}")
+        print(f"  tune AUC@s{EVAL_STEP}        = {_fmt_auc(w['tune_auc'])}")
+        print(f"  eval AUC@s{EVAL_STEP}        = {_fmt_auc(w['eval_auc'])}{ci_str}")
 
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    payload = []
-    for (include_task, dims, n, top_k, min_cos), r in results.items():
-        payload.append({
+    tune_payload = []
+    for (include_task, dims, n, top_k), r in tune_results.items():
+        tune_payload.append({
             "include_initial_task": include_task,
             "embedding_dim": dims,
             "last_n": n,
             "top_k": top_k,
-            "min_cos": min_cos,
             **r,
         })
     json.dump({
@@ -498,7 +636,11 @@ def main():
         "n_trajectories": n_traj,
         "n_fail": n_fail,
         "fail_rate": round(n_fail / n_traj, 3),
-        "results": payload,
+        "shuffle_seed": args.shuffle_seed,
+        "tune_limit": args.tune_limit,
+        "stratified": bool(args.stratify),
+        "winners_per_metric": winners_per_metric,
+        "tune_grid": tune_payload,
     }, open(args.output, "w"), indent=2)
     print(f"\nSaved to {args.output}")
 

@@ -5,7 +5,7 @@
 Episodiq is an LLM proxy that captures agent trajectories and represents each one as a sequence of typed action-observation tokens — a sequence- / pattern-based alternative to text-embedding retrieval. The same representation drives:
 
 - **Human-readable logs at ~98% lower annotation cost.** Annotate one representative per cluster, reuse for every trajectory. Zero LLM calls in the hot path. ([details →](#token-efficiency))
-- **Structural retrieval over completed trajectories.** Find paths with similar shape, not similar text — useful for monitoring, experience / reflection pipelines, and evaluation. ([benchmark →](#pattern-retrieval-vs-basic-rag))
+- **Structural (event-pattern) retrieval over completed trajectories.** Find paths whose action-observation sequence matches, not whose text matches — useful for monitoring, experience / reflection pipelines, and evaluation. ([benchmark →](#pattern-retrieval-vs-basic-rag))
 - **Per-snapshot fail-similarity score.** Running fail-prediction signal from KNN voting on retrieved neighbours.
 - **Loop detection.** Surfaces stuck repeating-action patterns — useful even when the agent isn't broken (e.g. token-waste monitoring).
 - **Action-predictability signal.** Flags steps where the next action is highly constrained vs steps where the agent could plausibly branch many ways.
@@ -16,34 +16,36 @@ Episodiq is an LLM proxy that captures agent trajectories and represents each on
 **With Episodiq:**
 
 ```bash
-episodiq report <trajectory-id> --format pretty -a --steps 47-75
+episodiq report <trajectory-id> --format pretty -a --steps 47-75 --metric cummean
 ```
 
 <pre>
-Trajectory d6cd3603 <b>[failure]</b>  89 steps, 2.1s  <b>peak fail_frac=1.00</b>  variance high=9 low=18  loops=1  unclassified=23
+Trajectory d6cd3603 <b>[failure]</b>  89 steps, 2.1s  <b>fail_similarity=0.67</b>  variance high=15 low=2  loops=7  unclassified=23
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-  47 +0.0s     o:str_replace_editor tool str_replace_editor configuring MySQL dialect syntax and mappings
-               -&gt; a:str_replace_editor agent examines specific code ranges in MySQL dialect file
-  48 +0.0s     o:str_replace_editor tool str_replace_editor configuring MySQL dialect syntax and mappings
-               -&gt; a:str_replace_editor agent examines specific code ranges in MySQL dialect file
-  49 +0.0s     o:str_replace_editor tool str_replace_editor configuring MySQL dialect syntax and mappings  <b>loop x3</b>
-               -&gt; a:str_replace_editor agent restores specialized function call after incorrect change
-  50 +0.0s     o:str_replace_editor tool str_replace_editor configuring MySQL dialect syntax and mappings  <b>fail_frac=0.70</b>
-               -&gt; a:str_replace_editor unclassified (action) (str_replace_editor)
+  47 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings
+               -&gt; a:  agent examines specific code ranges in MySQL dialect file
+  48 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>loop x2</b>
+               -&gt; a:  agent examines specific code ranges in MySQL dialect file
+  49 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>loop x3</b>
+               -&gt; a:  agent restores specialized function call after incorrect change
+  50 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>fail_similarity=0.72</b>
+               -&gt; a:  unclassified (action) (str_replace_editor)
    ⋮
-  57 +0.1s     o:execute_bash       tool execute_bash testing struct literal syntax variations  <b>fail_frac=0.80</b>
-               -&gt; a:execute_bash       agent debugging parsed SQL structure with print statements  variance=low
-  61 +0.2s     o:execute_bash       tool execute_bash testing struct literal syntax variations  <b>fail_frac=0.75</b>
-               -&gt; a:str_replace_editor agent restores specialized function call after incorrect change  variance=low
-  63 +0.2s     o:execute_bash       tool execute_bash testing struct literal syntax variations  <b>fail_frac=0.50</b>
-               -&gt; a:str_replace_editor agent restores specialized function call after incorrect change  variance=low
+  57 +0.1s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.71</b>
+               -&gt; a:  agent debugging parsed SQL structure with print statements
+  61 +0.2s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.71</b>
+               -&gt; a:  agent restores specialized function call after incorrect change  | variance=high
+  63 +0.2s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.70</b>
+               -&gt; a:  agent restores specialized function call after incorrect change  | variance=high
    ⋮
-  66 +0.3s     o:execute_bash       tool execute_bash testing struct literal syntax variations  <b>fail_frac=1.00</b>
-               -&gt; a:execute_bash       agent runs comprehensive test files in workspace directories  variance=low
-  73 +0.4s     o:execute_bash       tool execute_bash displaying code search results for alias handling  <b>fail_frac=1.00</b>
-               -&gt; a:think              agent fixing SQL dialect type mapping compatibility issues  variance=low
-  74 +0.5s     o:think              tool think responses successfully logged without errors  <b>fail_frac=1.00</b>
-               -&gt; a:str_replace_editor agent restores specialized function call after incorrect change  variance=low
+  66 +0.3s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.70</b>
+               -&gt; a:  agent runs comprehensive test files in workspace directories  | variance=high
+  70 +0.4s     o:  unclassified (observation) (execute_bash)  | <b>fail_similarity=0.70</b>  | <b>loop x2</b>
+               -&gt; a:  tool execute_bash verifying basic sqlglot import functionality
+  73 +0.4s     o:  tool execute_bash displaying code search results for alias handling  | <b>fail_similarity=0.70</b>
+               -&gt; a:  agent fixing SQL dialect type mapping compatibility issues
+  74 +0.5s     o:  tool think responses successfully logged without errors  | <b>fail_similarity=0.70</b>
+               -&gt; a:  agent restores specialized function call after incorrect change
 </pre>
 
 > **Zero LLM calls at runtime.**  All signals are computed from paths statistics.
@@ -250,14 +252,15 @@ is **failsafe**: if any step errors or times out, the request still
 forwards to the upstream provider and your agent never sees a
 difference.
 
-**The representation.** Each user/tool message is an **observation**, each assistant message is an **action**, and each agent step is an (action, observation) pair. Both sides are embedded and clustered, then the pairs themselves are re-clustered into a compact **act_obs token vocabulary** (~10–50 tokens). A trajectory is then a sequence of these typed tokens, and an n-gram MinHash signature over the sequence enables fast structural similarity search across the corpus — the basis for fail-prediction, loop detection, and action-variance signals, all computed without runtime LLM calls.
+**The representation.** Each user/tool message is an **observation**, each assistant message is an **action**, and each agent step is an (action, observation) pair. Both sides are embedded and clustered, then the pairs themselves are re-clustered into a compact **act_obs token vocabulary** (~50–60 tokens). A trajectory is a sequence of these typed tokens.
+
+**The retrieval cascade.** Anchors are placed at evenly spaced center steps along the trajectory; each anchor's surrounding window is hashed into per-window MinHash LSH bands. Lookup runs in four stages, each shrinking the candidate pool: (1) LSH band collisions per anchor → wide candidate set; (2) exact Jaccard rerank against each anchor's signature; (3) cross-anchor aggregation (mean or min-distance) into a single per-candidate score; (4) `agg-shift` Levenshtein rerank with a shift penalty, producing the final top-K. That structural similarity powers fail-prediction, loop detection, and action-variance signals, all computed without runtime LLM calls.
 
 ---
 
 ## Benchmarks
 
-Evaluated on coding-agent trajectories from the [SWE-rebench-OpenHands-Trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories) dataset, filtered to the [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) repository: **275 trajectories** (178 failures, 97 successes), no two sharing the same PR. A stride-balanced stratified split across (status × length quartile) gives a 55-trajectory tune slice and a 220-trajectory held-out eval slice, both ~65% failure rate.
-Full methodology and tuning guidance for your own agent: [`benchmarks/demo_eval/README.md`](benchmarks/demo_eval/README.md).
+Evaluated on coding-agent trajectories from the [SWE-rebench-OpenHands-Trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories) dataset, filtered to the [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) repository: **275 trajectories** (178 failures, 97 successes), no two sharing the same PR. A stratified split — `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — yields a 100-trajectory tune slice and a 175-trajectory held-out eval slice, both at ~65% failure rate (population mean). Reported 95% confidence intervals are per-trajectory bootstrap (200 draws). Full methodology and tuning guidance for your own agent: [`benchmarks/demo_eval/README.md`](benchmarks/demo_eval/README.md).
 
 ### Token efficiency
 
@@ -267,27 +270,40 @@ Methodology: cluster all messages, contrastively annotate the centroids once via
 
 ### Pattern retrieval vs Basic RAG
 
-A pattern matching retrieval engine with KNN voting shows a promising signal over basic RAG: **AUC = 0.705** averaged over step 60+ on held-out trajectories, while basic RAG plateaus around 0.60 AUC at any cosine threshold from 17% to 100% coverage.
+`cummean` (running-mean of per-snapshot fail-similarity) is the headline metric for both systems. Of the three aggregations Episodiq computes (`cummax`, `cummean`, `cummeanmax`), `cummean` is the most robust to noise — averaging dilutes single lucky hits, so a high `cummean` requires a *sustained* similarity signal. With only 275 trajectories split into a 100-traj tune slice and a 175-traj eval slice, single-spike metrics turn noisy, so locking the headline to the robust aggregation is the honest call.
 
-Evaluated on [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) trajectories from the [SWE-rebench-openhands-trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories) dataset — 275 trajectories split into 55 tune / 220 held-out eval. The split is a stride-balanced stratified ordering across (success/failure × trajectory-length quartile), so each prefix preserves the full-population distribution; both tune and eval slices land at ~65% failure rate and matching length quartiles. Leakage-free: only the 55-trajectory tune corpus drives eval predictions.
+**Headline**:
 
-| Method | AUC@s60 | Coverage @ s60 |
+| Method | tune AUC | eval AUC@s50 (cummean) | 95% CI |
+|---|---|---|---|
+| **Cascade retrieval** (per-window MinHash LSH + agg-shift Lev rerank) | 0.6440 | **0.6983** | [0.609, 0.782] |
+| Basic RAG (qwen3-embedding-8b cosine) | 0.5526 | 0.4820 | [0.372, 0.577] |
+
+For reference — Basic RAG's strongest shot, cherry-picking its own best config per metric:
+
+| Metric | Basic eval | 95% CI |
 |---|---|---|
-| Pattern retrieval (MinHash on act_obs-token n-grams, 29-token vocab, n=3) | **0.705** | 22% |
-| Basic RAG (qwen3-embedding-8b cosine, peak) | 0.599 | 99% |
+| cummax | 0.5764 | [0.461, 0.670] |
+| cummean | 0.4820 | [0.372, 0.577] |
+| cummeanmax | 0.4565 | [0.345, 0.561] |
 
-The pattern-retrieval config (`top_k=10, similarity_threshold=0.20`) is picked on a 55-trajectory tune slice with the similarity threshold targeting ~50% tune coverage; on the held-out eval that drops to 22% effective coverage. Basic RAG's cosine threshold doesn't yield similar selectivity — AUC stays in 0.58–0.60 across all cosine thresholds (0.0 through 0.95) and any coverage from 9% to 100%, because embedding similarity captures text content, not trajectory shape.
+Every Basic RAG CI overlaps 0.5 — text-embedding cosine over qwen3 has no usable structural-prediction signal on this corpus, even when allowed to pick the best aggregation. Cascade's `cummean` eval CI lower bound is 0.609 (clearly above random), and eval > tune indicates generalisation, not overfit.
 
-Results are **preliminary** — single-repo (sqlglot) limits the eval set to 220 trajectories, so 95% bootstrap confidence intervals overlap and the gap should be confirmed on larger datasets.
+**Methodology**:
 
-Reproduce: see [`benchmarks/demo_eval/`](benchmarks/demo_eval/) (steps 01-11) for the pattern-retrieval pipeline and [`benchmarks/basic.py`](benchmarks/basic.py) for the Basic RAG baseline.
+- **`AUC@s50`** is a time-stratified, weighted ROC AUC that controls for trajectory length. For every step `S ≥ 50`: take the trajectories still alive at `S` (last snapshot ≥ `S`); each contributes ONE score — its cumulative aggregate (`cummax` / `cummean` / `cummeanmax`) over snapshots up to step `S`. The ROC AUC at step `S` is then computed across those trajectories at the same horizon — a long trajectory doesn't inflate its score by having more snapshots to draw from, because at step `S` it's compared only against other alive trajectories using their `[0..S]` slice. Step AUCs are averaged across `S` weighted by `n_active(S)` so the early steps (where most trajectories are still alive) carry the most weight.
+- Both sides tune on the same 100-traj slice and evaluate on the same 175-traj held-out slice. Split is `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — both slices land at ~65% failure rate (population mean). Eval queries see the full corpus (the split lives in hyperparameter selection, not the data).
+- Cascade champion: `W=10  agg=min_distance  prefetch_n_uniq=220  jaccard_n_uniq=140  top_k=10  penalty_shape=lin  lam=1.2  sigma=0.5  gap_open=2.8  gap_extend=1.2` (LSH layout B=64, R=1; see step 7 in the [setup guide](#setup-guide) for why bench overrides the prod default).
+
+Results are still **preliminary** — single-repo eval, wide bootstrap CIs. Will be confirmed on larger corpora.
+
+Reproduce: [`benchmarks/demo_eval/`](benchmarks/demo_eval/) (steps 01–11) for the cascade pipeline, [`benchmarks/basic.py`](benchmarks/basic.py) for the Basic RAG baseline. Both consume the same `--shuffle-seed 42 --tune-limit 100 --stratify` split.
 
 ---
 
 ## Important notes
 
 - Episodiq works best for a single-domain agent operating over a pool of similar or related tasks — the token vocabulary and retrieval signals only become meaningful once the agent has revisited comparable situations often enough for recurring patterns to surface. Current tested setup is a coding agent operating on a single medium-size repo. Each distinct agent should live in its own database.
-- No parallel tool calls (yet) — if the LLM is configured to return multiple tool calls in a single response, analytics may degrade or the request may fall back to pure proxy mode with an internal error.
 - Multi-turn seeding is not supported — injecting a pre-existing conversation history into the first request will not be tracked correctly.
 
 ---
@@ -330,6 +346,8 @@ episodiq annotate run
 
 Short human-readable labels per cluster (contrastive annotation). The annotator/summarizer use the same OpenAI- or Anthropic-compatible endpoint as the proxy — set **both** the base URL and the API key: `EPISODIQ_OPENAI_BASE_URL` + `EPISODIQ_OPENAI_API_KEY`, or `EPISODIQ_ANTHROPIC_BASE_URL` + `EPISODIQ_ANTHROPIC_API_KEY`.
 
+> Note: annotations drive a label-aware merge inside the AO tokenizer; on the demo corpus this gives a noticeable eval-AUC uplift (~3–4 points) over running the tokenizer on raw clustering.
+
 **5. Build paths**
 
 ```bash
@@ -342,10 +360,10 @@ Reconstructs trajectory paths from cluster labels (one path per agent step).
 
 ```bash
 episodiq cluster tokenize-grid   # grid-search the AO tokenizer (no DB writes)
-episodiq cluster tokenize        # apply chosen params; same picking heuristic as step 3, aim for ~10–50 tokens
+episodiq cluster tokenize        # apply chosen params; same picking heuristic as step 3, aim for ~50–60 tokens
 ```
 
-Clusters (action, observation) pair embeddings into a compact AO token vocabulary — the alphabet for the MinHash n-gram index.
+Clusters (action, observation) pair embeddings into a compact AO token vocabulary — the alphabet over which the cascade retrieval indexes per-window MinHash LSH bands.
 
 **7. Build the MinHash retrieval index**
 
@@ -353,16 +371,38 @@ Clusters (action, observation) pair embeddings into a compact AO token vocabular
 episodiq index build
 ```
 
-Materializes `trace_tokens` + `minhash_sig` per `trajectory_path` from the AO token mapping. Required before `tune` and the report's pattern-retrieval signal. Controlled by `EPISODIQ_MINHASH_K` (default 512) and `EPISODIQ_NGRAM_N` (default 3).
+Materializes `trace_tokens` + per-window MinHash LSH bands per `trajectory_path` from the AO token mapping. Required before `tune` and the report's pattern-retrieval signal.
 
-**8. Tune retrieval and path-frequency thresholds**
+LSH layout — `EPISODIQ_WMH_SIG_SIZE` × `EPISODIQ_WMH_NUM_BANDS` defines `(rows_per_band, num_bands)` via `sig_size / num_bands`:
+
+- **Prod default** `64 / 32` (B=32, R=2; candidate-Jaccard threshold ≈ 0.18) — narrower prefilter, less recall noise.
+- **Bench used** `64 / 64` (B=64, R=1; threshold ≈ 0.015) — much looser; on the 275-traj demo the corpus is too small for the narrower band layout to surface enough candidates, so the wider one wins eval AUC.
+
+Other knobs: `EPISODIQ_RETRIEVAL_WINDOW` (W = 2w token window, default 10), `EPISODIQ_WMH_QGRAM` (default 2).
+
+**8. Tune the retrieval cascade**
 
 ```bash
-episodiq tune retrieval-sweep    # sweep (top_k, similarity_threshold); update EPISODIQ_RETRIEVAL_TOP_K / EPISODIQ_RETRIEVAL_SIMILARITY_THRESHOLD
-episodiq tune path-freq          # action-variance entropy percentiles; update EPISODIQ_LOW_ENTROPY / EPISODIQ_HIGH_ENTROPY
+episodiq tune retrieval-sweep \
+  --shuffle-seed 42 --stratify-field status --tune-limit 100 \
+  --w-grid 10,14 --agg-grid mean,min_distance \
+  --objective-metric cummean --save-trials trials.csv
 ```
 
-Each command sweeps values and prints a suggested setting. Update `.env` (or your runtime env) with the suggestions so the report uses them.
+`retrieval-sweep` writes every trial to the CSV; copy the picked row's params into your runtime environment (`EPISODIQ_RETRIEVAL_WINDOW`, `EPISODIQ_CASCADE_*`, `EPISODIQ_AS_*`). `--stratify-field status` keeps the tune/eval split's fail-rate at the population mean regardless of seed.
+
+`--objective-metric` controls what TPE optimises:
+
+- **Single metric** (e.g. `cummean`) — locks the sampler to one objective. Recommended on small corpora where multi-metric sampling lets the picker chase noise (see the [benchmarks section](#pattern-retrieval-vs-basic-rag)).
+- **Omit the flag** — TPE samples `metric` as a categorical knob per trial; the picker reports the best `(W, agg, metric)` combo overall. Recommended on larger corpora where sharing samples across metrics accelerates convergence and the picker noise is small.
+
+**9. Tune the path-frequency thresholds (optional)**
+
+```bash
+episodiq tune path-freq          # → EPISODIQ_LOW_ENTROPY / EPISODIQ_HIGH_ENTROPY
+```
+
+Samples completed paths, runs the cascade retrieval on each, and folds the resulting **vote-entropy** distribution into two percentile thresholds (default 10th / 90th). These thresholds power the report's *action-variance* bucket — paths with low entropy collapse the next action onto a single dominant candidate ("confident consensus"), high entropy means the agent could plausibly branch many ways. Optional because the retrieval signal stands on its own; pull this in when you want to surface action-predictability alongside fail-similarity. Set the suggested values via `EPISODIQ_LOW_ENTROPY` / `EPISODIQ_HIGH_ENTROPY` in your runtime environment so reports pick them up.
 
 ---
 

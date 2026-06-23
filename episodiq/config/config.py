@@ -2,7 +2,8 @@ import os
 from dataclasses import dataclass
 
 from .embedder_config import EmbedderConfig
-from .retrieval_config import RetrievalConfig
+from .retrieval_config import RetrievalConfig, WindowMinHashConfig
+from .scoring_config import AggShiftConfig
 
 
 @dataclass(frozen=True)
@@ -39,8 +40,10 @@ class Config:
     # Analytics
     analytics: AnalyticsConfig
 
-    # Retrieval (MinHash Jaccard prefilter)
+    # Retrieval cascade
+    minhash: WindowMinHashConfig
     retrieval: RetrievalConfig
+    scoring: AggShiftConfig
 
     # Clustering
     merge_threshold: float
@@ -86,8 +89,10 @@ class Config:
                 low_entropy=float(os.getenv("EPISODIQ_LOW_ENTROPY", "0.5")),
                 high_entropy=float(os.getenv("EPISODIQ_HIGH_ENTROPY", "2.5")),
             ),
-            # Retrieval
+            # Retrieval cascade
+            minhash=WindowMinHashConfig.from_env(),
             retrieval=RetrievalConfig.from_env(),
+            scoring=AggShiftConfig.from_env(),
             # Clustering
             merge_threshold=float(os.getenv(
                 "EPISODIQ_MERGE_THRESHOLD",

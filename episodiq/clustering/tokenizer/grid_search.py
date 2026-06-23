@@ -11,6 +11,7 @@ from episodiq.clustering.tokenizer.act_obs_builder import ActObsBuilder
 from episodiq.clustering.tokenizer.constants import DEFAULT_GRID
 from episodiq.storage.postgres.repository import (
     ClusterRepository,
+    MessageRepository,
     TrajectoryPathRepository,
 )
 
@@ -30,13 +31,11 @@ class GridSearchEntry:
 
 @dataclass
 class GridSearchReport:
+    # No ``best`` selector: tokenizer params are chosen manually from
+    # the entries table (operator inspects ``score`` / ``n_clusters`` /
+    # ``noise_ratio`` / ``dbcv`` / ``entropy``). An auto-argmax would
+    # encourage misuse since downstream callers don't pick by score.
     entries: list[GridSearchEntry] = field(default_factory=list)
-
-    @property
-    def best(self) -> GridSearchEntry | None:
-        if not self.entries:
-            return None
-        return max(self.entries, key=lambda e: e.score)
 
 
 class TokenizerGridSearch:
@@ -55,6 +54,7 @@ class TokenizerGridSearch:
             builder = ActObsBuilder(
                 TrajectoryPathRepository(session),
                 ClusterRepository(session),
+                MessageRepository(session),
             )
             pool = await builder.build()
 

@@ -1,13 +1,10 @@
 """Structured log entry builder for trajectory path analytics."""
 
 from episodiq.analytics.path_frequency import PathFrequencyTagger
-from episodiq.analytics.transition_types import TrajectoryAnalytics
-
-# Earliest path index at which the retrieval `fail_frac` signal is considered
-# reliable enough to surface in the rendered report. Before this point the
-# tune corpus has produced too few comparable snapshots for the score to be
-# meaningful — leave the entry without `fail_frac` to avoid noise.
-MIN_FAIL_FRAC_STEP = 50
+from episodiq.analytics.transition_types import (
+    DEFAULT_MIN_FAIL_SIMILARITY_STEP,
+    TrajectoryAnalytics,
+)
 
 
 class LogBuilder:
@@ -17,8 +14,12 @@ class LogBuilder:
         self,
         *,
         path_frequency_tagger: PathFrequencyTagger | None = None,
+        min_fail_similarity_step: int = DEFAULT_MIN_FAIL_SIMILARITY_STEP,
+        metric: str | None = None,
     ):
         self._tagger = path_frequency_tagger
+        self._min_fail_similarity_step = min_fail_similarity_step
+        self._metric = metric
 
     def build(
         self,
@@ -52,10 +53,14 @@ class LogBuilder:
 
         if (
             analytics
-            and analytics.fail_frac is not None
-            and path.index >= MIN_FAIL_FRAC_STEP
+            and analytics.fail_similarity is not None
+            and path.index >= self._min_fail_similarity_step
         ):
-            obs["fail_frac"] = analytics.fail_frac
+            sim = analytics.fail_similarity
+            entry: dict = {"current": sim["current"]}
+            if self._metric and self._metric in sim:
+                entry[self._metric] = sim[self._metric]
+            obs["fail_similarity"] = entry
 
         entries.append(obs)
 

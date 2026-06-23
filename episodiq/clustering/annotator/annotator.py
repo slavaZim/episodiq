@@ -61,7 +61,7 @@ async def resolve_annotation_jobs(
     for spec in specs:
         if spec.category == "tool":
             if spec.type not in discovered:
-                cats = await repo.get_distinct_categories(spec.type)
+                cats = await repo.get_categories(spec.type)
                 discovered[spec.type] = [c for c in cats if c != "text"]
             for cat in discovered[spec.type]:
                 jobs.append(AnnotatingJob(type=spec.type, category=cat))
@@ -221,14 +221,11 @@ class ClusterAnnotator:
         rows = await self._cluster_repo.get_centroids(cluster_ids)
 
         centroids: dict[str, np.ndarray] = {}
-        for cluster_id, label, centroid_raw in rows:
-            if centroid_raw is None:
+        for centroid in rows:
+            if centroid.embedding is None:
                 continue
-            if isinstance(centroid_raw, str):
-                vec = np.fromstring(centroid_raw.strip("[]"), sep=",", dtype=np.float32)
-            else:
-                vec = np.array(centroid_raw, dtype=np.float32)
-            centroids[label] = l2_normalize(vec)
+            vec = np.array(centroid.embedding, dtype=np.float32)
+            centroids[centroid.label] = l2_normalize(vec)
 
         neighbors: dict[str, str | None] = {}
         labels = list(centroids.keys())
