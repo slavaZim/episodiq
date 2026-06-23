@@ -73,3 +73,7 @@ benchmarks/demo_eval/reseed_failed.py
 benchmarks/.basic_cache/
 benchmarks/demo_eval/output/rag_cache/
 benchmarks/demo_eval/output/*.log
+
+# Local diagnostic scripts (kept on disk, not tracked)
+benchmarks/episodiq_anchor_oneshot.py
+benchmarks/cascade_side_by_side.py

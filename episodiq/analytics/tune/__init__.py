@@ -6,12 +6,6 @@ from episodiq.analytics.tune.path_frequency import (
     PathFrequencyTuner,
     PercentileStats,
 )
-from episodiq.analytics.tune.top_k import (
-    DEFAULT_TOPK_GRID,
-    TopKPoint,
-    TopKResult,
-    TopKTuner,
-)
 
 __all__ = [
     "DEFAULT_HIGH_PERCENTILE",
@@ -20,8 +14,4 @@ __all__ = [
     "PathFrequencyResult",
     "PathFrequencyTuner",
     "PercentileStats",
-    "DEFAULT_TOPK_GRID",
-    "TopKPoint",
-    "TopKResult",
-    "TopKTuner",
 ]

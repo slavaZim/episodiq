@@ -240,12 +240,17 @@ async def _replay_trajectory(
                 errors += 1
                 logger.warning("Turn %d/%d timed out for %s", i + 1, len(turns), dataset_traj_id[:30])
 
-        # Mark trajectory status — use internal_error if any turns failed
+        # Mark trajectory status — use internal_error if any turns failed.
+        # Persist instance_id in meta so basic.py / cascade can align
+        # their tune/eval splits by stable key, not by parallel order.
         patch_status = "internal_error" if errors > 0 else status
         try:
             resp = await client.patch(
                 f"{proxy_url}/episodiq/trajectories/{traj_uuid}",
-                json={"status": patch_status},
+                json={
+                    "status": patch_status,
+                    "meta": {"instance_id": instance_id},
+                },
                 timeout=10.0,
             )
             if resp.status_code not in (200, 409):

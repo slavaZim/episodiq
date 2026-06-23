@@ -85,16 +85,42 @@ class TestLogBuilderBuild:
         )
         assert obs["unclassified"] is True
 
-    def test_fail_frac_attached_to_observation(self):
-        analytics = TrajectoryAnalytics(fail_frac=0.42)
-        obs, _ = LogBuilder().build(_path(index=60), analytics=analytics)
-        assert obs["fail_frac"] == 0.42
+    def test_fail_similarity_attached_to_observation(self):
+        analytics = TrajectoryAnalytics(
+            fail_similarity={
+                "current": 0.42, "cummax": 0.65, "_count": 7,
+            },
+        )
+        obs, _ = LogBuilder(metric="cummax").build(
+            _path(index=60), analytics=analytics,
+        )
+        assert obs["fail_similarity"] == {"current": 0.42, "cummax": 0.65}
 
-    def test_fail_frac_suppressed_before_min_step(self):
-        """Below MIN_FAIL_FRAC_STEP the retrieval signal is too noisy to surface."""
-        analytics = TrajectoryAnalytics(fail_frac=0.42)
-        obs, _ = LogBuilder().build(_path(index=10), analytics=analytics)
-        assert "fail_frac" not in obs
+    def test_fail_similarity_no_metric_omits_agg(self):
+        """When LogBuilder isn't told which metric to surface (e.g. analytics
+        run without a CLI flag), only the raw current value is exposed.
+        """
+        analytics = TrajectoryAnalytics(
+            fail_similarity={
+                "current": 0.42, "cummax": 0.65, "_count": 7,
+            },
+        )
+        obs, _ = LogBuilder().build(_path(index=60), analytics=analytics)
+        assert obs["fail_similarity"] == {"current": 0.42}
+
+    def test_fail_similarity_suppressed_before_min_step(self):
+        """Below the display gate the field is omitted even when the
+        running aggregate already had contributors at earlier paths.
+        """
+        analytics = TrajectoryAnalytics(
+            fail_similarity={
+                "current": 0.42, "cummax": 0.42, "_count": 1,
+            },
+        )
+        obs, _ = LogBuilder(metric="cummax").build(
+            _path(index=10), analytics=analytics,
+        )
+        assert "fail_similarity" not in obs
 
     def test_loop_signal_attached_to_observation_only_when_detected(self):
         active_loop = TrajectoryAnalytics(

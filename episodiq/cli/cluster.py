@@ -16,7 +16,7 @@ from episodiq.cli.env import _load_dotenv
 from episodiq.clustering.grid_search import GridJobSpec, GridSearchEntry, GridSearchReport
 from episodiq.clustering.constants import DEFAULT_PARAMS, Params
 from episodiq.clustering.manager import CategoryResult, JobSpec
-from episodiq.analytics.path_state import PathStateCalculator
+from episodiq.retrieval.path_state import PathStateCalculator
 from episodiq.clustering.path_updater import WORKERS, TrajectoryPathUpdater
 from episodiq.clustering.pipeline import ClusteringPipeline, GridSearchClusteringPipeline
 from episodiq.clustering.tokenizer.constants import DEFAULT_PARAMS as TOKENIZER_DEFAULT_PARAMS

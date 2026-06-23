@@ -14,6 +14,11 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
 
 from episodiq.analytics.trajectory_report import TrajectoryReportBuilder
+from episodiq.analytics.transition_types import (
+    DEFAULT_MIN_FAIL_SIMILARITY_STEP,
+    DEFAULT_SIMILARITY_METRIC,
+    SIMILARITY_METRICS,
+)
 from episodiq.cli.env import load_config
 from episodiq.cli.rendering import (
     LogRenderer,
@@ -48,7 +53,22 @@ def report(
     format: str = typer.Option("auto", "--format", "-f", help="pretty|json|auto"),
     analytics: bool = typer.Option(
         False, "--analytics", "-a",
-        help="Run retrieval + transition analysis and annotate entries with loop / fail-frac / variance signals.",
+        help="Run retrieval + transition analysis and annotate entries with loop / fail_similarity / variance signals.",
+    ),
+    metric: str = typer.Option(
+        DEFAULT_SIMILARITY_METRIC, "--metric",
+        help=(
+            "Trajectory-level similarity aggregation: "
+            f"{'|'.join(SIMILARITY_METRICS)}."
+        ),
+    ),
+    min_step: int = typer.Option(
+        DEFAULT_MIN_FAIL_SIMILARITY_STEP, "--min-step",
+        help=(
+            "Earliest path index whose fail_similarity is surfaced in the "
+            "rendered report. The running aggregate still builds from "
+            "earlier contributors — only display is gated."
+        ),
     ),
     steps: str = typer.Option(
         None, "--steps",
@@ -76,7 +96,11 @@ def report(
             report_builder = TrajectoryReportBuilder(
                 session,
                 analytics_config=config.analytics,
+                minhash_config=config.minhash,
                 retrieval_config=config.retrieval,
+                scoring_config=config.scoring,
+                metric=metric,
+                min_fail_similarity_step=min_step,
             )
             try:
                 result = await report_builder.build(tid, analytics=analytics)
@@ -97,16 +121,14 @@ def report(
 
             stats = TrajectoryStats(
                 trajectory_id=str(tid),
-                started_at=trajectory.created_at,
-                ended_at=trajectory.updated_at,
-                duration_s=(
-                    trajectory.updated_at - trajectory.created_at
-                ).total_seconds(),
+                started_at=result.started_at,
+                ended_at=result.ended_at,
+                duration_s=(result.ended_at - result.started_at).total_seconds(),
                 step_count=len(result.entry_pairs),
                 status=trajectory.status,
                 loop_count=result.loop_count,
                 unclassified_step_count=result.unclassified_step_count,
-                peak_fail_frac=result.peak_fail_frac,
+                fail_similarity=result.fail_similarity,
                 variance_high_count=result.variance_high_count,
                 variance_low_count=result.variance_low_count,
             )

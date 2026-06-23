@@ -45,7 +45,7 @@ class TrajectoryStats:
     status: str
     loop_count: int = 0
     unclassified_step_count: int = 0
-    peak_fail_frac: float | None = None
+    fail_similarity: float | None = None
     variance_high_count: int = 0
     variance_low_count: int = 0
 
@@ -55,7 +55,7 @@ class TrajectoryStats:
 _TS_COL = 10
 _TID_COL = 10
 _STEP_COL = 5  # "9999 " — right-padded step index
-_LABEL_COL = 21  # "o:str_replace_editor " — kind:category, cluster id stripped
+_KIND_COL = 4  # "o:  " / "a:  " — kind marker only; category trails on the right
 
 
 def _format_timestamp(iso_str: str, ctx: RenderContext) -> str:
@@ -80,17 +80,28 @@ def _fallback_text(entry: dict) -> str:
     return f"unclassified ({entry_type}) ({category})"
 
 
-def _kind_category(label: str) -> str:
-    """``a:execute_bash:33`` → ``a:execute_bash``."""
+def _split_label(label: str) -> tuple[str, str]:
+    """``a:execute_bash:33`` → ``("a:", "execute_bash")``. The category
+    portion trails the annotation in the rendered line, the kind portion
+    leads it as a short marker.
+    """
     parts = label.split(":", 2)
-    return ":".join(parts[:2])
+    kind = parts[0] + ":" if parts else ""
+    category = parts[1] if len(parts) > 1 else ""
+    return kind, category
 
 
 def _obs_right_parts(entry: dict) -> list[tuple[str, str]]:
     """Returns list of (text, style) tuples for observation."""
     parts: list[tuple[str, str]] = []
-    if "fail_frac" in entry:
-        parts.append((f"fail_frac={entry['fail_frac']:.2f}", "magenta bold"))
+    sim = entry.get("fail_similarity")
+    if sim:
+        agg_key = next((k for k in sim if k != "current"), None)
+        if agg_key is not None:
+            parts.append((
+                f"fail_similarity={sim[agg_key]:.2f}",
+                "magenta bold",
+            ))
     if entry.get("loop"):
         streak = entry.get("loop_streak", 0)
         parts.append((f"loop x{streak}", "yellow bold"))
@@ -138,9 +149,9 @@ class LogRenderer:
         header.append(f"  {stats.step_count} steps, {stats.duration_s:.1f}s", style="dim")
 
         # Signal summary
-        if stats.peak_fail_frac is not None:
+        if stats.fail_similarity is not None:
             header.append(
-                f"  peak fail_frac={stats.peak_fail_frac:.2f}",
+                f"  fail_similarity={stats.fail_similarity:.2f}",
                 style="magenta bold",
             )
         if stats.variance_high_count > 0 or stats.variance_low_count > 0:
@@ -202,23 +213,17 @@ class LogRenderer:
             line.append(f"{tid:<{_TID_COL}}", style="cyan")
 
         if "label" in entry:
-            line.append(
-                f"{_kind_category(entry['label']):<{_LABEL_COL}}",
-                style="dim cyan",
-            )
+            kind, _ = _split_label(entry["label"])
+            line.append(f"{kind:<{_KIND_COL}}", style="dim cyan")
 
         if "annotation" in entry:
             line.append(entry["annotation"])
         else:
             line.append(_fallback_text(entry), style="dim")
 
-        right = _obs_right_parts(entry)
-        if right:
-            line.append("  ")
-            for i, (text, style) in enumerate(right):
-                if i > 0:
-                    line.append(" | ", style="dim")
-                line.append(text, style=style)
+        for text, style in _obs_right_parts(entry):
+            line.append("  | ", style="dim")
+            line.append(text, style=style)
 
         self._console.print(line)
 
@@ -235,23 +240,17 @@ class LogRenderer:
         line.append("-> ", style="dim")
 
         if "label" in act:
-            line.append(
-                f"{_kind_category(act['label']):<{_LABEL_COL}}",
-                style="dim cyan",
-            )
+            kind, _ = _split_label(act["label"])
+            line.append(f"{kind:<{_KIND_COL}}", style="dim cyan")
 
         if "annotation" in act:
             line.append(act["annotation"])
         else:
             line.append(_fallback_text(act), style="dim")
 
-        right = _act_right_parts(act)
-        if right:
-            line.append("  ")
-            for i, (text, style) in enumerate(right):
-                if i > 0:
-                    line.append(" | ", style="dim")
-                line.append(text, style=style)
+        for text, style in _act_right_parts(act):
+            line.append("  | ", style="dim")
+            line.append(text, style=style)
 
         self._console.print(line)
 

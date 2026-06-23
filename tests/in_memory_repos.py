@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from uuid import UUID, uuid4
 
 import numpy as np
+
+if TYPE_CHECKING:
+    from episodiq.storage.postgres.repository import Centroid
 
 @dataclass
 class OriginResponse:
@@ -221,7 +224,7 @@ class InMemoryMessageRepository:
             and m.embedding is not None
         ]
 
-    async def get_distinct_categories(self, cluster_type: str) -> list[str]:
+    async def get_categories(self, cluster_type: str) -> list[str]:
         return list({
             m.category for m in self._messages
             if m.cluster_type == cluster_type and m.category is not None
@@ -255,6 +258,16 @@ class InMemoryClusterRepository:
     async def has_any(self) -> bool:
         return len(self._clusters) > 0
 
+    async def get_categories(self, type: str) -> list[str]:
+        """Sorted distinct ``category`` values for clusters of ``type``.
+        TokenAssigner reads this list to compute per-category noise
+        ordinals; stable order matters.
+        """
+        return sorted({
+            c.category for c in self._clusters
+            if c.type == type and c.category is not None
+        })
+
     async def delete_by_type_category(self, type: str, category: str) -> None:
         self._clusters = [
             c for c in self._clusters
@@ -284,10 +297,10 @@ class InMemoryClusterRepository:
     def get_by_label(self, label: str) -> Cluster | None:
         return next((c for c in self._clusters if c.label == label), None)
 
-    async def get_centroids(self, cluster_ids: set[UUID]) -> list[tuple[UUID, str, Any]]:
-        """Compute average embedding per cluster from linked messages in message_repo."""
-        # This requires access to messages — store a reference if provided
-        results = []
+    async def get_centroids(self, cluster_ids: set[UUID]) -> "list[Centroid]":
+        """Compute average embedding per cluster from linked messages."""
+        from episodiq.storage.postgres.repository import Centroid
+        results: list[Centroid] = []
         for cluster in self._clusters:
             if cluster.id not in cluster_ids:
                 continue
@@ -295,8 +308,51 @@ class InMemoryClusterRepository:
             embeddings = [m.embedding for m in msgs if m.embedding is not None]
             if embeddings:
                 avg = np.mean(embeddings, axis=0).tolist()
-                results.append((cluster.id, cluster.label, avg))
+                results.append(Centroid(
+                    cluster_type=cluster.type,
+                    category=cluster.category,
+                    embedding=avg,
+                    cluster_id=cluster.id,
+                    label=cluster.label,
+                ))
         return results
+
+    async def get_category_centroids(self) -> "list[Centroid]":
+        """Per-(cluster_type, category) centroids from noise-side
+        messages (cluster_id IS NULL). Mirrors the production query
+        — TokenAssigner falls back to these when a direct mapping is
+        absent.
+        """
+        from episodiq.storage.postgres.repository import Centroid
+        groups: dict[tuple[str, str], list[list[float]]] = {}
+        if not hasattr(self, "_messages_by_cluster"):
+            return []
+        msg_repo_messages = []
+        for cluster_msgs in self._messages_by_cluster.values():
+            msg_repo_messages.extend(cluster_msgs)
+        # Walk every message — noise rows live where cluster_id is None
+        # but cluster_type/category are still set on the message itself.
+        for m in self._all_messages():
+            if m.cluster_id is not None:
+                continue
+            if m.cluster_type is None or m.category is None:
+                continue
+            if m.embedding is None:
+                continue
+            groups.setdefault(
+                (m.cluster_type, m.category), [],
+            ).append(m.embedding)
+        return [
+            Centroid(
+                cluster_type=ct, category=cat,
+                embedding=np.mean(embs, axis=0).tolist(),
+            )
+            for (ct, cat), embs in groups.items()
+        ]
+
+    def _all_messages(self) -> list[Message]:
+        """All messages from the linked MessageRepository, if any."""
+        return list(getattr(self, "_all_msgs_ref", []))
 
     def link_messages(self, message_repo: "InMemoryMessageRepository") -> None:
         """Link to message repo for centroid computation."""
@@ -317,6 +373,7 @@ class InMemoryPath:
     trace: list[str] = field(default_factory=list)
     trace_tokens: list[int] | None = None
     minhash_sig: list[int] | None = None
+    parallel_group: int | None = None
     trajectory_status: str = "pending"
     index: int = 0
     created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
@@ -354,6 +411,7 @@ class InMemoryTrajectoryPathRepository:
         trace_tokens: list[int] | None = None,
         minhash_sig: list[int] | None = None,
         trajectory_status: str = "pending",
+        parallel_group: int | None = None,
     ) -> InMemoryPath:
         # Auto-increment index per trajectory
         existing = [p for p in self._paths if p.trajectory_id == trajectory_id]
@@ -384,6 +442,7 @@ class InMemoryTrajectoryPathRepository:
             trace=trace or [],
             trace_tokens=trace_tokens,
             minhash_sig=minhash_sig,
+            parallel_group=parallel_group,
             trajectory_status=trajectory_status,
             index=index,
             from_obs_label=from_obs_label,
@@ -479,24 +538,34 @@ class InMemoryTrajectoryPathRepository:
         ranked.sort(key=lambda x: -x[1])
         return ranked[:limit]
 
-    async def get_paths_with_tokens_for_trajectories(
+    async def get_latest_trace_tokens_for_trajectories(
         self, trajectory_ids: list[UUID],
-    ) -> list[tuple[UUID, UUID | None, str, list[int]]]:
-        """Return (traj_id, action_cluster_id, status, trace_tokens) per path."""
+    ) -> dict[UUID, tuple[UUID | None, str, list[int]]]:
+        """trajectory_id → (action_cluster_id, status, trace_tokens) for the
+        highest-index path with non-NULL trace_tokens per trajectory.
+        """
         if not trajectory_ids:
-            return []
+            return {}
         wanted = set(trajectory_ids)
-        out: list[tuple[UUID, UUID | None, str, list[int]]] = []
+        best: dict[UUID, tuple[int, UUID | None, str, list[int]]] = {}
         for p in self._paths:
             if p.trajectory_id not in wanted or p.trace_tokens is None:
+                continue
+            idx = p.index if p.index is not None else -1
+            existing = best.get(p.trajectory_id)
+            if existing is not None and existing[0] >= idx:
                 continue
             action_cluster_id = None
             if self._msg_repo and p.action_message_id:
                 msg = self._msg_repo._by_id.get(p.action_message_id)
                 action_cluster_id = msg.cluster_id if msg else None
-            out.append((p.trajectory_id, action_cluster_id,
-                        p.trajectory_status, p.trace_tokens))
-        return out
+            best[p.trajectory_id] = (
+                idx, action_cluster_id, p.trajectory_status, p.trace_tokens,
+            )
+        return {
+            tid: (action_cid, status, list(tokens))
+            for tid, (_idx, action_cid, status, tokens) in best.items()
+        }
 
     async def collect_act_obs(self) -> list[tuple[UUID, UUID]]:
         """Distinct (action_cluster_id, to_obs_cluster_id) act_obs across paths."""
@@ -539,6 +608,70 @@ class InMemoryTokenClusterRepository:
         )
         self._rows.append(row)
         return row
+
+
+class InMemoryTrajectoryWindowLSHRepository:
+    """Fake replacement for TrajectoryWindowLSHRepository for unit
+    tests. Mirrors the production ``lookup`` signature: temporal
+    filter via ``[step_min, step_max]`` over ``window_center``, top
+    ``top_uniq`` candidates per anchor by ``aggregation`` of band-hit
+    counts (``"min_distance"`` → max similarity, ``"mean"`` → average).
+    """
+
+    def __init__(self) -> None:
+        # (tid, window_center, band_index, band_hash)
+        self._rows: list[tuple[UUID, int, int, int]] = []
+
+    async def delete_for_trajectories(self, trajectory_ids: list[UUID]) -> None:
+        wanted = set(trajectory_ids)
+        self._rows = [r for r in self._rows if r[0] not in wanted]
+
+    async def bulk_insert(
+        self, rows: list[tuple[UUID, int, int, int]],
+    ) -> None:
+        seen = {(tid, wc, bi) for tid, wc, bi, _ in self._rows}
+        for tid, wc, bi, bh in rows:
+            if (tid, wc, bi) in seen:
+                continue
+            seen.add((tid, wc, bi))
+            self._rows.append((tid, wc, bi, bh))
+
+    async def lookup(
+        self,
+        band_pairs: list[tuple[int, int]],
+        *,
+        step_min: int,
+        step_max: int,
+        top_uniq: int,
+        exclude_trajectory_id: UUID | None = None,
+        aggregation: str = "mean",
+    ) -> list[tuple[UUID, float]]:
+        pairs = set(band_pairs)
+        # (tid, wc) → band_count
+        per_window: dict[tuple[UUID, int], int] = {}
+        for tid, wc, bi, bh in self._rows:
+            if (bi, bh) not in pairs:
+                continue
+            if not (step_min <= wc <= step_max):
+                continue
+            if exclude_trajectory_id is not None and tid == exclude_trajectory_id:
+                continue
+            per_window[(tid, wc)] = per_window.get((tid, wc), 0) + 1
+
+        # Per-tid agg over windows in [step_min, step_max].
+        per_tid: dict[UUID, list[int]] = {}
+        for (tid, _wc), cnt in per_window.items():
+            per_tid.setdefault(tid, []).append(cnt)
+
+        ranked: list[tuple[UUID, float]] = []
+        for tid, counts in per_tid.items():
+            if aggregation == "min_distance":
+                score = float(max(counts))
+            else:  # mean
+                score = sum(counts) / len(counts)
+            ranked.append((tid, score))
+        ranked.sort(key=lambda x: -x[1])
+        return ranked[:top_uniq]
 
 
 @dataclass

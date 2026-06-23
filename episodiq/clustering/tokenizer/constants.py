@@ -20,7 +20,7 @@ DEFAULT_GRID = [
         umap_dims=ud,
         umap_n_neighbors=un,
     )
-    for cs, ms in [(5, 3), (10, 5), (15, 7), (20, 10)]
-    for ud in [30, 50, 80]
-    for un in [10, 15, 25]
+    for cs, ms in [(3, 2), (5, 3), (10, 5), (15, 7), (20, 10)]
+    for ud in [40, 50, 60]
+    for un in [5, 10, 15, 20, 25]
 ]

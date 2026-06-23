@@ -11,6 +11,7 @@ from episodiq.clustering.tokenizer.constants import DEFAULT_PARAMS
 from episodiq.clustering.tokenizer.saver import TokenSaver
 from episodiq.storage.postgres.repository import (
     ClusterRepository,
+    MessageRepository,
     TokenClusterRepository,
     TokenMappingRepository,
     TrajectoryPathRepository,
@@ -35,6 +36,7 @@ class TokenizerPipeline:
             builder = ActObsBuilder(
                 TrajectoryPathRepository(session),
                 ClusterRepository(session),
+                MessageRepository(session),
             )
             pool = await builder.build()
 

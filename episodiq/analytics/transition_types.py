@@ -4,6 +4,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+# Re-export from the metric utility so callers see one canonical tuple.
+from episodiq.analytics.metrics import SIMILARITY_METRICS  # noqa: E402,F401
+
+DEFAULT_SIMILARITY_METRIC = "cummax"
+# Earliest path index whose ``fail_similarity`` is surfaced in the
+# rendered report. The running aggregate is built from earlier
+# contributors regardless; only display is gated.
+DEFAULT_MIN_FAIL_SIMILARITY_STEP = 50
+
 
 @dataclass
 class PathFrequencySignal:
@@ -50,7 +59,15 @@ class LoopSignal:
 
 @dataclass
 class TrajectoryAnalytics:
-    """Aggregated analytics for a trajectory at a given point."""
+    """Aggregated analytics for a trajectory at a given point.
+
+    ``fail_similarity`` is the structured dict produced by
+    ``TransitionAnalyzer`` for this snapshot:
+    ``{"current": x, "cummax": ..., "cummean": ..., "cummeanmax": ...}``.
+    All three metrics are kept so the report renderer can pick any of
+    them at display time without re-running retrieval. ``None`` means
+    no candidates and no previous state to carry forward.
+    """
     path_frequency_signal: PathFrequencySignal | None = None
     loop_signal: LoopSignal | None = None
-    fail_frac: float | None = None
+    fail_similarity: dict | None = None
