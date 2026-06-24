@@ -16,36 +16,33 @@ Episodiq is an LLM proxy that captures agent trajectories and represents each on
 **With Episodiq:**
 
 ```bash
-episodiq report <trajectory-id> --format pretty -a --steps 47-75 --metric cummean
+episodiq report <trajectory-id> --format pretty -a --min-step 0 --metric cummean
 ```
 
 <pre>
 Trajectory d6cd3603 <b>[failure]</b>  89 steps, 2.1s  <b>fail_similarity=0.67</b>  variance high=15 low=2  loops=7  unclassified=23
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-  47 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings
-               -&gt; a:  agent examines specific code ranges in MySQL dialect file
-  48 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>loop x2</b>
-               -&gt; a:  agent examines specific code ranges in MySQL dialect file
-  49 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>loop x3</b>
+  16 +0.5s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>fail_similarity=0.85</b>  | <b>loop x2</b>
+               -&gt; a:  tool execute_bash searches for class definitions in codebase
+   ⋮
+  30 +0.7s     o:  tool execute_bash with SQL parsing/AST analysis output  | <b>fail_similarity=0.77</b>
+               -&gt; a:  agent implements JSON function parsing and dialect translation support  | variance=high
+   ⋮
+  49 +1.4s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>fail_similarity=0.72</b>  | <b>loop x3</b>
                -&gt; a:  agent restores specialized function call after incorrect change
-  50 +0.0s     o:  tool str_replace_editor configuring MySQL dialect syntax and mappings  | <b>fail_similarity=0.72</b>
-               -&gt; a:  unclassified (action) (str_replace_editor)
    ⋮
-  57 +0.1s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.71</b>
-               -&gt; a:  agent debugging parsed SQL structure with print statements
-  61 +0.2s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.71</b>
-               -&gt; a:  agent restores specialized function call after incorrect change  | variance=high
-  63 +0.2s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.70</b>
+  61 +1.6s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.71</b>
                -&gt; a:  agent restores specialized function call after incorrect change  | variance=high
    ⋮
-  66 +0.3s     o:  tool execute_bash testing struct literal syntax variations  | <b>fail_similarity=0.70</b>
-               -&gt; a:  agent runs comprehensive test files in workspace directories  | variance=high
-  70 +0.4s     o:  unclassified (observation) (execute_bash)  | <b>fail_similarity=0.70</b>  | <b>loop x2</b>
-               -&gt; a:  tool execute_bash verifying basic sqlglot import functionality
-  73 +0.4s     o:  tool execute_bash displaying code search results for alias handling  | <b>fail_similarity=0.70</b>
+  73 +1.8s     o:  tool execute_bash displaying code search results for alias handling  | <b>fail_similarity=0.70</b>
                -&gt; a:  agent fixing SQL dialect type mapping compatibility issues
-  74 +0.5s     o:  tool think responses successfully logged without errors  | <b>fail_similarity=0.70</b>
-               -&gt; a:  agent restores specialized function call after incorrect change
+  79 +1.9s     o:  unclassified (observation) (str_replace_editor)  | <b>fail_similarity=0.69</b>
+               -&gt; a:  agent runs reproduce_issue.py in workspace directory  | variance=low
+   ⋮
+  83 +2.0s     o:  tool execute_bash testing JSON function parsing and transpilation  | <b>fail_similarity=0.68</b>
+               -&gt; a:  agent cleans up temporary test files after verification
+  88 +2.1s     o:  tool execute_bash test runs with successful completion status  | <b>fail_similarity=0.67</b>
+               -&gt; a:  agent runs MySQL dialect tests after code changes
 </pre>
 
 > **Zero LLM calls at runtime.**  All signals are computed from paths statistics.
