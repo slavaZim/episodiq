@@ -269,7 +269,10 @@ Methodology: cluster all messages, contrastively annotate the centroids once via
 
 Each system is reported under the aggregation that suits it. Episodiq's headline is **`cummean`** (running-mean of per-snapshot fail-similarity) — of the three aggregations it computes (`cummax`, `cummean`, `cummeanmax`), averaging is the most robust to noise: a high `cummean` requires a *sustained* similarity signal, not a single lucky spike. Basic RAG is reported under **`cummax`** — tuned separately for each aggregation, `cummax` is its strongest (0.5764), while `cummean` (0.4820) and `cummeanmax` (0.4565) invert below 0.5, so `cummax` is the only aggregation that gives it an above-random footing. 95% CIs are per-trajectory bootstrap (2000 draws); each system uses the config that maximises its own tune-set AUC.
 
-![Headline eval AUC@s50 — trajectory-pattern retrieval (cummean) vs Basic RAG (cummax)](benchmarks/auc_table.png)
+| Method | Metric | tune AUC | eval AUC@s50 | 95% CI |
+|---|---|---|---|---|
+| **Trajectory-pattern retrieval** (per-window MinHash LSH + agg-shift Lev rerank) | cummean | 0.6440 | **0.7114** | [0.621, 0.794] |
+| Basic RAG (qwen3-embedding-8b cosine) | cummax | 0.6106 | 0.5764 | [0.463, 0.680] |
 
 Per-step ROC AUC over the 175-trajectory held-out eval slice — each point is the AUC at that step across trajectories still alive (raw, unweighted), from step 50 onward:
 
@@ -281,7 +284,7 @@ Even at its best aggregation, Basic RAG's `cummax` CI still overlaps 0.5 — tex
 
 - **`AUC@s50`** is a time-stratified, weighted ROC AUC that controls for trajectory length. For every step `S ≥ 50`: take the trajectories still alive at `S` (last snapshot ≥ `S`); each contributes ONE score — its cumulative aggregate (`cummax` / `cummean` / `cummeanmax`) over snapshots up to step `S`. The ROC AUC at step `S` is then computed across those trajectories at the same horizon — a long trajectory doesn't inflate its score by having more snapshots to draw from, because at step `S` it's compared only against other alive trajectories using their `[0..S]` slice. Step AUCs are averaged across `S` weighted by `n_active(S)` so the early steps (where most trajectories are still alive) carry the most weight.
 - Both sides tune on the same 100-traj slice and evaluate on the same 175-traj held-out slice. Split is `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — both slices land at ~65% failure rate (population mean). Eval queries see the full corpus (the split lives in hyperparameter selection, not the data).
-- Cascade champion: `W=10  agg=min_distance  prefetch_n_uniq=270  jaccard_n_uniq=120  top_k=12  penalty_shape=lin  lam=1.2  sigma=0.5  gap_open=1.9  gap_extend=1.3` (LSH layout B=64, R=1; see step 7 in the [setup guide](#setup-guide) for why bench overrides the prod default).
+- Best config, for reproduction: `W=10  agg=min_distance  prefetch_n_uniq=270  jaccard_n_uniq=120  top_k=12  penalty_shape=lin  lam=1.2  sigma=0.5  gap_open=1.9  gap_extend=1.3`, LSH layout B=64/R=1 (see step 7 in the [setup guide](#setup-guide) for why bench overrides the prod default).
 
 Results are still **preliminary** — single-repo eval, wide bootstrap CIs. Will be confirmed on larger corpora.
 
