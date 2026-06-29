@@ -153,6 +153,12 @@ async def run(args):
         curves = compute_metric_curves(
             fail_sims, status, eval_min_step=args.eval_min_step,
         )
+        # Per-step AUC curve recorded in the report as a diagnostic
+        # (compute_metric_curves is documented for this). Floored below
+        # the headline's ``eval_min_step`` so it also covers early steps.
+        step_curves = compute_metric_curves(
+            fail_sims, status, eval_min_step=args.curve_min_step,
+        )
     finally:
         async with session_factory() as session:
             await drop_alt_lsh_table(session, table_name)
@@ -188,6 +194,14 @@ async def run(args):
         ),
         "eval_auc_per_metric": weighted,
         "eval_auc_ci_per_metric": ci_json,
+        "curve_min_step": args.curve_min_step,
+        "eval_step_curves": {
+            m: [
+                {"step": sa.step, "auc": sa.auc, "n_active": sa.n_active}
+                for sa in step_curves[m].per_step
+            ]
+            for m in METRICS if m in step_curves
+        },
         "n_eval_trajs": len({s.trajectory_id for s in snapshots}),
         "n_eval_snapshots": len(snapshots),
         "n_boot": args.n_boot,
@@ -231,6 +245,10 @@ def main():
                    help="path to write the eval JSON report")
     p.add_argument("--n-workers", type=int, default=4)
     p.add_argument("--eval-min-step", type=int, default=50)
+    p.add_argument("--curve-min-step", type=int, default=1,
+                   help="Floor for the per-step AUC curve recorded in the "
+                        "report (independent of --eval-min-step, which sets "
+                        "the headline weighted-AUC floor).")
     p.add_argument("--n-boot", type=int, default=200,
                    help="Bootstrap draws for per-metric AUC CI (95 pct).")
     p.add_argument("--boot-seed", type=int, default=42,

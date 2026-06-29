@@ -54,7 +54,7 @@ import httpx
 import numpy as np
 
 from episodiq.analytics.metrics import (
-    SIMILARITY_METRICS, bootstrap_aucs, weighted_aucs,
+    SIMILARITY_METRICS, bootstrap_aucs, compute_metric_curves, weighted_aucs,
 )
 
 logger = logging.getLogger(__name__)
@@ -545,6 +545,25 @@ async def run(args):
             per_row_labels, per_row_sims, ti_q, pp_q, resolved, best_top_k,
             n_boot=args.n_boot, boot_seed=args.boot_seed,
         )
+        # Per-step AUC curve for THIS metric's winner, for the
+        # AUC-vs-step plot. Floored at curve_min_step (not EVAL_STEP) so
+        # the curve spans the early trajectory; the headline eval_auc
+        # below stays anchored at EVAL_STEP.
+        eval_per_traj = _build_per_traj(
+            per_row_labels, per_row_sims, ti_q, pp_q, best_top_k,
+        )
+        eval_status = {
+            ti: "failure" if not resolved[ti] else "success"
+            for ti in eval_per_traj
+        }
+        m_curve = compute_metric_curves(
+            eval_per_traj, eval_status, eval_min_step=args.curve_min_step,
+        ).get(m)
+        step_curve = (
+            [{"step": sa.step, "auc": sa.auc, "n_active": sa.n_active}
+             for sa in m_curve.per_step]
+            if m_curve else []
+        )
         col_m = f"auc_step{EVAL_STEP}_{m}"
         ci = eval_res.get("auc_ci_per_metric", {}).get(m)
         winners_per_metric[m] = {
@@ -562,6 +581,7 @@ async def run(args):
                 for m2 in SIMILARITY_METRICS
             },
             "eval_ci_all_metrics": eval_res.get("auc_ci_per_metric"),
+            "eval_step_curve": step_curve,
         }
     return tune_results, winners_per_metric, n_total, sum(1 for r in resolved if not r)
 
@@ -594,6 +614,10 @@ def main():
     parser.add_argument("--output", default="benchmarks/basic_results.json")
     parser.add_argument("--api-key", default=None,
                         help="OpenRouter API key (falls back to OPENROUTER_API_KEY env)")
+    parser.add_argument("--curve-min-step", type=int, default=1,
+                        help="Floor for the per-step AUC curve dumped per "
+                             "winner for plotting (independent of EVAL_STEP, "
+                             "which anchors the headline weighted AUC).")
     parser.add_argument("--n-boot", type=int, default=200,
                         help="Bootstrap draws for per-metric eval AUC CI (95 pct).")
     parser.add_argument("--boot-seed", type=int, default=42,

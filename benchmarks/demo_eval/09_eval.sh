@@ -13,6 +13,7 @@ TUNE_CONFIG=output/tune_config.json
 EVAL_REPORT=output/eval_report.json
 N_WORKERS=4
 EVAL_MIN_STEP=50
+N_BOOT=2000   # final run: tighter bootstrap CI on the headline AUC
 
 if [ ! -f "$TUNE_CONFIG" ]; then
   echo "Error: $TUNE_CONFIG not found — run step 08 first."
@@ -25,6 +26,7 @@ PYTHONUNBUFFERED=1 uv run python eval_cascade.py \
   --config "$TUNE_CONFIG" \
   --output "$EVAL_REPORT" \
   --n-workers "$N_WORKERS" \
-  --eval-min-step "$EVAL_MIN_STEP"
+  --eval-min-step "$EVAL_MIN_STEP" \
+  --n-boot "$N_BOOT"
 
 echo "=== Done: $EVAL_REPORT ==="

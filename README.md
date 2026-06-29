@@ -5,7 +5,7 @@
 Episodiq is an LLM proxy that captures agent trajectories and represents each one as a sequence of typed action-observation tokens — a sequence- / pattern-based alternative to text-embedding retrieval. The same representation drives:
 
 - **Human-readable logs at ~98% lower annotation cost.** Annotate one representative per cluster, reuse for every trajectory. Zero LLM calls in the hot path. ([details →](#token-efficiency))
-- **Structural (event-pattern) retrieval over completed trajectories.** Find paths whose action-observation sequence matches, not whose text matches — useful for monitoring, experience / reflection pipelines, and evaluation. ([benchmark →](#pattern-retrieval-vs-basic-rag))
+- **Trajectory-pattern retrieval over completed trajectories.** Find paths whose action-observation sequence matches, not whose text matches — useful for monitoring, experience / reflection pipelines, and evaluation. ([benchmark →](#pattern-retrieval-vs-basic-rag))
 - **Per-snapshot fail-similarity score.** Running fail-prediction signal from KNN voting on retrieved neighbours.
 - **Loop detection.** Surfaces stuck repeating-action patterns — useful even when the agent isn't broken (e.g. token-waste monitoring).
 - **Action-predictability signal.** Flags steps where the next action is highly constrained vs steps where the agent could plausibly branch many ways.
@@ -257,7 +257,7 @@ difference.
 
 ## Benchmarks
 
-Evaluated on coding-agent trajectories from the [SWE-rebench-OpenHands-Trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories) dataset, filtered to the [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) repository: **275 trajectories** (178 failures, 97 successes), no two sharing the same PR. A stratified split — `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — yields a 100-trajectory tune slice and a 175-trajectory held-out eval slice, both at ~65% failure rate (population mean). Reported 95% confidence intervals are per-trajectory bootstrap (200 draws). Full methodology and tuning guidance for your own agent: [`benchmarks/demo_eval/README.md`](benchmarks/demo_eval/README.md).
+Evaluated on coding-agent trajectories from the [SWE-rebench-OpenHands-Trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories) dataset, filtered to the [`tobymao/sqlglot`](https://github.com/tobymao/sqlglot) repository: **275 trajectories** (178 failures, 97 successes), no two sharing the same PR. A stratified split — `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — yields a 100-trajectory tune slice and a 175-trajectory held-out eval slice, both at ~65% failure rate (population mean). Reported 95% confidence intervals are per-trajectory bootstrap (2000 draws). Full methodology and tuning guidance for your own agent: [`benchmarks/demo_eval/README.md`](benchmarks/demo_eval/README.md).
 
 ### Token efficiency
 
@@ -267,30 +267,21 @@ Methodology: cluster all messages, contrastively annotate the centroids once via
 
 ### Pattern retrieval vs Basic RAG
 
-`cummean` (running-mean of per-snapshot fail-similarity) is the headline metric for both systems. Of the three aggregations Episodiq computes (`cummax`, `cummean`, `cummeanmax`), `cummean` is the most robust to noise — averaging dilutes single lucky hits, so a high `cummean` requires a *sustained* similarity signal. With only 275 trajectories split into a 100-traj tune slice and a 175-traj eval slice, single-spike metrics turn noisy, so locking the headline to the robust aggregation is the honest call.
+Each system is reported under the aggregation that suits it. Episodiq's headline is **`cummean`** (running-mean of per-snapshot fail-similarity) — of the three aggregations it computes (`cummax`, `cummean`, `cummeanmax`), averaging is the most robust to noise: a high `cummean` requires a *sustained* similarity signal, not a single lucky spike. Basic RAG is reported under **`cummax`** — tuned separately for each aggregation, `cummax` is its strongest (0.5764), while `cummean` (0.4820) and `cummeanmax` (0.4565) invert below 0.5, so `cummax` is the only aggregation that gives it an above-random footing. 95% CIs are per-trajectory bootstrap (2000 draws); each system uses the config that maximises its own tune-set AUC.
 
-**Headline**:
+![Headline eval AUC@s50 — trajectory-pattern retrieval (cummean) vs Basic RAG (cummax)](benchmarks/auc_table.png)
 
-| Method | tune AUC | eval AUC@s50 (cummean) | 95% CI |
-|---|---|---|---|
-| **Cascade retrieval** (per-window MinHash LSH + agg-shift Lev rerank) | 0.6440 | **0.6983** | [0.609, 0.782] |
-| Basic RAG (qwen3-embedding-8b cosine) | 0.5526 | 0.4820 | [0.372, 0.577] |
+Per-step ROC AUC over the 175-trajectory held-out eval slice — each point is the AUC at that step across trajectories still alive (raw, unweighted), from step 50 onward:
 
-For reference — Basic RAG's strongest shot, cherry-picking its own best config per metric:
+![Per-step retrieval AUC — trajectory-pattern retrieval (cummean) vs Basic RAG (cummax)](benchmarks/auc_curve.png)
 
-| Metric | Basic eval | 95% CI |
-|---|---|---|
-| cummax | 0.5764 | [0.461, 0.670] |
-| cummean | 0.4820 | [0.372, 0.577] |
-| cummeanmax | 0.4565 | [0.345, 0.561] |
-
-Every Basic RAG CI overlaps 0.5 — text-embedding cosine over qwen3 has no usable structural-prediction signal on this corpus, even when allowed to pick the best aggregation. Cascade's `cummean` eval CI lower bound is 0.609 (clearly above random), and eval > tune indicates generalisation, not overfit.
+Even at its best aggregation, Basic RAG's `cummax` CI still overlaps 0.5 — text-embedding cosine over qwen3 carries little structural fail-prediction signal on this corpus. Trajectory-pattern retrieval's `cummean` eval CI lower bound is 0.621 (clearly above random), and eval > tune (0.7114 > 0.6440) indicates generalisation, not overfit.
 
 **Methodology**:
 
 - **`AUC@s50`** is a time-stratified, weighted ROC AUC that controls for trajectory length. For every step `S ≥ 50`: take the trajectories still alive at `S` (last snapshot ≥ `S`); each contributes ONE score — its cumulative aggregate (`cummax` / `cummean` / `cummeanmax`) over snapshots up to step `S`. The ROC AUC at step `S` is then computed across those trajectories at the same horizon — a long trajectory doesn't inflate its score by having more snapshots to draw from, because at step `S` it's compared only against other alive trajectories using their `[0..S]` slice. Step AUCs are averaged across `S` weighted by `n_active(S)` so the early steps (where most trajectories are still alive) carry the most weight.
 - Both sides tune on the same 100-traj slice and evaluate on the same 175-traj held-out slice. Split is `Random(42).shuffle` over instance-id-sorted trajectories, then proportional interleave by status — both slices land at ~65% failure rate (population mean). Eval queries see the full corpus (the split lives in hyperparameter selection, not the data).
-- Cascade champion: `W=10  agg=min_distance  prefetch_n_uniq=220  jaccard_n_uniq=140  top_k=10  penalty_shape=lin  lam=1.2  sigma=0.5  gap_open=2.8  gap_extend=1.2` (LSH layout B=64, R=1; see step 7 in the [setup guide](#setup-guide) for why bench overrides the prod default).
+- Cascade champion: `W=10  agg=min_distance  prefetch_n_uniq=270  jaccard_n_uniq=120  top_k=12  penalty_shape=lin  lam=1.2  sigma=0.5  gap_open=1.9  gap_extend=1.3` (LSH layout B=64, R=1; see step 7 in the [setup guide](#setup-guide) for why bench overrides the prod default).
 
 Results are still **preliminary** — single-repo eval, wide bootstrap CIs. Will be confirmed on larger corpora.
 
