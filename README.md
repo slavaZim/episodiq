@@ -5,8 +5,7 @@
 Episodiq is an LLM proxy that captures agent trajectories and represents each one as a sequence of typed action-observation tokens — a sequence- / pattern-based alternative to text-embedding retrieval. The same representation drives:
 
 - **Human-readable logs at ~98% lower annotation cost.** Annotate one representative per cluster, reuse for every trajectory. Zero LLM calls in the hot path. ([details →](#token-efficiency))
-- **Trajectory-pattern retrieval over completed trajectories.** Find paths whose action-observation sequence matches, not whose text matches — useful for monitoring, experience / reflection pipelines, and evaluation. ([benchmark →](#pattern-retrieval-vs-basic-rag))
-- **Per-snapshot fail-similarity score.** Running fail-prediction signal from KNN voting on retrieved neighbours.
+- **Per-snapshot fail-similarity score.** Running fail-prediction signal from KNN voting over neighbours found by **trajectory-pattern retrieval** — matching action-observation sequences, not text. ([benchmark →](#pattern-retrieval-vs-basic-rag-in-per-step-failure-prediction))
 - **Loop detection.** Surfaces stuck repeating-action patterns — useful even when the agent isn't broken (e.g. token-waste monitoring).
 - **Action-predictability signal.** Flags steps where the next action is highly constrained vs steps where the agent could plausibly branch many ways.
 - **Drop-in proxy.** OpenAI or Anthropic API, any LLM client / agent framework. Base URL change and additional header.
@@ -265,9 +264,9 @@ At 1 000 trajectories, Episodiq annotation uses **~165× fewer tokens** than nai
 
 Methodology: cluster all messages, contrastively annotate the centroids once via [`episodiq annotate`](episodiq/cli/annotate); naive baseline samples 30 messages, runs them individually through the same summarize→annotate path, and extrapolates linearly to the full corpus. Both sides include a summarizer step (Haiku) for long inputs; on sqlglot most messages were short enough that Episodiq's summarizer didn't trigger. See [`benchmarks/demo_eval/token_efficiency.py`](benchmarks/demo_eval/token_efficiency.py).
 
-### Pattern retrieval vs Basic RAG
+### Pattern retrieval vs Basic RAG in per-step failure prediction
 
-Each system is reported under the aggregation that suits it. Episodiq's headline is **`cummean`** (running-mean of per-snapshot fail-similarity) — of the three aggregations it computes (`cummax`, `cummean`, `cummeanmax`), averaging is the most robust to noise: a high `cummean` requires a *sustained* similarity signal, not a single lucky spike. Basic RAG is reported under **`cummax`** — tuned separately for each aggregation, `cummax` is its strongest (0.5764), while `cummean` (0.4820) and `cummeanmax` (0.4565) invert below 0.5, so `cummax` is the only aggregation that gives it an above-random footing. 95% CIs are per-trajectory bootstrap (2000 draws); each system uses the config that maximises its own tune-set AUC.
+Each system is reported under the aggregation that suits it: Episodiq under **`cummean`** (running-mean of fail-similarity — the most noise-robust of the three it computes), Basic RAG under its best, **`cummax`** (its `cummean` and `cummeanmax` invert below 0.5). 95% CIs are per-trajectory bootstrap (2000 draws); each system uses the config that maximises its own tune-set AUC.
 
 | Method | Metric | tune AUC | eval AUC@s50 | 95% CI |
 |---|---|---|---|---|
@@ -384,7 +383,7 @@ episodiq tune retrieval-sweep \
 
 `--objective-metric` controls what TPE optimises:
 
-- **Single metric** (e.g. `cummean`) — locks the sampler to one objective. Recommended on small corpora where multi-metric sampling lets the picker chase noise (see the [benchmarks section](#pattern-retrieval-vs-basic-rag)).
+- **Single metric** (e.g. `cummean`) — locks the sampler to one objective. Recommended on small corpora where multi-metric sampling lets the picker chase noise (see the [benchmarks section](#pattern-retrieval-vs-basic-rag-in-per-step-failure-prediction)).
 - **Omit the flag** — TPE samples `metric` as a categorical knob per trial; the picker reports the best `(W, agg, metric)` combo overall. Recommended on larger corpora where sharing samples across metrics accelerates convergence and the picker noise is small.
 
 **9. Tune the path-frequency thresholds (optional)**
